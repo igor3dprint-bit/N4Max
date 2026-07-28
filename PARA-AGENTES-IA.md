@@ -1,8 +1,12 @@
-# Instalar com ajuda do Claude
+# Instalar com ajuda de um agente de IA
 
-Se você prefere que uma IA faça isso conversando com você em vez de clicar nos `.bat`, é só entregar este arquivo pro Claude (ou outro agente com acesso ao terminal).
+Se você prefere conduzir isso conversando com um agente em vez de digitar os comandos você mesmo,
+entregue **este arquivo** para ele (Claude Code, ou outro agente com acesso ao terminal).
 
-**Como usar:** abra o Claude Code na pasta deste projeto e cole a mensagem abaixo. Ou simplesmente diga: *"leia o USAR-COM-CLAUDE.md e faz aí"*.
+O conteúdo é o mesmo do [passo a passo](PASSO-A-PASSO.md), reescrito no formato que um agente segue
+bem: pré-requisitos, ordem, armadilhas e regras de conduta.
+
+**Como usar:** abra o agente na pasta deste projeto e cole a mensagem abaixo.
 
 ---
 
@@ -10,7 +14,7 @@ Se você prefere que uma IA faça isso conversando com você em vez de clicar no
 
 > Quero instalar o Klipper moderno da S&M Makers na minha Elegoo Neptune 4 Max.
 > O IP da impressora é: **_(coloque seu IP aqui)_**
-> Siga o procedimento descrito no arquivo `USAR-COM-CLAUDE.md`, na seção "Procedimento". Me avise antes de alterar qualquer coisa na impressora.
+> Siga o procedimento descrito no arquivo `PARA-AGENTES-IA.md`, na seção "Procedimento". Me avise antes de alterar qualquer coisa na impressora.
 
 ---
 

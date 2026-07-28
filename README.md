@@ -1,19 +1,18 @@
-# Neptune 4 Max — Klipper novo, do jeito fácil
-### Modern Klipper on the Elegoo Neptune 4 Max, the easy way
+# Elegoo Neptune 4 Max — Klipper moderno + o Z-offset que não obedece
 
-**🇧🇷 [Guia completo em português](LEIA-ME.md) · 🇺🇸 [Full guide in English](GUIDE-EN.md) · 🌐 [Página web / Web page](https://igor3dprint-bit.github.io/Neptune4Max-Klipper-Facil/)**
+**🇧🇷 [Passo a passo em português](PASSO-A-PASSO.md) · 🇺🇸 [Step by step in English](STEP-BY-STEP.md) · 🌐 [Página web / Web page](https://igor3dprint-bit.github.io/Neptune4Max-Klipper-Facil/)**
 
 ---
 
 ## 🙏 Crédito antes de tudo / Credit before anything else
 
-🇧🇷 **Sem a S&M Makers, nada disto existiria.** Todo o trabalho de verdade — portar o Klipper moderno
-para a Neptune 4 Max — é dele. Este repositório só empacota o trabalho dele em três cliques.
-Se isto te ajudou, o agradecimento vai pra lá.
+🇧🇷 **Sem a S&M Makers, nada disto existiria.** Todo o trabalho de portar o Klipper moderno para a
+Neptune 4 Max é dele. Este repositório traduz o processo para o português e acrescenta o que
+descobrimos usando a máquina no dia a dia. Se isto te ajudou, o agradecimento vai pra lá.
 
-🇺🇸 **Without S&M Makers, none of this would exist.** All the real work — porting modern Klipper to
-the Neptune 4 Max — is theirs. This repository only wraps that work into three clicks.
-If this helped you, that is where the thanks belong.
+🇺🇸 **Without S&M Makers, none of this would exist.** All the work of porting modern Klipper to the
+Neptune 4 Max is theirs. This repository walks through their process in Portuguese and English, and
+adds what we found living with the machine. If this helped you, that is where the thanks belong.
 
 | | |
 |---|---|
@@ -23,98 +22,105 @@ If this helped you, that is where the thanks belong.
 
 ---
 
-## 🇧🇷 Em uma frase
+## O que tem aqui / What's inside
 
-A Elegoo Neptune 4 Max sai de fábrica com um Klipper de **2022**. Este pacote instala a versão de
-**2025** — sem terminal, sem pendrive, sem chave de fenda. Você clica em três arquivos, na ordem,
-e o resto é automático.
+### 1️⃣ Instalar o Klipper de 2025 no lugar do de 2022
 
-O trabalho pesado de portar o Klipper moderno é da [S&M Makers](https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html).
-Este repositório é o empacotamento que faz isso caber em três cliques.
+🇧🇷 A Neptune 4 Max sai de fábrica com um Klipper de **2022**. O passo a passo leva você até a versão
+de **2025**, comando por comando, explicando o que cada um faz e mostrando o que você deve ver na
+tela. Sem pendrive, sem chave de fenda, sem abrir a impressora.
 
-**Começar:** leia o **[LEIA-ME.md](LEIA-ME.md)** e siga os três passos.
+🇺🇸 The Neptune 4 Max ships with a Klipper build from **2022**. The step-by-step takes you to the
+**2025** one, command by command, explaining what each does and showing what you should see. No USB
+stick, no screwdriver, no opening the printer.
 
-## 🇺🇸 In one sentence
+→ **[PASSO-A-PASSO.md](PASSO-A-PASSO.md)** · **[STEP-BY-STEP.md](STEP-BY-STEP.md)**
 
-The Elegoo Neptune 4 Max ships with a Klipper build from **2022**. This package installs the **2025**
-version — no terminal, no USB stick, no screwdriver. You double-click three files, in order, and the
-rest is automatic.
+### 2️⃣ O Z-offset que não obedece — e por quê
 
-The heavy lifting of porting modern Klipper is by [S&M Makers](https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html).
-This repository is the wrapper that turns it into three clicks.
+🇧🇷 Nesta máquina você ajusta o Z-offset, salva, e **quase nada muda**. Medido: mudar de `0.0` para
+`2.110` deslocou o bico em **0,05 mm** quando deveria deslocar 2,11.
 
-**Start here:** read **[GUIDE-EN.md](GUIDE-EN.md)** and follow the three steps.
+São **três causas somadas**, e nenhuma delas está documentada em outro lugar: o módulo da tela zera o
+valor no `SAVE_CONFIG`, o `plr.cfg` declara a impressora zerada segundos depois de ligar sem ter
+homeado, e o `PROBE_CALIBRATE` repete o mesmo valor errado. Tem a solução, como medir o **seu** valor,
+e o efeito colateral que enfiou um bico na borracha de limpeza aqui.
 
----
+🇺🇸 On this machine you adjust the Z-offset, save, and **almost nothing changes**. Measured: going
+from `0.0` to `2.110` moved the nozzle by **0.05 mm** when it should have moved 2.11.
 
-## 📂 Todos os arquivos / Every file
+**Three causes stacked**, none documented anywhere else: the LCD module zeroes the value on
+`SAVE_CONFIG`, `plr.cfg` declares the printer homed seconds after boot when it isn't, and
+`PROBE_CALIBRATE` repeats the same wrong number. Includes the fix, how to measure **your** value, and
+the side effect that drove a nozzle into the wipe pad here.
 
-| Arquivo / File | 🇧🇷 O que é | 🇺🇸 What it is |
-|---|---|---|
-| **[LEIA-ME.md](LEIA-ME.md)** | **Comece por aqui.** O tutorial completo em português | The full tutorial, in Portuguese |
-| **[GUIDE-EN.md](GUIDE-EN.md)** | O mesmo tutorial, em inglês | **Start here.** The full tutorial, in English |
-| **[EXTRA-Z-OFFSET.md](EXTRA-Z-OFFSET.md)** | 🔧 Extra: por que o Z-offset não obedece nesta máquina, e a solução. Bilíngue | 🔧 Extra: why the Z-offset refuses to obey on this machine, and the fix. Bilingual |
-| **[USAR-COM-CLAUDE.md](USAR-COM-CLAUDE.md)** | Para quem prefere que uma IA faça: entregue este arquivo ao Claude Code | For those who'd rather have an AI do it: hand this file to Claude Code |
-| `1-Configurar-Acesso.bat` | Cria a chave SSH e instala na impressora. Roda uma vez só | Creates the SSH key and installs it on the printer. One time only |
-| `2-Verificar-Impressora.bat` | **Só lê, não muda nada.** Descobre o firmware e diz se há Klipper compatível | **Read-only, changes nothing.** Detects the firmware and tells you if a compatible Klipper exists |
-| `3-Instalar-Klipper.bat` | Faz a instalação. 5 a 15 minutos | Does the install. 5 to 15 minutes |
-| `4-Voltar-Ao-Original.bat` | Desfaz tudo, usando os backups automáticos | Undoes everything, using the automatic backups |
-| `_comum.bat` | Interno: pergunta e guarda o IP em `ip.txt` | Internal: asks for and stores the IP in `ip.txt` |
-| `scripts/verificar.sh` | Os comandos de leitura que rodam dentro da impressora | The read-only commands that run inside the printer |
-| `scripts/instalar.sh` | Os comandos de instalação que rodam dentro da impressora | The install commands that run inside the printer |
-| `scripts/reverter.sh` | Os comandos de reversão que rodam dentro da impressora | The rollback commands that run inside the printer |
+→ **[Z-OFFSET.md](Z-OFFSET.md)** (bilíngue / bilingual)
 
-Nada aqui é caixa-preta — todo `.bat` e todo `.sh` é texto simples, dá para abrir e ler antes de rodar.
+### 3️⃣ Para quem usa um agente de IA
 
-Nothing here is a black box — every `.bat` and `.sh` is plain text you can open and read before running it.
+🇧🇷 O procedimento formatado para entregar ao Claude Code ou similar, com as regras de segurança.
+🇺🇸 The procedure formatted to hand to Claude Code or similar, with the safety rules.
+
+→ **[PARA-AGENTES-IA.md](PARA-AGENTES-IA.md)**
 
 ---
 
-## ⚡ O caminho rápido / The fast path
+## ⚡ O caminho curto / The short path
 
+```bash
+# 1. entrar na impressora (senha padrao: makerbase)
+ssh mks@SEU_IP
+
+# 2. descobrir o firmware Elegoo instalado
+grep -rhoE "1\.[0-9]+\.[0-9]+\.[0-9]+" /home/mks/Desktop/myfile/ 2>/dev/null | sort | uniq -c | sort -rn | head -1
+
+# 3. ver quais versoes existem para ele
+git ls-remote --tags https://github.com/sandmmakers/klipper.git | grep -oE 'sandmmakers-[A-Za-z0-9.-]+' | grep -v '\^{}' | sort -u
 ```
-1-Configurar-Acesso.bat   →   2-Verificar-Impressora.bat   →   3-Instalar-Klipper.bat
-```
 
-🇧🇷 Precisa apenas: impressora ligada, na mesma rede, e o IP dela (aparece em **Settings** no painel).
-Senha padrão: `makerbase`. Deu ruim? `4-Voltar-Ao-Original.bat`.
-
-🇺🇸 All you need: printer powered on, on the same network, and its IP (shown under **Settings** on the
-panel). Default password: `makerbase`. Something went wrong? `4-Voltar-Ao-Original.bat`.
+🇧🇷 A partir daqui, siga o [passo a passo](PASSO-A-PASSO.md) — os próximos comandos mexem na máquina
+e a ordem importa.
+🇺🇸 From here, follow the [step by step](STEP-BY-STEP.md) — the next commands change the machine and
+the order matters.
 
 ---
 
-## ⚠️ Depois de instalar / After installing
+## 📁 Estrutura / Layout
 
-🇧🇷 **Antes de imprimir qualquer coisa**, no painel da impressora: (1) nivelamento automático da mesa,
-(2) ajuste do Z-offset. A calibração antiga não é reaproveitada de forma confiável.
-
-Se o Z-offset parecer que não faz efeito, **não é você** — leia o [EXTRA-Z-OFFSET.md](EXTRA-Z-OFFSET.md).
-
-🇺🇸 **Before printing anything**, on the printer's panel: (1) auto bed leveling, (2) set the Z-offset.
-The old calibration is not carried over reliably.
-
-If the Z-offset seems to do nothing, **it's not you** — read [EXTRA-Z-OFFSET.md](EXTRA-Z-OFFSET.md).
+| Arquivo / File | |
+|---|---|
+| `PASSO-A-PASSO.md` | 🇧🇷 Guia completo de instalação, comando por comando |
+| `STEP-BY-STEP.md` | 🇺🇸 The same guide, in English |
+| `Z-OFFSET.md` | 🔧 O Z-offset que não obedece: causas, solução, medição (bilíngue) |
+| `PARA-AGENTES-IA.md` | 🤖 Procedimento para agentes de IA com acesso ao terminal |
+| `docs/` | 🌐 A página web deste repositório |
 
 ---
 
-## 🙏 Créditos / Credits
+## 🤔 Por que comandos, e não um instalador de um clique
 
-Todo o trabalho de portar o Klipper moderno para a Neptune 4 Max é da **S&M Makers**.
-All the work of porting modern Klipper to the Neptune 4 Max belongs to **S&M Makers**.
+🇧🇷 Um instalador promete "clica e funciona". Essa promessa exige testar a instalação inteira numa
+máquina de fábrica, várias vezes — e quem escreve isto tem uma impressora só, em produção.
 
-- 📄 https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html
-- 💾 https://github.com/sandmmakers/klipper
-- 📺 https://www.youtube.com/watch?v=Aoy3sI1lv1g
+Comando na tela promete outra coisa: **você está no comando, aqui está o que vai rodar e por quê.**
+Essa promessa dá pra sustentar. Você lê antes de colar, entende o que mudou, e sabe onde parar se
+algo sair diferente do esperado. De quebra funciona em Mac e Linux, não só Windows.
 
-O MCU STM32 **não é tocado** em momento nenhum. / The STM32 MCU is **never touched**.
+🇺🇸 An installer promises "click and it works". Backing that up means testing the full install on a
+factory machine, repeatedly — and whoever writes this has one printer, in production.
+
+Commands on screen promise something else: **you are in control, here is what will run and why.**
+That promise can be kept. You read before pasting, you understand what changed, and you know where to
+stop if something looks off. It also works on Mac and Linux, not just Windows.
 
 ---
 
-## 📜 Sem garantia / No warranty
+## 📜 Licença e garantia / License and warranty
 
-🇧🇷 Mexer em firmware tem risco. O caminho de volta existe e funciona, mas quem está do lado da
-impressora é você. Use por sua conta.
+Código sob [MIT](LICENSE). O Klipper em si é GPLv3, e o port é da S&M Makers, sob a licença dele.
 
-🇺🇸 Touching firmware carries risk. The rollback path exists and works, but you are the one standing
-next to the printer. Use at your own risk.
+🇧🇷 **Sem garantia.** Mexer em firmware tem risco. O caminho de volta existe e funciona, mas quem
+está do lado da impressora é você.
+
+🇺🇸 **No warranty.** Touching firmware carries risk. The rollback path exists and works, but you are
+the one standing next to the printer.

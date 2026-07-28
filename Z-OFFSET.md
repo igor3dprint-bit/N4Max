@@ -46,8 +46,11 @@ Existe no `plr.cfg` (o arquivo da recuperação de queda de energia) um bloco as
 
 ```ini
 [delayed_gcode KINEMATIC_POSITION]
-initial_duration: 0.2
-gcode: SET_KINEMATIC_POSITION X=0 Y=0 Z=0
+initial_duration:0.2
+gcode:
+      SET_KINEMATIC_POSITION X=0
+      SET_KINEMATIC_POSITION Y=0
+      SET_KINEMATIC_POSITION Z=0
 ```
 
 Traduzindo: poucos segundos após **qualquer** inicialização, a impressora passa a acreditar que está
@@ -204,8 +207,11 @@ Inside `plr.cfg` (the power-loss-recovery file) there is a block like this:
 
 ```ini
 [delayed_gcode KINEMATIC_POSITION]
-initial_duration: 0.2
-gcode: SET_KINEMATIC_POSITION X=0 Y=0 Z=0
+initial_duration:0.2
+gcode:
+      SET_KINEMATIC_POSITION X=0
+      SET_KINEMATIC_POSITION Y=0
+      SET_KINEMATIC_POSITION Z=0
 ```
 
 In plain words: a few seconds after **any** startup, the printer starts believing it is at position

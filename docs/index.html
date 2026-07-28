@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neptune 4 Max — Klipper novo do jeito fácil</title>
-<meta name="description" content="Instale o Klipper moderno (2025) na Elegoo Neptune 4 Max em três cliques. Install modern Klipper on the Elegoo Neptune 4 Max in three clicks.">
+<title>Neptune 4 Max — Klipper moderno e o Z-offset que não obedece</title>
+<meta name="description" content="Instale o Klipper de 2025 na Elegoo Neptune 4 Max, comando por comando. E a explicação do Z-offset que não obedece nesta máquina. Modern Klipper on the Elegoo Neptune 4 Max, command by command, plus the Z-offset defect explained.">
 <style>
 :root{
   --bg:#fbfbfd; --fg:#16181d; --muted:#5c6470; --line:#e3e6eb; --card:#fff;
@@ -32,17 +32,18 @@ a{color:var(--accent)}
 code,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.9em;
   background:var(--code-bg);padding:.15em .4em;border-radius:4px}
 pre{background:var(--code-bg);border:1px solid var(--line);border-radius:8px;padding:14px 16px;
-  overflow-x:auto}
-pre code{background:none;padding:0}
-h1{font-size:clamp(28px,5vw,40px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+  overflow-x:auto;font-size:13.5px;line-height:1.55}
+pre code{background:none;padding:0;font-size:inherit}
+h1{font-size:clamp(27px,4.6vw,38px);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
 h2{font-size:clamp(21px,3.4vw,27px);margin:56px 0 14px;letter-spacing:-.01em;
   padding-bottom:8px;border-bottom:1px solid var(--line)}
-h3{font-size:18px;margin:30px 0 8px}
+h3{font-size:18px;margin:32px 0 8px}
+h4{font-size:15px;margin:22px 0 6px;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.06em}
 p,ul,ol{margin:0 0 14px}
 ul,ol{padding-left:22px}
 li{margin:.3em 0}
 
-/* language switching */
 body[data-lang="pt"] [data-l="en"],
 body[data-lang="en"] [data-l="pt"]{display:none !important}
 
@@ -77,14 +78,20 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);
 .credit-links{display:flex;gap:9px;flex-wrap:wrap}
 .credit-links .btn{font-size:14px;padding:9px 15px;text-decoration:none}
 
-.steps{display:grid;gap:14px;margin:22px 0}
-.step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.pillars{display:grid;gap:14px;margin:22px 0;grid-template-columns:1fr}
+@media(min-width:680px){.pillars{grid-template-columns:1fr 1fr}}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.pillar h3{margin:0 0 8px;font-size:17px}
+.pillar p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+
+.step{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:18px 20px;margin:14px 0}
 .step .n{display:inline-flex;align-items:center;justify-content:center;
-  width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;
-  font-weight:700;font-size:14px;margin-bottom:10px}
+  min-width:28px;height:28px;padding:0 8px;border-radius:8px;background:var(--accent);color:#fff;
+  font-weight:700;font-size:13px;margin-bottom:10px}
 .step h3{margin:0 0 6px;font-size:17px}
-.step p{margin:0;color:var(--muted);font-size:15px}
-.step p+p{margin-top:8px}
+.step p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.step pre{margin:10px 0}
 
 .note{border-radius:10px;padding:14px 18px;margin:18px 0;font-size:15px}
 .note.warn{background:var(--warn-bg);border:1px solid var(--warn-line)}
@@ -93,7 +100,7 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);
 .note :last-child{margin-bottom:0}
 
 .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:18px 0}
-table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:480px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
 th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
 th{background:var(--code-bg);font-weight:600;font-size:13px;letter-spacing:.02em}
 tr:last-child td{border-bottom:none}
@@ -125,42 +132,70 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="kicker" data-l="pt">Elegoo Neptune 4 Max</div>
-  <div class="kicker" data-l="en">Elegoo Neptune 4 Max</div>
+  <div class="kicker">Elegoo Neptune 4 Max</div>
 
-  <h1 data-l="pt">Klipper novo, do jeito fácil</h1>
-  <h1 data-l="en">Modern Klipper, the easy way</h1>
+  <h1 data-l="pt">Klipper moderno, e o Z-offset que não obedece</h1>
+  <h1 data-l="en">Modern Klipper, and the Z-offset that refuses to obey</h1>
 
   <p class="lead" data-l="pt">Sua impressora saiu de fábrica com um Klipper de <strong>2022</strong>.
-    Este pacote instala a versão de <strong>2025</strong>. Você clica em três arquivos, na ordem, e o
-    resto é automático.<br><br>
-    Sem terminal. Sem pendrive. Sem chave de fenda. Sem abrir a impressora.</p>
+    Aqui está como colocar o de <strong>2025</strong> — comando por comando, com o que cada um faz e o
+    que você deve ver na tela.<br><br>
+    E a explicação de um defeito desta máquina que não está documentado em lugar nenhum: o Z-offset
+    que você ajusta e não acontece nada.</p>
   <p class="lead" data-l="en">Your printer shipped with a Klipper build from <strong>2022</strong>.
-    This package installs the <strong>2025</strong> one. You double-click three files, in order, and
-    the rest is automatic.<br><br>
-    No terminal. No USB stick. No screwdriver. No opening the printer.</p>
+    Here is how to run the <strong>2025</strong> one — command by command, with what each does and
+    what you should see on screen.<br><br>
+    Plus a defect of this machine documented nowhere else: the Z-offset you adjust that changes
+    nothing.</p>
 
   <div class="cta">
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/archive/refs/heads/main.zip" data-l="pt">⬇ Baixar o pacote</a>
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/archive/refs/heads/main.zip" data-l="en">⬇ Download the package</a>
-    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil" data-l="pt">Ver no GitHub</a>
-    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil" data-l="en">View on GitHub</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md" data-l="pt">📖 Passo a passo completo</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md" data-l="en">📖 Full step by step</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md">🔧 <span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil">GitHub</a>
   </div>
 </section>
 
-<!-- ══════════ CRÉDITO EM DESTAQUE ══════════ -->
+<!-- ══════════ CRÉDITO ══════════ -->
 <div class="credit">
   <div class="credit-tag">🙏 <span data-l="pt">Crédito</span><span data-l="en">Credit</span></div>
   <p data-l="pt"><strong>Sem a S&amp;M Makers, nada disto existiria.</strong> Todo o trabalho de
-     verdade — portar o Klipper moderno para a Neptune 4 Max — é dele. Esta página só empacota o
-     trabalho dele em três cliques. Se isto te ajudou, o agradecimento vai pra lá:</p>
+     verdade — portar o Klipper moderno para a Neptune 4 Max — é dele. Esta página traduz o processo
+     dele e acrescenta o que descobrimos usando a máquina. Se isto te ajudou, o agradecimento vai
+     pra lá:</p>
   <p data-l="en"><strong>Without S&amp;M Makers, none of this would exist.</strong> All the real work
-     — porting modern Klipper to the Neptune 4 Max — is theirs. This page only wraps that work into
-     three clicks. If this helped you, that's where the thanks belong:</p>
+     — porting modern Klipper to the Neptune 4 Max — is theirs. This page walks through their process
+     and adds what we found living with the machine. If this helped you, that's where the thanks
+     belong:</p>
   <div class="credit-links">
-    <a class="btn" href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">▶ <span data-l="pt">Assista o vídeo do @SandMMakers</span><span data-l="en">Watch the @SandMMakers video</span></a>
+    <a class="btn" href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">▶ <span data-l="pt">Vídeo do @SandMMakers</span><span data-l="en">The @SandMMakers video</span></a>
     <a class="btn" href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html">📄 <span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a>
     <a class="btn" href="https://github.com/sandmmakers/klipper">💾 sandmmakers/klipper</a>
+  </div>
+</div>
+
+<!-- ══════════ DUAS ENTREGAS ══════════ -->
+<h2 data-l="pt">O que tem aqui</h2>
+<h2 data-l="en">What's here</h2>
+
+<div class="pillars">
+  <div class="pillar">
+    <h3>1️⃣ <span data-l="pt">A instalação</span><span data-l="en">The install</span></h3>
+    <p data-l="pt">Do Klipper de 2022 para o de 2025, sem pendrive, sem chave de fenda, sem abrir a
+       impressora. Tudo pela rede, com o que esperar em cada comando.</p>
+    <p data-l="en">From the 2022 Klipper to the 2025 one. No USB stick, no screwdriver, no opening
+       the printer. All over the network, with what to expect at each command.</p>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md" data-l="pt">Ler o passo a passo</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md" data-l="en">Read the step by step</a>
+  </div>
+  <div class="pillar">
+    <h3>2️⃣ <span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></h3>
+    <p data-l="pt">Três causas somadas que fazem o Z-offset ser ignorado nesta máquina. Não está
+       documentado em nenhum outro lugar — foi descoberto medindo.</p>
+    <p data-l="en">Three stacked causes that make the Z-offset be ignored on this machine.
+       Documented nowhere else — it was found by measuring.</p>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md" data-l="pt">Ler sobre o offset</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md" data-l="en">Read about the offset</a>
   </div>
 </div>
 
@@ -169,118 +204,166 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 <h2 data-l="en">Before you start</h2>
 
 <div data-l="pt">
-  <p>Confira estas quatro coisas:</p>
-  <ul>
-    <li>A impressora está <strong>ligada</strong> e <strong>não está imprimindo</strong></li>
-    <li>A impressora está na <strong>mesma rede</strong> que o seu computador (wifi ou cabo)</li>
-    <li>Você sabe o <strong>IP da impressora</strong></li>
-    <li>Seu Windows tem o <strong>Cliente OpenSSH</strong> (o Windows 10 e 11 já vêm com ele)</li>
-  </ul>
-  <h3>Como descobrir o IP da impressora</h3>
-  <p>No painel da impressora, vá em <strong>Settings</strong> (Configurações). O IP aparece na tela,
-     algo como <code>192.168.0.50</code>.</p>
-  <p>Se não achar por lá, entre na página de administração do seu roteador e procure na lista de
-     aparelhos conectados por um nome tipo <code>mkspi</code>.</p>
-  <p>Você digita esse IP <strong>uma vez só</strong>. O programa guarda e reusa nos passos seguintes.</p>
+  <p>Você precisa de: a impressora <strong>ligada</strong>, <strong>não imprimindo</strong>, na
+     <strong>mesma rede</strong> que o seu computador, e uns 30 minutos.</p>
+  <h4>O que vai acontecer, em português</h4>
+  <p>A impressora é um computadorzinho com Linux dentro. Você vai entrar nele pela rede (isso se
+     chama <strong>SSH</strong>), trocar a pasta do Klipper por uma versão nova, recompilar duas
+     coisinhas, e reiniciar.</p>
+  <p>Só duas coisas são substituídas: a pasta <code>~/klipper</code> e o programa
+     <code>/usr/local/bin/klipper_mcu</code>. O chip principal da impressora (o <strong>MCU
+     STM32</strong>) <strong>não é tocado em momento nenhum</strong>.</p>
+  <h4>Como achar o IP da impressora</h4>
+  <p>No painel da impressora, vá em <strong>Settings</strong>. O IP aparece na tela, algo como
+     <code>192.168.0.50</code>. Se não achar, procure na página do seu roteador por um aparelho
+     chamado <code>mkspi</code>. Onde esta página escrever <code>SEU_IP</code>, troque pelo seu.</p>
 </div>
 
 <div data-l="en">
-  <p>Check these four things:</p>
-  <ul>
-    <li>The printer is <strong>powered on</strong> and <strong>not printing</strong></li>
-    <li>The printer is on the <strong>same network</strong> as your computer (wifi or cable)</li>
-    <li>You know the <strong>printer's IP address</strong></li>
-    <li>Your Windows has the <strong>OpenSSH Client</strong> (Windows 10 and 11 include it already)</li>
-  </ul>
-  <h3>How to find the printer's IP</h3>
-  <p>On the printer's panel, go to <strong>Settings</strong>. The IP shows on screen, something like
-     <code>192.168.0.50</code>.</p>
-  <p>If it isn't there, open your router's admin page and look through the connected devices for a
-     name like <code>mkspi</code>.</p>
-  <p>You type this IP <strong>only once</strong>. The program remembers it for the following steps.</p>
+  <p>You need: the printer <strong>powered on</strong>, <strong>not printing</strong>, on the
+     <strong>same network</strong> as your computer, and about 30 minutes.</p>
+  <h4>What is about to happen, in plain words</h4>
+  <p>The printer is a little Linux computer. You are going to log into it over the network (that's
+     <strong>SSH</strong>), swap the Klipper folder for a newer one, recompile two small things, and
+     reboot.</p>
+  <p>Only two things get replaced: the <code>~/klipper</code> folder and the
+     <code>/usr/local/bin/klipper_mcu</code> program. The printer's main chip (the <strong>STM32
+     MCU</strong>) is <strong>never touched</strong>.</p>
+  <h4>Finding the printer's IP</h4>
+  <p>On the printer's panel go to <strong>Settings</strong>. The IP shows on screen, something like
+     <code>192.168.0.50</code>. If it isn't there, check your router's page for a device called
+     <code>mkspi</code>. Wherever this page says <code>YOUR_IP</code>, substitute yours.</p>
 </div>
 
-<!-- ══════════ PASSOS ══════════ -->
-<h2 data-l="pt">Os três passos</h2>
-<h2 data-l="en">The three steps</h2>
+<div class="note warn">
+  <div data-l="pt"><strong>Os riscos, sem enfeite</strong>
+    Mexer em firmware tem risco. O caminho de volta existe e está mais abaixo, mas quem está do lado
+    da impressora é você. Se a energia cair no meio da instalação, você pode precisar reinstalar o
+    firmware da Elegoo por pendrive. <strong>Faça o backup</strong> — é a diferença entre um susto e
+    um problema.</div>
+  <div data-l="en"><strong>The risks, plainly</strong>
+    Touching firmware carries risk. The rollback path exists and is further down, but you are the one
+    standing next to the printer. If power drops mid-install, you may have to reflash the Elegoo
+    firmware from a USB stick. <strong>Do the backup</strong> — it is the difference between a scare
+    and a problem.</div>
+</div>
 
-<p data-l="pt">Clique duas vezes em cada arquivo, <strong>nesta ordem</strong>:</p>
-<p data-l="en">Double-click each file, <strong>in this order</strong>:</p>
+<!-- ══════════ COMANDOS ══════════ -->
+<h2 data-l="pt">Os comandos</h2>
+<h2 data-l="en">The commands</h2>
 
-<div class="steps">
+<p data-l="pt">Abra o terminal (Windows: tecle <kbd>Win</kbd>, digite <code>powershell</code>,
+   Enter · Mac: <kbd>Cmd</kbd>+<kbd>Espaço</kbd>, <code>terminal</code> · Linux:
+   <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>).</p>
+<p data-l="en">Open a terminal (Windows: press <kbd>Win</kbd>, type <code>powershell</code>,
+   Enter · Mac: <kbd>Cmd</kbd>+<kbd>Space</kbd>, <code>terminal</code> · Linux:
+   <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>).</p>
 
-  <div class="step">
-    <div class="n">1</div>
-    <h3><code>1-Configurar-Acesso.bat</code></h3>
-    <div data-l="pt">
-      <p>Cria uma chave de acesso e instala na impressora, pra não ficar pedindo senha toda hora.</p>
-      <p>Vai pedir o IP e depois a <strong>senha da impressora</strong>. A senha padrão é
-         <code>makerbase</code>.</p>
-      <p>Só precisa fazer isso uma vez.</p>
-    </div>
-    <div data-l="en">
-      <p>Creates an access key and installs it on the printer, so it stops asking for a password
-         every time.</p>
-      <p>It asks for the IP, then for the <strong>printer's password</strong>. The default is
-         <code>makerbase</code>.</p>
-      <p>You only do this once.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="n">2</div>
-    <h3><code>2-Verificar-Impressora.bat</code></h3>
-    <div data-l="pt">
-      <p><strong>Só olha, não muda nada.</strong> Descobre a versão do firmware da sua impressora e
-         diz se existe um Klipper novo compatível.</p>
-      <p>Se ele disser <em>"TUDO CERTO"</em>, siga em frente. Se disser outra coisa, veja a seção de
-         problemas mais abaixo.</p>
-    </div>
-    <div data-l="en">
-      <p><strong>Read-only, it changes nothing.</strong> It detects your printer's firmware version
-         and tells you whether a compatible modern Klipper exists.</p>
-      <p>If it says <em>"TUDO CERTO"</em> (all good), move on. If it says anything else, see the
-         troubleshooting section below.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="n">3</div>
-    <h3><code>3-Instalar-Klipper.bat</code></h3>
-    <div data-l="pt">
-      <p>Faz a instalação. Vai pedir pra você digitar <code>SIM</code> pra confirmar.</p>
-      <p><strong>Demora de 5 a 15 minutos.</strong> Em vários momentos vai parecer que travou — não
-         travou, é a impressora compilando. Não feche a janela, não desligue nada.</p>
-      <p>No fim a impressora reinicia sozinha e o programa confirma a versão instalada.</p>
-    </div>
-    <div data-l="en">
-      <p>Does the install. It asks you to type <code>SIM</code> to confirm.</p>
-      <p><strong>It takes 5 to 15 minutes.</strong> At several points it will look frozen — it isn't,
-         that's the printer compiling. Don't close the window, don't unplug anything.</p>
-      <p>At the end the printer reboots on its own and confirms the installed version.</p>
-    </div>
-  </div>
-
+<div class="step">
+  <div class="n">1</div>
+  <h3 data-l="pt">Entrar na impressora</h3>
+  <h3 data-l="en">Log into the printer</h3>
+  <pre><code>ssh mks@<span data-l="pt">SEU_IP</span><span data-l="en">YOUR_IP</span></code></pre>
+  <p data-l="pt">Na primeira vez pergunta se você confia: digite <code>yes</code>. Depois pede a
+     senha, que por padrão é <code>makerbase</code>.</p>
+  <p data-l="en">The first time it asks whether you trust it: type <code>yes</code>. Then it asks
+     for the password, which by default is <code>makerbase</code>.</p>
 </div>
 
 <div class="note warn">
   <div data-l="pt"><strong>A senha some enquanto você digita — é normal</strong>
     Nada aparece na tela: nem asteriscos, nem pontinhos. Parece que o teclado parou de funcionar.
-    É proposital, é assim mesmo em terminal. Digite e aperte Enter.</div>
+    Todo terminal Linux faz isso. Digite e aperte Enter.</div>
   <div data-l="en"><strong>The password is invisible while you type — that's normal</strong>
     Nothing shows on screen: no asterisks, no dots. It looks like the keyboard stopped working.
-    That is intentional, it's how terminals behave. Type it and press Enter.</div>
+    Every Linux terminal does this. Type it and press Enter.</div>
 </div>
 
-<div class="note ok">
-  <div data-l="pt"><strong>Prefere que uma IA faça?</strong>
-    Entregue o arquivo <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/USAR-COM-CLAUDE.md"><code>USAR-COM-CLAUDE.md</code></a>
-    ao Claude Code (ou outro agente com acesso ao terminal) e peça pra executar. Tem o procedimento
-    completo, as armadilhas e as regras de segurança.</div>
-  <div data-l="en"><strong>Rather have an AI do it?</strong>
-    Hand <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/USAR-COM-CLAUDE.md"><code>USAR-COM-CLAUDE.md</code></a>
-    to Claude Code (or any agent with terminal access) and ask it to run the procedure. It contains
-    the full process, the pitfalls and the safety rules.</div>
+<div class="step">
+  <div class="n">2</div>
+  <h3 data-l="pt">Descobrir o firmware da Elegoo</h3>
+  <h3 data-l="en">Find the Elegoo firmware</h3>
+  <p data-l="pt">É a informação mais importante do processo inteiro. Só olha, não muda nada.</p>
+  <p data-l="en">The single most important piece of information here. Read-only, changes nothing.</p>
+  <pre><code>grep -rhoE "1\.[0-9]+\.[0-9]+\.[0-9]+" /home/mks/Desktop/myfile/ 2>/dev/null \
+  | sort | uniq -c | sort -rn | head -3</code></pre>
+  <p data-l="pt">O número que se repete mais é o certo:</p>
+  <p data-l="en">The number that repeats most is the right one:</p>
+  <pre><code>     97 1.2.3.4
+      1 Binary file /home/mks/Desktop/myfile/znp/... matches</code></pre>
+</div>
+
+<div class="step">
+  <div class="n">3</div>
+  <h3 data-l="pt">Ver quais versões existem para ele</h3>
+  <h3 data-l="en">See which versions exist for it</h3>
+  <pre><code>git ls-remote --tags https://github.com/sandmmakers/klipper.git \
+  | grep -oE 'sandmmakers-[A-Za-z0-9.-]+' | grep -v '\^{}' | sort -u</code></pre>
+  <pre><code>sandmmakers-ElegooNeptune4Max-v1.2.3.4-v0.13.0-0-1
+sandmmakers-ElegooNeptune4Max-v1.2.3.4-v0.13.0-51-1
+                              └──┬───┘ └──┬───┘ └┬┘
+                       <span data-l="pt">firmware Elegoo   Klipper  commits</span><span data-l="en">Elegoo firmware   Klipper  commits</span></code></pre>
+  <p data-l="pt">Entre as compatíveis, escolha a com o maior número de commits (aqui, a
+     <code>-51-1</code>).</p>
+  <p data-l="en">Among the compatible ones, pick the highest commit count (here, <code>-51-1</code>).</p>
+</div>
+
+<div class="note warn">
+  <div data-l="pt"><strong>A regra que não pode ser quebrada</strong>
+    A parte do meio da tag tem que ser <strong>exatamente</strong> o firmware que você descobriu no
+    passo 2. Se o seu é <code>1.2.3.4</code>, só serve tag com <code>v1.2.3.4</code>. Instalar a de
+    outro firmware quebra a impressora.</div>
+  <div data-l="en"><strong>The rule you cannot break</strong>
+    The middle of the tag must be <strong>exactly</strong> the firmware you found in step 2. If yours
+    is <code>1.2.3.4</code>, only a tag with <code>v1.2.3.4</code> will do. Installing one built for
+    a different firmware breaks the printer.</div>
+</div>
+
+<div class="step">
+  <div class="n">4</div>
+  <h3 data-l="pt">Fazer o backup — não pule</h3>
+  <h3 data-l="en">Make the backup — don't skip</h3>
+  <p data-l="pt">Rode no <strong>seu computador</strong>, não dentro da impressora (saia com
+     <code>exit</code>).</p>
+  <p data-l="en">Run on <strong>your computer</strong>, not inside the printer (type
+     <code>exit</code> first).</p>
+  <pre><code>ssh mks@<span data-l="pt">SEU_IP</span><span data-l="en">YOUR_IP</span> "tar czf - -C / home/mks/klipper_config home/mks/klipper \
+  usr/local/bin/klipper_mcu* 2>/dev/null" > backup-neptune.tar.gz
+
+gzip -t backup-neptune.tar.gz && echo "BACKUP OK"</code></pre>
+  <p data-l="pt">Um backup não verificado não é um backup. Se não aparecer
+     <code>BACKUP OK</code>, refaça.</p>
+  <p data-l="en">An unverified backup is not a backup. If <code>BACKUP OK</code> doesn't appear, do
+     it again.</p>
+</div>
+
+<div class="step">
+  <div class="n">5</div>
+  <h3 data-l="pt">Instalar</h3>
+  <h3 data-l="en">Install</h3>
+  <p data-l="pt">São oito blocos de comandos, e a ordem importa — inclusive uma etapa que
+     <strong>tem</strong> que vir antes das outras, senão o Klipper não liga depois. Está tudo
+     detalhado, com as conferências entre cada etapa, no passo a passo completo.</p>
+  <p data-l="en">Eight blocks of commands, and the order matters — including one step that
+     <strong>must</strong> come before the others, or Klipper won't start afterwards. It is all laid
+     out, with a check between each stage, in the full step by step.</p>
+  <div class="credit-links">
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md#6-instalar" data-l="pt">📖 Abrir a seção de instalação</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md#6-install" data-l="en">📖 Open the install section</a>
+  </div>
+</div>
+
+<div class="step">
+  <div class="n">6</div>
+  <h3 data-l="pt">Conferir se deu certo</h3>
+  <h3 data-l="en">Verify</h3>
+  <pre><code>grep -oE "Loaded MCU '[a-z]+' [0-9]+ commands" ~/klipper_logs/klippy.log | tail -2</code></pre>
+  <pre><code>Loaded MCU 'mcu' 105 commands
+Loaded MCU 'rpi' 127 commands</code></pre>
+  <p data-l="pt">O <code>mcu</code> é o STM32 original da impressora. O <code>rpi</code> é o que
+     você acabou de compilar. <strong>Os dois têm que aparecer.</strong></p>
+  <p data-l="en"><code>mcu</code> is the printer's original STM32. <code>rpi</code> is the one you
+     just compiled. <strong>Both must appear.</strong></p>
 </div>
 
 <!-- ══════════ DEPOIS ══════════ -->
@@ -288,24 +371,14 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 <h2 data-l="en">After installing</h2>
 
 <div data-l="pt">
-  <p><strong>Faça isso antes de imprimir qualquer coisa</strong>, no painel da impressora:</p>
-  <ol>
-    <li>Nivelamento automático da mesa (<em>auto bed leveling</em>)</li>
-    <li>Ajustar o Z-offset</li>
-  </ol>
-  <p>A calibração antiga não é aproveitada de forma confiável pelo Klipper novo.</p>
+  <p><strong>Antes de imprimir qualquer coisa</strong>, no painel da impressora: (1) nivelamento
+     automático da mesa, (2) ajustar o Z-offset. A calibração antiga não é aproveitada de forma
+     confiável pelo Klipper novo.</p>
 </div>
 <div data-l="en">
-  <p><strong>Do this before printing anything</strong>, on the printer's panel:</p>
-  <ol>
-    <li>Auto bed leveling</li>
-    <li>Set the Z-offset</li>
-  </ol>
-  <p>The old calibration is not carried over reliably by the new Klipper.</p>
+  <p><strong>Before printing anything</strong>, on the printer's panel: (1) auto bed leveling,
+     (2) set the Z-offset. The old calibration is not carried over reliably by the new Klipper.</p>
 </div>
-
-<h3 data-l="pt">Duas coisas estranhas que são normais</h3>
-<h3 data-l="en">Two odd things that are normal</h3>
 
 <details>
   <summary><span data-l="pt">Deu erro ao salvar o nivelamento</span><span data-l="en">An error when saving the bed mesh</span></summary>
@@ -319,57 +392,55 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 
 <details>
   <summary><span data-l="pt">Os "modos de performance" mudaram</span><span data-l="en">The "performance modes" changed</span></summary>
-  <p data-l="pt">Aqueles modos de velocidade que você escolhe no painel usavam um ajuste chamado
+  <p data-l="pt">Aqueles modos de velocidade do painel usavam um ajuste chamado
      <code>max_accel_to_decel</code>, que foi removido do Klipper. Agora eles não controlam mais a
-     desaceleração. Na prática: pode ser que você note diferença nos cantos das peças. Se incomodar,
-     dá pra ajustar manualmente no <code>printer.cfg</code> (procure por
-     <code>minimum_cruise_ratio</code>).</p>
-  <p data-l="en">Those speed modes you pick on the panel relied on a setting called
-     <code>max_accel_to_decel</code>, which was removed from Klipper. They no longer control
-     deceleration. In practice: you may notice a difference on part corners. If it bothers you, it
-     can be tuned by hand in <code>printer.cfg</code> (look for
-     <code>minimum_cruise_ratio</code>).</p>
+     desaceleração, e você pode notar diferença nos cantos das peças. Para voltar ao comportamento
+     antigo, acrescente no <code>[printer]</code> do seu <code>printer.cfg</code>:</p>
+  <p data-l="en">Those speed modes on the panel relied on a setting called
+     <code>max_accel_to_decel</code>, removed from Klipper. They no longer control deceleration, and
+     you may notice a difference on part corners. To restore the old behaviour, add this under
+     <code>[printer]</code> in your <code>printer.cfg</code>:</p>
+  <pre><code>minimum_cruise_ratio: 0</code></pre>
 </details>
 
 <!-- ══════════ Z-OFFSET ══════════ -->
-<h2 data-l="pt">🔧 Extra: o Z-offset que não obedece</h2>
-<h2 data-l="en">🔧 Extra: the Z-offset that refuses to obey</h2>
+<h2 data-l="pt">🔧 O Z-offset que não obedece</h2>
+<h2 data-l="en">🔧 The Z-offset that refuses to obey</h2>
 
 <div data-l="pt">
-  <p>Se, depois de instalar, você ajustar o Z-offset e <strong>quase nada mudar</strong>,
-     <strong>não é você</strong>. É um defeito conhecido desta máquina.</p>
-  <p>Foi medido numa Neptune 4 Max real: mudar o <code>z_offset</code> de <code>0.0</code> para
+  <p>Se você ajustar o Z-offset e <strong>quase nada mudar</strong>, <strong>não é você</strong>.
+     Foi medido numa Neptune 4 Max real: mudar o <code>z_offset</code> de <code>0.0</code> para
      <code>2.110</code> — uma diferença de 2,11 mm — deslocou o contato real do bico em
      <strong>0,05 mm</strong>. Cerca de 2% do pedido.</p>
-  <p><strong>As três causas:</strong></p>
+  <p>São <strong>três causas somadas</strong>:</p>
   <ol>
     <li>O módulo da tela (<code>znp_tjc_klipper</code>) <strong>zera o <code>[probe] z_offset</code>
-        toda vez que você faz <code>SAVE_CONFIG</code></strong>. Reproduzido três vezes.</li>
-    <li>O arquivo <code>plr.cfg</code> declara a impressora <strong>"zerada" segundos depois de
-        ligar, sem ter homeado</strong> — então todo teste feito logo após um restart dá resultado
-        sem sentido.</li>
+        toda vez que roda um <code>SAVE_CONFIG</code></strong>. Reproduzido três vezes.</li>
+    <li>O <code>plr.cfg</code> declara a impressora <strong>"zerada" segundos depois de ligar, sem
+        ter homeado</strong> — então todo teste feito logo após um restart dá resultado sem sentido.
+        <em>Isso também significa que ela aceita um <code>G1 Z-5</code> e desce contra a mesa.</em></li>
     <li>O <code>PROBE_CALIBRATE</code> repete o mesmo valor errado. Repetibilidade não é correção.</li>
   </ol>
-  <p><strong>A solução:</strong> o valor não sobrevive no <code>[probe]</code>, então ele passa a
-     viver numa macro que embrulha o <code>G28</code>. Cole no fim do seu <code>printer.cfg</code>:</p>
+  <p><strong>A solução:</strong> como o valor não sobrevive no <code>[probe]</code>, ele passa a
+     viver numa macro que embrulha o <code>G28</code>:</p>
 </div>
 
 <div data-l="en">
-  <p>If, after installing, you adjust the Z-offset and <strong>almost nothing changes</strong>,
-     <strong>it's not you</strong>. It is a known quirk of this machine.</p>
-  <p>Measured on a real Neptune 4 Max: changing <code>z_offset</code> from <code>0.0</code> to
-     <code>2.110</code> — a 2.11 mm difference — moved the actual nozzle contact point by
-     <strong>0.05 mm</strong>. About 2% of what was asked.</p>
-  <p><strong>The three causes:</strong></p>
+  <p>If you adjust the Z-offset and <strong>almost nothing changes</strong>, <strong>it's not
+     you</strong>. Measured on a real Neptune 4 Max: changing <code>z_offset</code> from
+     <code>0.0</code> to <code>2.110</code> — a 2.11 mm difference — moved the actual nozzle contact
+     point by <strong>0.05 mm</strong>. About 2% of what was asked.</p>
+  <p>There are <strong>three stacked causes</strong>:</p>
   <ol>
     <li>The LCD module (<code>znp_tjc_klipper</code>) <strong>resets <code>[probe] z_offset</code> to
-        zero every time you run <code>SAVE_CONFIG</code></strong>. Reproduced three times.</li>
-    <li>The <code>plr.cfg</code> file declares the printer <strong>"at zero" seconds after boot,
-        without ever homing</strong> — so any test run right after a restart returns nonsense.</li>
+        zero every time a <code>SAVE_CONFIG</code> runs</strong>. Reproduced three times.</li>
+    <li><code>plr.cfg</code> declares the printer <strong>"at zero" seconds after boot, without ever
+        homing</strong> — so any test right after a restart returns nonsense. <em>It also means the
+        machine will accept a <code>G1 Z-5</code> and drive into the bed.</em></li>
     <li><code>PROBE_CALIBRATE</code> repeats the same wrong value. Repeatability is not accuracy.</li>
   </ol>
   <p><strong>The fix:</strong> since the value won't survive inside <code>[probe]</code>, it lives in
-     a macro that wraps <code>G28</code> instead. Paste at the end of your <code>printer.cfg</code>:</p>
+     a macro that wraps <code>G28</code> instead:</p>
 </div>
 
 <pre><code>[gcode_macro G28]
@@ -380,56 +451,56 @@ gcode:
 
 <div class="note warn">
   <div data-l="pt"><strong>Não copie o -2.0</strong>
-    Esse número é daquela impressora específica. Bico, sonda ou mesa diferentes = valor diferente.
+    Esse número é de uma impressora específica. Bico, sonda ou mesa diferentes = valor diferente.
     Meça o seu: <code>G28</code> → <code>G1 Z0 F300</code> → tente passar uma folha de papel entre o
-    bico e a mesa. Passa folgado? Valor <strong>negativo</strong> (aproxima). Não passa? Valor
-    <strong>positivo</strong> (afasta). Ajuste em passos pequenos com
-    <code>SET_GCODE_OFFSET Z=…</code> até o papel deslizar raspando de leve.</div>
+    bico e a mesa. Passa folgado? Valor <strong>negativo</strong>. Não passa? Valor
+    <strong>positivo</strong>. Ajuste em passos pequenos com <code>SET_GCODE_OFFSET Z=…</code> até o
+    papel deslizar raspando de leve.</div>
   <div data-l="en"><strong>Do not copy the -2.0</strong>
     That number belongs to one specific printer. Different nozzle, probe or bed = different value.
     Measure yours: <code>G28</code> → <code>G1 Z0 F300</code> → try sliding a sheet of paper between
-    nozzle and bed. Slides freely? <strong>Negative</strong> value (brings it closer). Won't fit?
-    <strong>Positive</strong> value (lifts it). Adjust in small steps with
-    <code>SET_GCODE_OFFSET Z=…</code> until the paper slides with slight drag.</div>
+    nozzle and bed. Slides freely? <strong>Negative</strong> value. Won't fit?
+    <strong>Positive</strong> value. Adjust in small steps with <code>SET_GCODE_OFFSET Z=…</code>
+    until the paper slides with slight drag.</div>
 </div>
 
 <div class="note warn">
   <div data-l="pt"><strong>⚠️ O efeito colateral que quebra impressão</strong>
     O offset desloca <strong>todos</strong> os Z, não só o da primeira camada — inclusive os das suas
-    macros de limpeza e purga. Aqui isso enfiou o bico na borracha de limpeza oito vezes, o eixo Z
-    perdeu passo em silêncio e a peça saiu raspando. <strong>Depois de aplicar o offset, some ele a
-    todo <code>Z</code> absoluto que houver nas suas macros</strong> (no exemplo, <code>Z3.8</code>
-    virou <code>Z5.8</code>).</div>
+    macros de limpeza e purga. Aqui isso enfiou o bico na borracha de limpeza oito vezes seguidas, o
+    eixo Z perdeu passo em silêncio e a peça saiu raspando a mesa. <strong>Depois de aplicar o
+    offset, some ele a todo <code>Z</code> absoluto das suas macros</strong> (no caso,
+    <code>Z3.8</code> teve que virar <code>Z5.8</code>).</div>
   <div data-l="en"><strong>⚠️ The side effect that ruins prints</strong>
-    The offset shifts <strong>every</strong> Z, not just the first layer — including the ones inside
-    your wipe and purge macros. Here it drove the nozzle into the wipe pad eight times, the Z axis
-    lost steps silently, and the part printed scraping the bed. <strong>After applying the offset,
-    add it to every absolute <code>Z</code> in your macros</strong> (in the example, <code>Z3.8</code>
+    The offset shifts <strong>every</strong> Z, not just the first layer — including those inside
+    your wipe and purge macros. Here it drove the nozzle into the wipe pad eight times in a row, the
+    Z axis lost steps silently, and the part printed scraping the bed. <strong>After applying the
+    offset, add it to every absolute <code>Z</code> in your macros</strong> (here, <code>Z3.8</code>
     had to become <code>Z5.8</code>).</div>
 </div>
 
 <p data-l="pt">A versão completa, com o passo a passo de medição e o resumo em tabela, está em
-   <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EXTRA-Z-OFFSET.md"><strong>EXTRA-Z-OFFSET.md</strong></a>.</p>
+   <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md"><strong>Z-OFFSET.md</strong></a>.</p>
 <p data-l="en">The full write-up, with the step-by-step measurement and a summary table, is in
-   <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EXTRA-Z-OFFSET.md"><strong>EXTRA-Z-OFFSET.md</strong></a>.</p>
+   <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md"><strong>Z-OFFSET.md</strong></a>.</p>
 
 <!-- ══════════ REVERTER ══════════ -->
-<h2 data-l="pt">Deu ruim? Voltando atrás</h2>
-<h2 data-l="en">Something broke? Rolling back</h2>
+<h2 data-l="pt">Voltar atrás</h2>
+<h2 data-l="en">Rolling back</h2>
 
 <div data-l="pt">
-  <p>Rode <code>4-Voltar-Ao-Original.bat</code>. Ele devolve tudo ao estado de fábrica usando as
-     cópias de segurança feitas automaticamente durante a instalação.</p>
+  <p>A instalação guarda três cópias dentro da própria impressora, e a reversão usa elas. O
+     procedimento completo está na <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md#9-voltar-atrás">seção 9 do passo a passo</a>.</p>
 </div>
 <div data-l="en">
-  <p>Run <code>4-Voltar-Ao-Original.bat</code>. It restores everything to the factory state using the
-     backups made automatically during the install.</p>
+  <p>The install keeps three copies inside the printer itself, and the rollback uses them. The full
+     procedure is in <a href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md#9-rolling-back">section 9 of the step by step</a>.</p>
 </div>
 
 <div class="tablewrap"><table>
 <thead>
-  <tr data-l="pt"><th>O que</th><th>Onde ficou guardado</th></tr>
-  <tr data-l="en"><th>What</th><th>Where it was stored</th></tr>
+  <tr><th><span data-l="pt">O que</span><span data-l="en">What</span></th>
+      <th><span data-l="pt">Onde fica guardado</span><span data-l="en">Where it is kept</span></th></tr>
 </thead>
 <tbody>
   <tr><td><span data-l="pt">Klipper original</span><span data-l="en">Original Klipper</span></td>
@@ -441,129 +512,105 @@ gcode:
 </tbody>
 </table></div>
 
+<div class="note warn">
+  <div data-l="pt"><strong>A reversão devolve o printer.cfg de fábrica</strong>
+    Toda a calibração que você fizer depois da instalação <strong>não volta sozinha</strong> — ela
+    fica num arquivo <code>.novo</code> ao lado. Para recuperar algum ajuste, abra os dois arquivos
+    lado a lado e copie o que interessa.</div>
+  <div data-l="en"><strong>Rolling back restores the factory printer.cfg</strong>
+    Any calibration you did after installing <strong>does not come back on its own</strong> — it
+    stays in a <code>.new</code> file next to it. To recover a setting, open both files side by side
+    and copy what you need.</div>
+</div>
+
 <!-- ══════════ PROBLEMAS ══════════ -->
 <h2 data-l="pt">Problemas comuns</h2>
 <h2 data-l="en">Common problems</h2>
 
 <details>
-  <summary>"NAO CONSEGUI FALAR COM A IMPRESSORA"</summary>
-  <p data-l="pt">O IP está errado ou a impressora está desligada. Rode o arquivo de novo e responda
-     <code>n</code> quando ele perguntar se quer usar o IP salvo, aí digite o correto.</p>
-  <p data-l="en">Wrong IP, or the printer is off. Run the file again and answer <code>n</code> when it
-     asks whether to use the saved IP, then type the right one.</p>
+  <summary>Permission denied <span data-l="pt">ao entrar por SSH</span><span data-l="en">when connecting over SSH</span></summary>
+  <p data-l="pt">Senha errada, ou alguém trocou a senha. A padrão é <code>makerbase</code>. Se outro
+     mod foi instalado antes (OpenNept4une, por exemplo), a senha pode ser outra.</p>
+  <p data-l="en">Wrong password, or someone changed it. The default is <code>makerbase</code>. If
+     another mod was installed before (OpenNept4une, for example), it may be different.</p>
 </details>
 
 <details>
-  <summary><span data-l="pt">A senha <code>makerbase</code> não funciona</span><span data-l="en">The <code>makerbase</code> password doesn't work</span></summary>
-  <p data-l="pt">Alguém trocou a senha, ou algum outro mod foi instalado antes (OpenNept4une, por
-     exemplo). Se você não souber a senha atual, não dá pra continuar por aqui.</p>
-  <p data-l="en">Someone changed it, or another mod was installed previously (OpenNept4une, for
-     example). If you don't know the current password, this route can't continue.</p>
+  <summary>Host key verification failed</summary>
+  <p data-l="pt">Acontece quando a impressora foi reinstalada e a "identidade" dela mudou. Rode no
+     seu computador <code>ssh-keygen -R SEU_IP</code> e conecte de novo.</p>
+  <!-- a versao EN do mesmo aviso vem logo abaixo, com YOUR_IP -->
+  <p data-l="en">Happens when the printer was reflashed and its "identity" changed. On your computer
+     run <code>ssh-keygen -R YOUR_IP</code> and connect again.</p>
 </details>
 
 <details>
-  <summary>"seu Windows nao tem o SSH instalado"</summary>
+  <summary><span data-l="pt">O Windows diz que <code>ssh</code> não é reconhecido</span><span data-l="en">Windows says <code>ssh</code> is not recognized</span></summary>
   <p data-l="pt">Vá em <strong>Configurações → Aplicativos → Recursos opcionais → Adicionar
-     recurso</strong> e instale o <strong>Cliente OpenSSH</strong>. Depois rode de novo.</p>
+     recurso</strong> e instale o <strong>Cliente OpenSSH</strong>. Feche e reabra o PowerShell.</p>
   <p data-l="en">Go to <strong>Settings → Apps → Optional features → Add a feature</strong> and
-     install the <strong>OpenSSH Client</strong>. Then run it again.</p>
+     install the <strong>OpenSSH Client</strong>. Close and reopen PowerShell.</p>
 </details>
 
 <details>
-  <summary>"A impressora nao conseguiu acessar a internet"</summary>
-  <p data-l="pt">A impressora precisa de internet pra baixar o Klipper novo — não basta ela enxergar
-     o seu PC. Confira o wifi dela.</p>
-  <p data-l="en">The printer needs internet access to download the new Klipper — seeing your PC is
-     not enough. Check its wifi.</p>
+  <summary><span data-l="pt">O Klipper não sobe depois de instalar</span><span data-l="en">Klipper won't start after installing</span></summary>
+  <p data-l="pt">Veja o motivo com <code>tail -30 ~/klipper_logs/klippy.log</code>. Os dois erros
+     mais comuns:</p>
+  <p data-l="en">Find out why with <code>tail -30 ~/klipper_logs/klippy.log</code>. The two most
+     common errors:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th><span data-l="pt">Mensagem</span><span data-l="en">Message</span></th>
+                <th><span data-l="pt">Solução</span><span data-l="en">Fix</span></th></tr></thead>
+    <tbody>
+      <tr><td><code>Option 'max_accel_to_decel' is not valid</code></td>
+          <td><span data-l="pt">O ajuste do <code>printer.cfg</code> não pegou. Refaça e mande <code>FIRMWARE_RESTART</code></span><span data-l="en">The <code>printer.cfg</code> edit didn't take. Redo it and send <code>FIRMWARE_RESTART</code></span></td></tr>
+      <tr><td><code>undefined symbol: extruder_stepper_free</code></td>
+          <td><span data-l="pt">O <code>c_helper.so</code> errado foi copiado por cima. Refaça a compilação da parte 1</span><span data-l="en">The wrong <code>c_helper.so</code> was copied over. Redo compile part 1</span></td></tr>
+    </tbody>
+  </table></div>
 </details>
 
 <details>
-  <summary><span data-l="pt">Diz que meu firmware não tem versão compatível</span><span data-l="en">It says my firmware has no matching version</span></summary>
+  <summary><span data-l="pt">Não existe versão do Klipper novo para o meu firmware</span><span data-l="en">There is no modern Klipper for my firmware</span></summary>
   <div data-l="pt">
-    <p>Aí o caminho é mais chato, e é <strong>manual</strong>: o firmware da Elegoo instalado na sua
-       impressora não tem uma versão correspondente do Klipper novo, e você precisa primeiro
-       atualizar o firmware da Elegoo.</p>
-    <ol>
-      <li>Baixe o firmware novo em <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a></li>
-      <li><strong>Placa principal:</strong> copie a pasta <code>ELEGOO_UPDATE_DIR</code> para um
-          pendrive vazio, espete na impressora, e no painel vá em Settings → About Machine → seta
-          embaixo → Confirm. Leva 1 a 2 minutos.</li>
-      <li><strong>Tela:</strong> copie o arquivo <code>.tft</code> para o cartão SD que veio com a
-          impressora. Aqui precisa desmontar a tampa de trás da tela com uma chave hexagonal de 2 mm,
-          colocar o SD, ligar, esperar atualizar, e depois abrir de novo pra tirar o cartão.</li>
-      <li>Refaça o nivelamento e o Z-offset.</li>
-    </ol>
-    <p>Só depois disso rode o <code>2-Verificar-Impressora.bat</code> de novo.</p>
+    <p>Aí o caminho é <strong>manual</strong>: você precisa primeiro atualizar o firmware da Elegoo,
+       baixando em <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a>.
+       A placa principal se atualiza por pendrive; a tela exige desmontar a tampa de trás com uma
+       chave hexagonal de 2 mm e usar o cartão SD. O detalhe está no passo a passo.</p>
     <p><strong>⚠️ A atualização da Elegoo pode apagar seu <code>printer.cfg</code></strong> e pode
-       forçar o nivelamento pro modo Standard (6x6). Se você usava o Professional Mode, vai precisar
-       configurar de novo.</p>
+       forçar o nivelamento para o modo Standard (6x6).</p>
   </div>
   <div data-l="en">
-    <p>This road is bumpier, and it is <strong>manual</strong>: the Elegoo firmware on your printer
-       has no corresponding modern Klipper build, so you must update the Elegoo firmware first.</p>
-    <ol>
-      <li>Download the new firmware at <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a></li>
-      <li><strong>Mainboard:</strong> copy the <code>ELEGOO_UPDATE_DIR</code> folder onto an empty USB
-          stick, plug it into the printer, and on the panel go to Settings → About Machine → down
-          arrow → Confirm. Takes 1 to 2 minutes.</li>
-      <li><strong>Screen:</strong> copy the <code>.tft</code> file onto the SD card that came with the
-          printer. This one requires removing the back cover of the screen with a 2 mm hex key,
-          inserting the SD, powering on, waiting for the update, then opening it again to remove the
-          card.</li>
-      <li>Redo the bed leveling and the Z-offset.</li>
-    </ol>
-    <p>Only then run <code>2-Verificar-Impressora.bat</code> again.</p>
+    <p>Then the road is <strong>manual</strong>: you must update the Elegoo firmware first, from
+       <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a>. The mainboard
+       updates from a USB stick; the screen requires removing its back cover with a 2 mm hex key and
+       using the SD card. Details are in the step by step.</p>
     <p><strong>⚠️ The Elegoo update can erase your <code>printer.cfg</code></strong> and may force
-       leveling into Standard mode (6x6). If you used Professional Mode, you'll have to set it up
-       again.</p>
+       leveling into Standard mode (6x6).</p>
   </div>
 </details>
 
-<!-- ══════════ ARQUIVOS ══════════ -->
-<h2 data-l="pt">O que cada arquivo faz, por dentro</h2>
-<h2 data-l="en">What each file does, under the hood</h2>
+<!-- ══════════ POR QUE COMANDOS ══════════ -->
+<h2 data-l="pt">Por que comandos, e não um instalador de um clique</h2>
+<h2 data-l="en">Why commands, and not a one-click installer</h2>
 
-<p data-l="pt">Nada aqui é caixa-preta — todo <code>.bat</code> e <code>.sh</code> é texto simples,
-   dá pra abrir e ler antes de rodar.</p>
-<p data-l="en">Nothing here is a black box — every <code>.bat</code> and <code>.sh</code> is plain
-   text you can open and read before running it.</p>
-
-<div class="tablewrap"><table>
-<thead>
-  <tr data-l="pt"><th>Arquivo</th><th>O que faz</th></tr>
-  <tr data-l="en"><th>File</th><th>What it does</th></tr>
-</thead>
-<tbody>
-  <tr><td><code>LEIA-ME.md</code></td>
-      <td><span data-l="pt">O tutorial completo, em português</span><span data-l="en">The full tutorial, in Portuguese</span></td></tr>
-  <tr><td><code>GUIDE-EN.md</code></td>
-      <td><span data-l="pt">O mesmo tutorial, em inglês</span><span data-l="en">The same tutorial, in English</span></td></tr>
-  <tr><td><code>EXTRA-Z-OFFSET.md</code></td>
-      <td><span data-l="pt">Por que o Z-offset não obedece, e a solução (bilíngue)</span><span data-l="en">Why the Z-offset refuses to obey, and the fix (bilingual)</span></td></tr>
-  <tr><td><code>USAR-COM-CLAUDE.md</code></td>
-      <td><span data-l="pt">O procedimento pronto pra entregar a um agente de IA</span><span data-l="en">The procedure, ready to hand to an AI agent</span></td></tr>
-  <tr><td><code>1-Configurar-Acesso.bat</code></td>
-      <td><span data-l="pt">Cria uma chave SSH e copia a pública pra impressora</span><span data-l="en">Creates an SSH key and copies the public half to the printer</span></td></tr>
-  <tr><td><code>2-Verificar-Impressora.bat</code></td>
-      <td><span data-l="pt">Roda <code>scripts/verificar.sh</code> — só leitura</span><span data-l="en">Runs <code>scripts/verificar.sh</code> — read-only</span></td></tr>
-  <tr><td><code>3-Instalar-Klipper.bat</code></td>
-      <td><span data-l="pt">Roda <code>scripts/instalar.sh</code></span><span data-l="en">Runs <code>scripts/instalar.sh</code></span></td></tr>
-  <tr><td><code>4-Voltar-Ao-Original.bat</code></td>
-      <td><span data-l="pt">Roda <code>scripts/reverter.sh</code></span><span data-l="en">Runs <code>scripts/reverter.sh</code></span></td></tr>
-  <tr><td><code>_comum.bat</code></td>
-      <td><span data-l="pt">Pergunta e guarda o IP em <code>ip.txt</code></span><span data-l="en">Asks for and stores the IP in <code>ip.txt</code></span></td></tr>
-  <tr><td><code>scripts/*.sh</code></td>
-      <td><span data-l="pt">Os comandos que rodam dentro da impressora</span><span data-l="en">The commands that actually run inside the printer</span></td></tr>
-</tbody>
-</table></div>
-
-<div class="note ok">
-  <div data-l="pt"><strong>O MCU STM32 não é tocado em momento nenhum</strong>
-    O site oficial descreve como atualizá-lo, mas o próprio autor desaconselha, porque exige
-    desmontar a impressora e o risco não compensa.</div>
-  <div data-l="en"><strong>The STM32 MCU is never touched</strong>
-    The official site describes how to update it, but the author himself advises against it: it
-    requires taking the printer apart and the risk isn't worth it.</div>
+<div data-l="pt">
+  <p>Um instalador promete <em>"clica e funciona"</em>. Sustentar essa promessa exige testar a
+     instalação inteira numa máquina de fábrica, várias vezes — e quem escreve isto tem uma
+     impressora só, em produção.</p>
+  <p>Comando na tela promete outra coisa: <strong>você está no comando, aqui está o que vai rodar e
+     por quê.</strong> Essa promessa dá para sustentar. Você lê antes de colar, entende o que mudou,
+     e sabe onde parar se algo sair diferente do esperado.</p>
+  <p>De quebra, funciona em Mac e Linux — não só Windows.</p>
+</div>
+<div data-l="en">
+  <p>An installer promises <em>"click and it works"</em>. Backing that up means testing the full
+     install on a factory machine, repeatedly — and whoever writes this has one printer, in
+     production.</p>
+  <p>Commands on screen promise something else: <strong>you are in control, here is what will run
+     and why.</strong> That promise can be kept. You read before pasting, you understand what
+     changed, and you know where to stop if something looks off.</p>
+  <p>It also works on Mac and Linux — not just Windows.</p>
 </div>
 
 <!-- ══════════ CRÉDITOS ══════════ -->
@@ -571,16 +618,16 @@ gcode:
 <h2 data-l="en">Credits</h2>
 
 <p data-l="pt">Todo o trabalho pesado — portar o Klipper moderno para a Neptune 4 Max — é da
-   <strong>S&amp;M Makers</strong>. Este pacote é só um empacotamento em <code>.bat</code> pra
-   facilitar a vida de quem não tem intimidade com terminal.</p>
+   <strong>S&amp;M Makers</strong>. Esta página traduz o processo dele para o português e acrescenta
+   o que descobrimos usando a máquina.</p>
 <p data-l="en">All the heavy lifting — porting modern Klipper to the Neptune 4 Max — belongs to
-   <strong>S&amp;M Makers</strong>. This package is just a <code>.bat</code> wrapper to make life
-   easier for people who aren't comfortable with a terminal.</p>
+   <strong>S&amp;M Makers</strong>. This page walks through their process in two languages and adds
+   what we found living with the machine.</p>
 
 <ul>
-  <li><a href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html">sandmmakers.com — <span data-l="pt">instruções originais</span><span data-l="en">original instructions</span></a></li>
-  <li><a href="https://github.com/sandmmakers/klipper">github.com/sandmmakers/klipper</a></li>
-  <li><a href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">YouTube — <span data-l="pt">vídeo do processo</span><span data-l="en">walkthrough video</span></a></li>
+  <li><a href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">▶️ <strong>@SandMMakers</strong> — <span data-l="pt">vídeo do processo</span><span data-l="en">walkthrough video</span></a></li>
+  <li><a href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html">📄 <span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a></li>
+  <li><a href="https://github.com/sandmmakers/klipper">💾 github.com/sandmmakers/klipper</a></li>
 </ul>
 
 <footer>
@@ -600,7 +647,6 @@ function setLang(l){
   document.getElementById('btn-en').setAttribute('aria-pressed', l === 'en');
   try { localStorage.setItem('n4m-lang', l); } catch(e) {}
 }
-// remembers the choice; otherwise follows the browser, defaulting to Portuguese
 (function(){
   var saved = null;
   try { saved = localStorage.getItem('n4m-lang'); } catch(e) {}
