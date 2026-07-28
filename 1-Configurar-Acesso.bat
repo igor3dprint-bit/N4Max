@@ -55,7 +55,9 @@ echo.
 pause
 echo.
 
-type "%USERPROFILE%\.ssh\id_ed25519.pub" | ssh mks@%IP% "mkdir -p ~/.ssh; cat >> ~/.ssh/authorized_keys; chmod 700 ~/.ssh; chmod 600 ~/.ssh/authorized_keys"
+REM O "grep -q -F -f" evita duplicar a chave se voce rodar este passo de novo:
+REM sem ele, cada execucao adiciona mais uma copia no authorized_keys.
+type "%USERPROFILE%\.ssh\id_ed25519.pub" | ssh mks@%IP% "mkdir -p ~/.ssh; chmod 700 ~/.ssh; touch ~/.ssh/authorized_keys; K=$(cat | tr -d '\r' | head -1); sed -i 's/\r$//' ~/.ssh/authorized_keys; grep -qxF \"$K\" ~/.ssh/authorized_keys || echo \"$K\" >> ~/.ssh/authorized_keys; chmod 600 ~/.ssh/authorized_keys"
 
 echo.
 echo --- Conferindo se funcionou ---
