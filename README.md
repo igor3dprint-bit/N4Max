@@ -56,13 +56,6 @@ the side effect that drove a nozzle into the wipe pad here.
 
 → **[Z-OFFSET.md](Z-OFFSET.md)** (bilíngue / bilingual)
 
-### 3️⃣ Para quem usa um agente de IA
-
-🇧🇷 O procedimento formatado para entregar ao Claude Code ou similar, com as regras de segurança.
-🇺🇸 The procedure formatted to hand to Claude Code or similar, with the safety rules.
-
-→ **[PARA-AGENTES-IA.md](PARA-AGENTES-IA.md)**
-
 ---
 
 ## ⚡ O caminho curto / The short path
@@ -92,7 +85,6 @@ the order matters.
 | `PASSO-A-PASSO.md` | 🇧🇷 Guia completo de instalação, comando por comando |
 | `STEP-BY-STEP.md` | 🇺🇸 The same guide, in English |
 | `Z-OFFSET.md` | 🔧 O Z-offset que não obedece: causas, solução, medição (bilíngue) |
-| `PARA-AGENTES-IA.md` | 🤖 Procedimento para agentes de IA com acesso ao terminal |
 | `docs/` | 🌐 A página web deste repositório |
 
 ---
