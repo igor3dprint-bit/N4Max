@@ -1,8 +1,14 @@
 # Klipper novo na Neptune 4 Max — do jeito fácil
 
+> 🇺🇸 [English version](GUIDE-EN.md)
+
 A Elegoo Neptune 4 Max sai de fábrica com um Klipper de **2022**. Este pacote instala uma versão de **2025** (a 0.13.0, portada pela S&M Makers), sem você precisar digitar comando nenhum.
 
 Você clica em três arquivos, na ordem. O resto é automático.
+
+> 🙏 **Sem a S&M Makers, nada disto existiria.** Todo o trabalho de verdade é dele — aqui é só o
+> empacotamento. Assista o vídeo do **[@SandMMakers](https://www.youtube.com/watch?v=Aoy3sI1lv1g)**
+> e leia o [tutorial original](https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html).
 
 **Não precisa** de pendrive, cartão SD, chave de fenda, nem abrir a impressora.
 
@@ -75,6 +81,9 @@ Se você usa Claude Code (ou outro agente com acesso ao terminal), entregue o ar
 2. **Ajustar o Z-offset**
 
 A calibração antiga não é aproveitada de forma confiável pelo Klipper novo.
+
+> 🔧 **Se o Z-offset parecer que não faz efeito nenhum, não é você** — esta máquina tem um defeito
+> conhecido. A causa e a solução estão em **[EXTRA-Z-OFFSET.md](EXTRA-Z-OFFSET.md)**.
 
 ### Duas coisas estranhas que são normais
 
