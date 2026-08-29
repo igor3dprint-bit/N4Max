@@ -43,8 +43,9 @@ O Eddy é rápido e preciso, e tem uma limitação que quase ninguém avisa: ele
 Este guia cobre a montagem, as três medidas que você precisa tirar, a ordem certa da calibração, e
 as quatro armadilhas que me custaram uma noite inteira e um bico arrastado na chapa. Tem ênfase
 especial na **corrente de excitação do sensor**, o `reg_drive_current`, que é o parâmetro mais
-importante e o menos falado: com ele errado, o sensor dá erro mesmo estando na distância certa, e
-você procura horas no lugar errado.
+importante e o menos falado. É a causa mais comum de `Eddy current sensor error` nesta máquina, e a
+mensagem parece dizer que o sensor está longe da mesa. Não é isso que ela informa. Com a corrente
+errada, o sensor dá erro mesmo estando na distância certa, e você procura horas no lugar errado.
 
 [EDDY.md](EDDY.md)
 

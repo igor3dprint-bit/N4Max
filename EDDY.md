@@ -8,26 +8,30 @@ que eu cometi antes de chegar neles.
 
 Um resumo antes de tudo. O parâmetro que mais me atrasou foi a corrente de excitação da bobina, o
 `reg_drive_current`. Com ele errado o sensor acusa falha mesmo com o bico na distância certa, e a
-mensagem de erro aponta para o lugar errado. Está no [tópico 9](#9-a-corrente-de-excitacao).
+mensagem de erro aponta para o lugar errado. Está no [tópico 9](#9-a-corrente-de-excitação).
+
+> Viu `Eddy current sensor error`? Rode `LDC_CALIBRATE_DRIVE_CURRENT CHIP=btt_eddy` antes de mexer em
+> qualquer altura. O comando não move a máquina, então é seguro rodar a qualquer momento, e essa é a
+> causa mais comum desse erro nesta máquina. Detalhe completo no [tópico 9](#9-a-corrente-de-excitação).
 
 ---
 
 ## Tópicos
 
 1. [Hardware que eu usei](#1-hardware-que-eu-usei)
-2. [Peças impressas](#2-pecas-impressas)
+2. [Peças impressas](#2-peças-impressas)
 3. [Como o Eddy aparece no computador](#3-como-o-eddy-aparece-no-computador)
-4. [O que o Eddy faz e o que ele não faz](#4-o-que-o-eddy-faz-e-o-que-ele-nao-faz)
-5. [As três medidas da montagem](#5-as-tres-medidas-da-montagem)
-6. [A configuração base](#6-a-configuracao-base)
+4. [O que o Eddy faz e o que ele não faz](#4-o-que-o-eddy-faz-e-o-que-ele-não-faz)
+5. [As três medidas da montagem](#5-as-três-medidas-da-montagem)
+6. [A configuração base](#6-a-configuração-base)
 7. [As contas que evitam erro de sensor](#7-as-contas-que-evitam-erro-de-sensor)
-8. [A ordem da calibração](#8-a-ordem-da-calibracao)
-9. [A corrente de excitação](#9-a-corrente-de-excitacao)
+8. [A ordem da calibração](#8-a-ordem-da-calibração)
+9. [A corrente de excitação](#9-a-corrente-de-excitação)
 10. [Quatro armadilhas da Neptune 4 Max](#10-quatro-armadilhas-da-neptune-4-max)
 11. [O homing e o ritual do primeiro home](#11-o-homing-e-o-ritual-do-primeiro-home)
 12. [A malha densa](#12-a-malha-densa)
 13. [Macros que eu uso no dia a dia](#13-macros-que-eu-uso-no-dia-a-dia)
-14. [Como medir se a calibração ficou boa](#14-como-medir-se-a-calibracao-ficou-boa)
+14. [Como medir se a calibração ficou boa](#14-como-medir-se-a-calibração-ficou-boa)
 15. [Tabela de sintomas](#15-tabela-de-sintomas)
 
 ---
@@ -55,7 +59,13 @@ ls /dev/serial/by-id/
 
 ## 2. Peças impressas
 
-Tudo o que eu imprimi para esta montagem.
+Tudo o que eu imprimi para esta montagem. Os arquivos estão em [`stl/`](stl/), com o detalhe de cada
+peça em [`stl/README.md`](stl/README.md).
+
+Imprima estas peças em **ABS ou ASA**. Elas ficam sobre a mesa aquecida ou perto dela, e algumas
+encostam perto do bico quente. PLA amolece e deforma nessa faixa de temperatura, e a geometria que
+segura a sonda ou guia o prato deixa de ser precisa. PETG é um meio termo e ainda flui sob calor
+sustentado.
 
 ### Adaptador da sonda
 
@@ -63,14 +73,17 @@ O suporte que prende o Eddy no carro do extrusor da Neptune 4.
 
 https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter
 
-Tem duas variantes no modelo, uma reta e uma a noventa graus. Eu usei os arquivos
-`BTT-Eddy_Adapter_v05.stl` e `BTT-Eddy_Adapter90deg_v05.stl`. Escolha conforme a folga que sobrar no
-seu carro, porque a posição do adaptador define a altura de montagem da bobina, e essa altura entra
-em todas as contas do [tópico 7](#7-as-contas-que-evitam-erro-de-sensor).
+Tem duas variantes no modelo, uma reta e uma a noventa graus. Eu imprimi e usei a reta,
+[`stl/BTT-Eddy_Adapter_v05.stl`](stl/BTT-Eddy_Adapter_v05.stl). A variante a noventa graus está em
+[`stl/BTT-Eddy_Adapter90deg_v05.stl`](stl/BTT-Eddy_Adapter90deg_v05.stl). Escolha conforme a folga que
+sobrar no seu carro, porque a variante muda a posição do adaptador e junto com ela a altura de
+montagem da bobina, e essa altura entra em todas as contas do
+[tópico 7](#7-as-contas-que-evitam-erro-de-sensor).
+Meça a sua altura depois de montar, não copie a minha.
 
 ### Suporte da borracha de limpeza
 
-`nozzle-cleaner-holder-improved-lifted-pad-n4.stl`
+[`stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl`](stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl)
 
 A borracha em si é a **almofada de limpeza da Bambu Lab A1**, aquela de silicone que acompanha a
 máquina. Ela é barata, aguenta temperatura de bico sem derreter e tem a rigidez certa para raspar
@@ -82,7 +95,9 @@ das macros de limpeza.
 
 ### Guias de canto do prato
 
-`en4max-buildplatecornerguide-left.stl` e `en4max-buildplatecornerguide-right.stl`
+[`stl/en4max-buildplatecornerguide-left.stl`](stl/en4max-buildplatecornerguide-left.stl) e
+[`stl/en4max-buildplatecornerguide-right.stl`](stl/en4max-buildplatecornerguide-right.stl). São um
+par, esquerda e direita, **imprima os dois**.
 
 Servem para o prato magnético voltar sempre na mesma posição depois de você tirar a peça. Sem eles a
 chapa desloca alguns milímetros a cada retirada, e a malha que você levou meia hora fazendo passa a
@@ -92,7 +107,7 @@ Com uma malha densa, esses guias deixam de ser conforto e passam a fazer parte d
 
 ### Coletor de purga
 
-`ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl`
+[`stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl`](stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl)
 
 Opcional. Se você adotar a purga em bloco descrita no [tópico 13](#13-macros-que-eu-uso-no-dia-a-dia),
 o material sai no canto da mesa e fica lá. O coletor magnético resolve isso levando o material para
@@ -172,6 +187,11 @@ Guarde esse número, porque ele entra em todas as contas do próximo tópico.
 altura da bobina = altura do bico + altura de montagem
 ```
 
+![Vista lateral da bobina, da mesa e da faixa de leitura de 0,05 a 4,05 mm](docs/img/eddy-side-view.svg)
+
+A imagem mostra por que um mergulho que começa acima dessa faixa falha já na primeira amostra, o chip
+não tem leitura nenhuma para comparar naquela altura.
+
 ### Deslocamento em X
 
 Meça do centro do bico ao centro da bobina, na horizontal. Na minha deu **33,34 mm**.
@@ -232,7 +252,7 @@ fade_end: 30.0
 ```
 
 Repare que **não existe `z_offset` nesse bloco**, e isso é de propósito. O motivo está na
-[armadilha 4](#armadilha-4-o-z_offset-escrito-a-mao-trava-o-save_config).
+[armadilha 4](#armadilha-4-o-z_offset-escrito-à-mão-trava-o-save_config).
 
 ### Por que o mesh_max não cobre o prato inteiro
 
@@ -252,6 +272,8 @@ encostado no batente da frente.
 
 O limite inferior de X também tem motivo. Com `mesh_min` em X abaixo de 20, a bobina passaria por
 cima da borracha de limpeza, que tem sete milímetros de altura, durante a varredura.
+
+![Vista de cima do prato, com a posição do bico contra a posição da bobina e a área da malha resultante](docs/img/eddy-top-view.svg)
 
 ---
 
@@ -317,6 +339,9 @@ contra a chapa.
 
 ## 9. A corrente de excitação
 
+**Este é o parâmetro que mais derruba gente nesta máquina.** Se você chegou aqui direto de um erro de
+sensor, leia este tópico inteiro antes de mexer em qualquer altura, recuo ou offset.
+
 O LDC1612 excita a bobina com uma corrente configurável chamada `reg_drive_current`, que é um número
 inteiro de zero a trinta e um. Ela precisa estar casada com a sua bobina, a sua altura de montagem e
 a sua mesa.
@@ -381,7 +406,7 @@ Eu quase abandonei essa linha de investigação porque procurei no arquivo errad
 ### Depois de medir
 
 Rode `SAVE_CONFIG`. A impressora reinicia com o valor novo. Em seguida refaça a tabela, como está no
-[tópico 8](#8-a-ordem-da-calibracao). Não pule essa parte.
+[tópico 8](#8-a-ordem-da-calibração). Não pule essa parte.
 
 ---
 
@@ -412,6 +437,9 @@ O sintoma é bem característico. Ele homeia X e Y, volta para o meio, não desc
 
 Comente o bloco inteiro nos dois arquivos. Ele aparece duplicado, e quem vale é o do `printer.cfg`,
 porque vem depois na ordem de leitura. Comentar só um não resolve.
+
+O mesmo bloco também é a causa raiz do Z-offset que parece ignorado nesta máquina, com a versão
+completa da explicação em [Z-OFFSET.md](Z-OFFSET.md#2-a-impressora-se-declara-zerada-alguns-segundos-depois-de-ligar-sem-ter-homeado).
 
 ### Armadilha 2, uma compensação de Z antiga aplicada às cegas
 
@@ -513,7 +541,8 @@ A saída é trocar o `safe_z_home` por um `homing_override`.
 axes: xyz
 gcode:
     {% set tudo = 'X' not in params and 'Y' not in params and 'Z' not in params %}
-    {% if 'z' not in printer.toolhead.homed_axes %}
+    {% set z_tinha_referencia = 'z' in printer.toolhead.homed_axes %}
+    {% if not z_tinha_referencia %}
         SET_KINEMATIC_POSITION Z=0
     {% endif %}
     G91
@@ -526,6 +555,9 @@ gcode:
         G28 Y
     {% endif %}
     {% if tudo or 'Z' in params %}
+        {% if not z_tinha_referencia %}
+            { action_raise_error("Z sem referencia. O Eddy so enxerga ate 4mm, entao o mergulho as cegas nao funciona. X e Y ja estao homeados. Desca o bico no painel ate uns 2mm da mesa e rode G28 Z.") }
+        {% endif %}
         G0 X239.25 Y194.55 F6000
         G91
         G0 Z-16 F600
@@ -535,6 +567,11 @@ gcode:
 ```
 
 Ajuste o `G0 X239.25 Y194.55` para o ponto de sondagem da sua máquina.
+
+Esta versão ganhou uma trava. Quando o Z não tem referência nenhuma, ela homeia X e Y normalmente e
+**para**, com uma instrução escrita em vez de mergulhar às cegas. Isso transforma um
+`Eddy current sensor error` confuso numa mensagem que diz o que fazer, descer o bico no painel até
+perto da mesa e rodar `G28 Z` na mão, como descrito no início deste tópico.
 
 A lógica em português. Ele sobe dezesseis milímetros relativos, o que é seguro de qualquer altura,
 inclusive com o Z virgem. Homeia X e Y com folga total sobre a borracha. Volta ao ponto de sondagem.
@@ -690,6 +727,38 @@ da Bambu. Eu uso quinze.
 O volume eu tirei do próprio gcode inicial da Bambu Lab A1, que executa `G1 E50 F200`. Ela repete
 esse bloco duas vezes quando está trocando material no AMS. Sem troca de cor, um bloco basta.
 
+### Linha de purga na faixa morta
+
+A purga em bloco sozinha não é suficiente para primar o bico para a primeira camada, então eu somei
+uma linha de purga na faixa que a malha não cobre.
+
+```ini
+[gcode_macro LINHA_PURGA]
+description: Linha de purga na faixa morta do lado esquerdo da mesa
+variable_x_ida: 2.5
+variable_x_volta: 3.1
+variable_y_ini: 60
+variable_y_fim: 300
+variable_z: 0.4
+variable_extrusao: 52
+gcode:
+    {% set c = printer['gcode_macro LINHA_PURGA'] %}
+    G90
+    M83
+    G0 X{c.x_ida} Y{c.y_ini} Z{c.z} F6000
+    G1 Y{c.y_fim} E{c.extrusao} F1200
+    G0 X{c.x_volta}
+    G1 Y{c.y_ini} E{c.extrusao} F1200
+    G92 E0
+```
+
+Ela roda em X2,5, com a passada de volta em X3,1, de Y60 a Y300, na altura de 0,4 mm, com E52 por
+passada. Isso é o dobro do fluxo normal, de propósito.
+
+A posição não é acidente. O `mesh_min` em X é 20, então tudo abaixo disso já está fora da malha. A
+faixa começa em Y60, vinte e cinco milímetros depois do fim da borracha de limpeza, que ocupa até
+Y35.
+
 ### Ajuste de z-offset ao vivo
 
 O `z_offset` da sonda tem sinal invertido em relação à intuição. Valor maior aproxima o bico da mesa.
@@ -756,6 +825,108 @@ A limpeza acontece enquanto o bico esfria, com a ventoinha ligada para acelerar.
 bico a cento e cinquenta graus é proposital, porque bico quente está dilatado, e é assim que ele vai
 estar imprimindo.
 
+### Manter a mesa aquecida entre impressões
+
+A mesa desta máquina é lenta para esquentar. Mantê-la morna enquanto a impressora está parada tira a
+maior parte da espera de pré-aquecimento da impressão seguinte.
+
+```ini
+[delayed_gcode MANTER_MESA_50]
+initial_duration: 15
+gcode:
+    {% if printer.print_stats.state not in ["printing", "paused"] and printer.heater_bed.target < 50 %}
+        M140 S50
+    {% endif %}
+    UPDATE_DELAYED_GCODE ID=MANTER_MESA_50 DURATION=60
+```
+
+Ela se rearma sozinha a cada sessenta segundos, não faz nada enquanto a impressora está imprimindo ou
+pausada, e nunca reduz um alvo que já está acima de 50. Uma impressão em PETG a 80 graus continua a
+80, e só volta para 50 quando a impressão termina.
+
+Duas ressalvas. Com essa macro ativa, a mesa nunca esfria sozinha, porque ela sempre volta a subir
+para 50. E um `M140 S0` manual só segura por um minuto, até o próximo ciclo da macro religar o
+aquecedor.
+
+### PRINT_START, a abertura da impressão
+
+A ordem destes passos importa, e cada um existe por um motivo específico.
+
+```ini
+[gcode_macro PRINT_START]
+gcode:
+    {% set bed  = params.BED|default(printer.heater_bed.target)|float %}
+    {% set extr = params.EXTRUDER|default(printer.extruder.target)|float %}
+    G92 E0
+    G90
+    CLEAR_PAUSE
+    M140 S{bed}
+    {% if 'xyz' not in printer.toolhead.homed_axes %}
+        G28
+    {% endif %}
+    SAVE_VARIABLE VARIABLE=was_interrupted VALUE=True
+    LIMPAR_BICO
+    M104 S{extr}
+    M190 S{bed}
+    G4 P5000
+    M109 S{extr}
+    G90
+    G0 Z3 F600
+    G28 Z
+    BED_MESH_PROFILE LOAD=default
+    PURGA_BAMBU Q=50
+    LINHA_PURGA
+    G92 E0
+```
+
+Manda a mesa esquentar sem esperar, homeia se precisar, e limpa o bico a 150 graus enquanto a mesa
+ainda está subindo. A limpeza e o aquecimento da mesa acontecem ao mesmo tempo, e é esse o ponto
+inteiro do desenho, não custa tempo extra. Só depois disso vêm as temperaturas finais, o soak, o
+rehome de Z a quente, o carregamento da malha, a purga em bloco e a linha de purga.
+
+Duas lições estão embutidas aqui e merecem explicação.
+
+A linha `SAVE_VARIABLE VARIABLE=was_interrupted` precisa vir **depois** do homing, nunca antes.
+Quando ela era a primeira linha da macro, uma falha no homing deixava a impressora marcada como tendo
+uma impressão interrompida sem nenhuma impressão ter começado, e toda tentativa seguinte de imprimir
+respondia `SD busy`.
+
+O `G0 Z3` explícito antes do `G28 Z` existe porque quem chama a macro já sabe que o próprio Z é
+confiável naquele ponto, algo que o `homing_override` do [tópico 11](#11-o-homing-e-o-ritual-do-primeiro-home)
+nunca assume por conta própria.
+
+### Troca de filamento
+
+O `M600` pausa a impressão e retrai 80 mm para o filamento sair puxando à mão, recusando a retração
+abaixo de 170 graus. Depois de carregar o filamento novo, o `RESUME` roda `PURGA_BAMBU Q=100`, limpa
+o bico na borracha e volta para a peça. Não existe linha de purga na volta, ela só roda no início da
+impressão.
+
+Vale registrar o que essa rotina substituiu, um `G1 E100 F200` cego executado onde quer que o carro
+estivesse parado, derrubando 100 mm de filamento em cima da peça e sacudindo o carro em X tentando
+limpar.
+
+### Gcode inicial no OrcaSlicer
+
+Toda a abertura da impressão mora na macro `PRINT_START`, então o fatiador só precisa passar as duas
+temperaturas. No OrcaSlicer, o campo fica em Machine, depois Custom G-code, depois Start G-code.
+
+```
+;ELEGOO NEPTUNE 4 MAX 0.6
+M220 S100
+M221 S100
+G90
+M82
+PRINT_START BED=[bed_temperature_initial_layer_single] EXTRUDER=[nozzle_temperature_initial_layer]
+```
+
+Não deixe nenhum `M190` ou `M109` antes dessa chamada, porque isso destrói a sobreposição entre a
+limpeza do bico e o aquecimento da mesa que o `PRINT_START` foi desenhado para fazer. E desligue toda
+purga do fatiador, nem purga na régua nem torre de purga, senão a impressora purga duas vezes.
+
+Os placeholders acima são do estilo Orca e Prusa. No Cura o equivalente é
+`{material_bed_temperature_layer_0}` e `{material_print_temperature_layer_0}`.
+
 ---
 
 ## 14. Como medir se a calibração ficou boa
@@ -783,7 +954,7 @@ Confira também duas propriedades da tabela.
 
 Ela precisa ser **monotônica**, com a frequência caindo de forma contínua conforme a altura sobe, sem
 nenhuma inversão. Se houver inversão, a corrente de excitação está errada e você volta ao
-[tópico 9](#9-a-corrente-de-excitacao).
+[tópico 9](#9-a-corrente-de-excitação).
 
 E a sensibilidade **cai conforme sobe**. Na minha, 47672 hertz por milímetro junto da mesa contra
 12849 no topo da faixa. Isso não é defeito, é a natureza do sensor, e explica por que ele vira erro
@@ -793,18 +964,21 @@ quando você tenta usar de longe.
 
 ## 15. Tabela de sintomas
 
+Comece sempre pela primeira linha desta tabela. `reg_drive_current` errado é a causa mais comum de
+`Eddy current sensor error` nesta máquina, e o teste custa um comando que não move nada.
+
 | Sintoma | Causa provável | Onde olhar |
 |---|---|---|
+| **`Eddy current sensor error`, em qualquer altura, mesmo dentro da faixa calibrada** | **`reg_drive_current` errado. Teste primeiro, antes de mexer em qualquer altura** | [Tópico 9](#9-a-corrente-de-excitação) |
 | Homeia XY, volta pro meio, não desce e dá erro | Home falso no boot deixando o Z alto | [Armadilha 1](#armadilha-1-a-impressora-se-declara-zerada-no-boot) |
 | Desce, encosta, e só então dá erro | `homing_retract_dist` grande demais | [Armadilha 3](#armadilha-3-o-recuo-entre-as-duas-passadas-do-homing) |
-| Erro mesmo com o bico a dois milímetros da mesa | `reg_drive_current` errado | [Tópico 9](#9-a-corrente-de-excitacao) |
-| Todo movimento em Z desce mais do que o comandado | `SET_GCODE_OFFSET` antigo ativo | [Armadilha 2](#armadilha-2-uma-compensacao-de-z-antiga-aplicada-as-cegas) |
-| `SAVE_CONFIG` recusa com "conflicts with included value" | `z_offset` escrito num arquivo incluído | [Armadilha 4](#armadilha-4-o-z_offset-escrito-a-mao-trava-o-save_config) |
+| Todo movimento em Z desce mais do que o comandado | `SET_GCODE_OFFSET` antigo ativo | [Armadilha 2](#armadilha-2-uma-compensação-de-z-antiga-aplicada-às-cegas) |
+| `SAVE_CONFIG` recusa com "conflicts with included value" | `z_offset` escrito num arquivo incluído | [Armadilha 4](#armadilha-4-o-z_offset-escrito-à-mão-trava-o-save_config) |
 | Segunda amostra do `PROBE` falha | `sample_retract_dist` estourando a faixa | [Tópico 7](#7-as-contas-que-evitam-erro-de-sensor) |
 | Erro durante a malha, entre pontos | `horizontal_move_z` estourando a faixa | [Tópico 7](#7-as-contas-que-evitam-erro-de-sensor) |
-| Primeira camada torta de um lado só | `y_offset` errado ou assumido zero | [Tópico 5](#5-as-tres-medidas-da-montagem) |
-| Gatilho na altura errada depois de mexer na corrente | Tabela não refeita | [Tópico 8](#8-a-ordem-da-calibracao) |
-| Fim de curso lendo acionado com o bico no ar | Pino de sonda removida flutuando alto | [Tópico 4](#4-o-que-o-eddy-faz-e-o-que-ele-nao-faz) |
+| Primeira camada torta de um lado só | `y_offset` errado ou assumido zero | [Tópico 5](#5-as-três-medidas-da-montagem) |
+| Gatilho na altura errada depois de mexer na corrente | Tabela não refeita | [Tópico 8](#8-a-ordem-da-calibração) |
+| Fim de curso lendo acionado com o bico no ar | Pino de sonda removida flutuando alto | [Tópico 4](#4-o-que-o-eddy-faz-e-o-que-ele-não-faz) |
 | O Eddy não aparece no computador para gravar | Botão de BOOT não foi pressionado antes do USB | [Tópico 3](#3-como-o-eddy-aparece-no-computador) |
 
 ### Dois detalhes de operação

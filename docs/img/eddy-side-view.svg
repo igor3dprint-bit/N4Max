@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="700" height="420" rx="10" fill="#f4f5f7"/>
+  <text x="20" y="30" font-size="15" fill="#222222" font-weight="bold">Vista lateral, altura da bobina x faixa de leitura</text>
+
+  <!-- bed -->
+  <rect x="40" y="350" width="620" height="14" fill="#444444"/>
+  <text x="46" y="388" font-size="14" fill="#222222">mesa (bed)</text>
+
+  <!-- nozzle at rest, touching bed -->
+  <polygon points="150,350 168,350 159,305" fill="#8a8a8a"/>
+  <text x="90" y="290" font-size="13" fill="#222222">ponta do bico</text>
+
+  <!-- coil face 0.94mm above nozzle tip -->
+  <rect x="130" y="298" width="58" height="10" rx="2" fill="#e8590c"/>
+  <text x="196" y="306" font-size="13" fill="#e8590c">bobina, 0,94 mm acima da ponta</text>
+
+  <!-- calibrated band, drawn as a vertical strip from bed up to 4.05mm equivalent -->
+  <rect x="230" y="180" width="26" height="170" fill="#ffdcc0" stroke="#e8590c" stroke-width="1"/>
+
+  <text x="266" y="192" font-size="13" fill="#222222">faixa que a bobina enxerga,</text>
+  <text x="266" y="210" font-size="13" fill="#222222">0,05 a 4,05 mm acima da mesa</text>
+
+  <!-- dive starting above band -->
+  <circle cx="560" cy="70" r="9" fill="#c0392b"/>
+  <text x="400" y="55" font-size="13" fill="#c0392b">mergulho que começa acima da faixa</text>
+  <text x="400" y="73" font-size="13" fill="#c0392b">(bobina acima de 4,05 mm da mesa)</text>
+  <line x1="560" y1="80" x2="560" y2="255" stroke="#c0392b" stroke-width="2" stroke-dasharray="4,4"/>
+  <polygon points="560,263 551,245 569,245" fill="#c0392b"/>
+
+  <text x="400" y="290" font-size="13" fill="#c0392b">primeira amostra já dá erro,</text>
+  <text x="400" y="308" font-size="13" fill="#c0392b">o chip não vê a mesa daquela altura</text>
+</svg>

@@ -149,16 +149,16 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
     nothing.</p>
 
   <div class="cta">
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md" data-l="pt">📖 Passo a passo completo</a>
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md" data-l="en">📖 Full step by step</a>
-    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md">🔧 <span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md" data-l="pt">Passo a passo completo</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md" data-l="en">Full step by step</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md"><span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></a>
     <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil">GitHub</a>
   </div>
 </section>
 
 <!-- ══════════ CRÉDITO ══════════ -->
 <div class="credit">
-  <div class="credit-tag">🙏 <span data-l="pt">Crédito</span><span data-l="en">Credit</span></div>
+  <div class="credit-tag"><span data-l="pt">Crédito</span><span data-l="en">Credit</span></div>
   <p data-l="pt"><strong>Sem a S&amp;M Makers, nada disto existiria.</strong> Todo o trabalho de
      verdade — portar o Klipper moderno para a Neptune 4 Max — é dele. Esta página traduz o processo
      dele e acrescenta o que descobrimos usando a máquina. Se isto te ajudou, o agradecimento vai
@@ -169,8 +169,8 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
      belong:</p>
   <div class="credit-links">
     <a class="btn" href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">▶ <span data-l="pt">Vídeo do @SandMMakers</span><span data-l="en">The @SandMMakers video</span></a>
-    <a class="btn" href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html">📄 <span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a>
-    <a class="btn" href="https://github.com/sandmmakers/klipper">💾 sandmmakers/klipper</a>
+    <a class="btn" href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html"><span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a>
+    <a class="btn" href="https://github.com/sandmmakers/klipper">sandmmakers/klipper</a>
   </div>
 </div>
 
@@ -370,8 +370,8 @@ gzip -t backup-neptune.tar.gz && echo "BACKUP OK"</code></pre>
      <strong>must</strong> come before the others, or Klipper won't start afterwards. It is all laid
      out, with a check between each stage, in the full step by step.</p>
   <div class="credit-links">
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md#6-instalar" data-l="pt">📖 Abrir a seção de instalação</a>
-    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md#6-install" data-l="en">📖 Open the install section</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/PASSO-A-PASSO.md#6-instalar" data-l="pt">Abrir a seção de instalação</a>
+    <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md#6-install" data-l="en">Open the install section</a>
   </div>
 </div>
 
@@ -441,8 +441,10 @@ Loaded MCU 'rpi' 127 commands</code></pre>
      tem.</p>
   <p>O erro que voce vai ver, e que engana quase todo mundo:</p>
   <pre><code>Error during homing z: Eddy current sensor error</code></pre>
-  <p>Ele <strong>parece</strong> dizer que o sensor esta longe da mesa. Nao e isso que ele diz. Sao
-     quatro causas possiveis, e no meu caso elas estavam empilhadas, uma escondendo a outra:</p>
+  <p>Ele <strong>parece</strong> dizer que o sensor esta longe da mesa. Nao e isso que ele diz. A
+     causa mais comum aqui e a corrente de excitacao errada, item 4 abaixo, e o teste dela nao move a
+     maquina. Sao quatro causas possiveis no total, e no meu caso elas estavam empilhadas, uma
+     escondendo a outra:</p>
   <ol>
     <li>O <code>plr.cfg</code> declara a impressora zerada no boot, entao o <code>safe_z_home</code>
         <strong>sobe</strong> o bico achando que esta baixo, e a bobina fica cega. Sintoma classico:
@@ -480,7 +482,9 @@ Loaded MCU 'rpi' 127 commands</code></pre>
   <p>The error you will see, the one that fools almost everyone:</p>
   <pre><code>Error during homing z: Eddy current sensor error</code></pre>
   <p>It <strong>looks</strong> like it says the sensor is far from the bed. That is not what it says.
-     There are four possible causes, and in my case they were stacked, each hiding the next:</p>
+     The most common cause here is the wrong drive current, item 4 below, and testing it moves
+     nothing on the machine. There are four possible causes in total, and in my case they were
+     stacked, each hiding the next:</p>
   <ol>
     <li><code>plr.cfg</code> declares the printer homed at boot, so <code>safe_z_home</code>
         <strong>raises</strong> the nozzle thinking it is low, and the coil goes blind. Classic
@@ -568,13 +572,13 @@ gcode:
 </div>
 
 <div class="note warn">
-  <div data-l="pt"><strong>⚠️ O efeito colateral que quebra impressão</strong>
+  <div data-l="pt"><strong>O efeito colateral que quebra impressão</strong>
     O offset desloca <strong>todos</strong> os Z, não só o da primeira camada — inclusive os das suas
     macros de limpeza e purga. Aqui isso enfiou o bico na borracha de limpeza oito vezes seguidas, o
     eixo Z perdeu passo em silêncio e a peça saiu raspando a mesa. <strong>Depois de aplicar o
     offset, some ele a todo <code>Z</code> absoluto das suas macros</strong> (no caso,
     <code>Z3.8</code> teve que virar <code>Z5.8</code>).</div>
-  <div data-l="en"><strong>⚠️ The side effect that ruins prints</strong>
+  <div data-l="en"><strong>The side effect that ruins prints</strong>
     The offset shifts <strong>every</strong> Z, not just the first layer — including those inside
     your wipe and purge macros. Here it drove the nozzle into the wipe pad eight times in a row, the
     Z axis lost steps silently, and the part printed scraping the bed. <strong>After applying the
@@ -680,7 +684,7 @@ gcode:
        baixando em <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a>.
        A placa principal se atualiza por pendrive; a tela exige desmontar a tampa de trás com uma
        chave hexagonal de 2 mm e usar o cartão SD. O detalhe está no passo a passo.</p>
-    <p><strong>⚠️ A atualização da Elegoo pode apagar seu <code>printer.cfg</code></strong> e pode
+    <p><strong>A atualização da Elegoo pode apagar seu <code>printer.cfg</code></strong> e pode
        forçar o nivelamento para o modo Standard (6x6).</p>
   </div>
   <div data-l="en">
@@ -688,7 +692,7 @@ gcode:
        <a href="https://www.elegoo.com/pages/download">elegoo.com/pages/download</a>. The mainboard
        updates from a USB stick; the screen requires removing its back cover with a 2 mm hex key and
        using the SD card. Details are in the step by step.</p>
-    <p><strong>⚠️ The Elegoo update can erase your <code>printer.cfg</code></strong> and may force
+    <p><strong>The Elegoo update can erase your <code>printer.cfg</code></strong> and may force
        leveling into Standard mode (6x6).</p>
   </div>
 </details>
@@ -729,8 +733,8 @@ gcode:
 
 <ul>
   <li><a href="https://www.youtube.com/watch?v=Aoy3sI1lv1g">▶️ <strong>@SandMMakers</strong> — <span data-l="pt">vídeo do processo</span><span data-l="en">walkthrough video</span></a></li>
-  <li><a href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html">📄 <span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a></li>
-  <li><a href="https://github.com/sandmmakers/klipper">💾 github.com/sandmmakers/klipper</a></li>
+  <li><a href="https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html"><span data-l="pt">Tutorial original</span><span data-l="en">Original tutorial</span></a></li>
+  <li><a href="https://github.com/sandmmakers/klipper">github.com/sandmmakers/klipper</a></li>
 </ul>
 
 <footer>

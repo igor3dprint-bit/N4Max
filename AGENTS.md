@@ -202,8 +202,20 @@ Cada canto de `mesh_min` e `mesh_max` precisa cair dentro de `position_min` e `p
 
 ### Se o erro `Eddy current sensor error` aparecer
 
-Não presuma que é distância. Percorra a tabela do [tópico 15](EDDY.md#15-tabela-de-sintomas)
-na ordem, e comece verificando, por leitura pura:
+Não presuma que é distância. O `reg_drive_current` errado é a causa mais comum desse erro nesta
+máquina, e o teste dele não move a máquina, então venha antes de qualquer outra hipótese.
+
+```
+LDC_CALIBRATE_DRIVE_CURRENT CHIP=<nome>
+```
+
+Leia a resposta no console ou no `gcode_store`. Compare com o valor gravado na config. Se forem
+diferentes, esse já é o diagnóstico, sem precisar mexer em altura, recuo ou offset nenhum. Depois de
+gravar o valor novo com `SAVE_CONFIG`, refaça `PROBE_EDDY_CURRENT_CALIBRATE CHIP=<nome>` antes do
+próximo `G28`, porque a tabela antiga perdeu a validade.
+
+Se o valor bater com a config, aí sim percorra o resto da tabela do
+[tópico 15](EDDY.md#15-tabela-de-sintomas), por leitura pura:
 
 ```bash
 # home falso no boot
@@ -214,12 +226,9 @@ curl -s "http://IP/printer/objects/query?gcode_move" | grep -o '"homing_origin":
 
 # recuo do homing
 curl -s "http://IP/printer/objects/query?configfile=settings" | grep -o '"homing_retract_dist": [0-9.]*'
-
-# ganho do sensor, medido pelo próprio chip, sem mover nada
-# (envie LDC_CALIBRATE_DRIVE_CURRENT e leia a resposta no gcode_store)
 ```
 
-Só depois disso proponha mexer em altura.
+Só depois de descartar tudo isso proponha mexer em altura.
 
 ---
 
