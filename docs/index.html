@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Neptune 4 Max — Klipper moderno e o Z-offset que não obedece</title>
+<title>Neptune 4 Max: Klipper moderno, BTT Eddy e o Z-offset que não obedece</title>
 <meta name="description" content="Instale o Klipper de 2025 na Elegoo Neptune 4 Max, comando por comando. E a explicação do Z-offset que não obedece nesta máquina. Modern Klipper on the Elegoo Neptune 4 Max, command by command, plus the Z-offset defect explained.">
 <style>
 :root{
@@ -134,8 +134,8 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 <section class="hero">
   <div class="kicker">Elegoo Neptune 4 Max</div>
 
-  <h1 data-l="pt">Klipper moderno, e o Z-offset que não obedece</h1>
-  <h1 data-l="en">Modern Klipper, and the Z-offset that refuses to obey</h1>
+  <h1 data-l="pt">Klipper moderno, a sonda Eddy, e o Z-offset que não obedece</h1>
+  <h1 data-l="en">Modern Klipper, the Eddy probe, and the Z-offset that refuses to obey</h1>
 
   <p class="lead" data-l="pt">Sua impressora saiu de fábrica com um Klipper de <strong>2022</strong>.
     Aqui está como colocar o de <strong>2025</strong> — comando por comando, com o que cada um faz e o
@@ -180,7 +180,7 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
 
 <div class="pillars">
   <div class="pillar">
-    <h3>1️⃣ <span data-l="pt">A instalação</span><span data-l="en">The install</span></h3>
+    <h3><span data-l="pt">A instalação</span><span data-l="en">The install</span></h3>
     <p data-l="pt">Do Klipper de 2022 para o de 2025, sem pendrive, sem chave de fenda, sem abrir a
        impressora. Tudo pela rede, com o que esperar em cada comando.</p>
     <p data-l="en">From the 2022 Klipper to the 2025 one. No USB stick, no screwdriver, no opening
@@ -189,13 +189,35 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
     <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/STEP-BY-STEP.md" data-l="en">Read the step by step</a>
   </div>
   <div class="pillar">
-    <h3>2️⃣ <span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></h3>
+    <h3><span data-l="pt">O Z-offset</span><span data-l="en">The Z-offset</span></h3>
     <p data-l="pt">Três causas somadas que fazem o Z-offset ser ignorado nesta máquina. Não está
        documentado em nenhum outro lugar — foi descoberto medindo.</p>
     <p data-l="en">Three stacked causes that make the Z-offset be ignored on this machine.
        Documented nowhere else — it was found by measuring.</p>
     <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md" data-l="pt">Ler sobre o offset</a>
     <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/Z-OFFSET.md" data-l="en">Read about the offset</a>
+  </div>
+  <div class="pillar">
+    <h3><span data-l="pt">A sonda Eddy</span><span data-l="en">The Eddy probe</span></h3>
+    <p data-l="pt">O BTT Eddy enxerga so os ultimos 4 mm, e nesta maquina a sonda e a unica
+       referencia de Z. Montagem, as tres medidas, a ordem da calibracao, e as quatro
+       armadilhas que custaram uma noite e um bico arrastado na chapa.</p>
+    <p data-l="en">The BTT Eddy only sees the last 4 mm, and on this machine the probe is the
+       only Z reference. Mounting, the three measurements, the calibration order, and the four
+       traps that cost a night and a nozzle dragged across the sheet.</p>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EDDY.md" data-l="pt">Ler sobre o Eddy</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EDDY.md" data-l="en">Read about the Eddy</a>
+  </div>
+  <div class="pillar">
+    <h3><span data-l="pt">Para inteligencia artificial</span><span data-l="en">For AI agents</span></h3>
+    <p data-l="pt">Jogue este repositorio numa IA e ela encontra instrucoes escritas para ela:
+       pergunta primeiro qual procedimento voce quer, carrega so o documento certo, e segue
+       regras de seguranca que existem porque cada uma custou um prejuizo real.</p>
+    <p data-l="en">Hand this repository to an AI and it finds instructions written for it: ask
+       first which procedure you want, load only the right document, and follow safety rules
+       that exist because each one cost real damage.</p>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/AGENTS.md" data-l="pt">Ver as instrucoes</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/AGENTS.md" data-l="en">See the instructions</a>
   </div>
 </div>
 
@@ -403,9 +425,90 @@ Loaded MCU 'rpi' 127 commands</code></pre>
   <pre><code>minimum_cruise_ratio: 0</code></pre>
 </details>
 
+<!-- ========== EDDY ========== -->
+<h2 data-l="pt">A sonda BTT Eddy</h2>
+<h2 data-l="en">The BTT Eddy probe</h2>
+
+<div data-l="pt">
+  <p>O Eddy mede distancia por corrente parasita numa bobina. E rapido, preciso, e enxerga
+     <strong>so os ultimos milimetros</strong>. Na minha maquina a faixa calibrada vai de
+     <code>0,05 mm</code> a <code>4,05 mm</code>. Acima disso o chip nao ve a mesa, liga os bits de
+     erro, e o Klipper aborta.</p>
+  <p>Isso tem uma consequencia que quase ninguem avisa:
+     <strong>o Eddy nao serve sozinho como fim de curso de Z</strong>. Um fim de curso mecanico
+     dispara de qualquer altura. O Eddy nao. E na Neptune 4 Max o <code>[stepper_z]</code> usa
+     <code>probe:z_virtual_endstop</code>, ou seja, a sonda e a unica referencia de Z que a maquina
+     tem.</p>
+  <p>O erro que voce vai ver, e que engana quase todo mundo:</p>
+  <pre><code>Error during homing z: Eddy current sensor error</code></pre>
+  <p>Ele <strong>parece</strong> dizer que o sensor esta longe da mesa. Nao e isso que ele diz. Sao
+     quatro causas possiveis, e no meu caso elas estavam empilhadas, uma escondendo a outra:</p>
+  <ol>
+    <li>O <code>plr.cfg</code> declara a impressora zerada no boot, entao o <code>safe_z_home</code>
+        <strong>sobe</strong> o bico achando que esta baixo, e a bobina fica cega. Sintoma classico:
+        homeia X e Y, volta pro meio, <strong>nao desce</strong>, e ja da erro.</li>
+    <li>Uma compensacao antiga de <code>SET_GCODE_OFFSET</code> continua ativa depois da troca de
+        sonda, e todo movimento em Z desce mais do que voce mandou. Foi isso que arrastou meu
+        bico.</li>
+    <li>O <code>homing_retract_dist</code> de fabrica, 5 mm, joga a bobina para 7 mm na segunda
+        passada do homing. Sintoma: ele desce, encosta, e <strong>so entao</strong> da erro.</li>
+    <li>A <strong>corrente de excitacao</strong> do sensor, o <code>reg_drive_current</code>. Se
+        estiver alta demais a amplitude satura, e o chip da erro <em>mesmo com o bico na distancia
+        certa</em>. No meu caso estava 18 e o chip queria 16.</li>
+  </ol>
+  <p>A quarta e a mais importante, e a menos falada. Da para medir sem mover a maquina, deixando o
+     proprio chip escolher o valor:</p>
+  <pre><code>LDC_CALIBRATE_DRIVE_CURRENT CHIP=btt_eddy</code></pre>
+  <p>E uma regra que salva bico: mexeu na corrente, <strong>a tabela de calibracao morreu</strong>.
+     Refaca o <code>PROBE_EDDY_CURRENT_CALIBRATE</code> antes de mandar qualquer <code>G28</code>,
+     senao o gatilho dispara na altura errada.</p>
+  <p>O guia completo tem a montagem, as tres medidas que voce precisa tirar, as contas que evitam
+     cada armadilha, o ritual de homing, e a malha densa de 3600 pontos por varredura.</p>
+  <p><a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EDDY.md">Ler o guia do Eddy</a></p>
+</div>
+
+<div data-l="en">
+  <p>The Eddy measures distance through eddy currents in a coil. It is fast, precise, and it sees
+     <strong>only the last few millimetres</strong>. On my machine the calibrated range runs from
+     <code>0.05 mm</code> to <code>4.05 mm</code>. Above that the chip cannot see the bed, raises its
+     error bits, and Klipper aborts.</p>
+  <p>That carries a consequence almost nobody mentions:
+     <strong>the Eddy cannot serve as a Z endstop on its own</strong>. A mechanical endstop triggers
+     from any height. The Eddy does not. And on the Neptune 4 Max the <code>[stepper_z]</code> uses
+     <code>probe:z_virtual_endstop</code>, meaning the probe is the only Z reference the machine
+     has.</p>
+  <p>The error you will see, the one that fools almost everyone:</p>
+  <pre><code>Error during homing z: Eddy current sensor error</code></pre>
+  <p>It <strong>looks</strong> like it says the sensor is far from the bed. That is not what it says.
+     There are four possible causes, and in my case they were stacked, each hiding the next:</p>
+  <ol>
+    <li><code>plr.cfg</code> declares the printer homed at boot, so <code>safe_z_home</code>
+        <strong>raises</strong> the nozzle thinking it is low, and the coil goes blind. Classic
+        symptom: it homes X and Y, returns to the middle, <strong>does not descend</strong>, and
+        errors immediately.</li>
+    <li>An old <code>SET_GCODE_OFFSET</code> compensation stays active after the probe swap, and
+        every Z move goes lower than commanded. That is what dragged my nozzle.</li>
+    <li>The factory <code>homing_retract_dist</code> of 5 mm throws the coil to 7 mm on the second
+        homing pass. Symptom: it descends, touches, and <strong>only then</strong> errors.</li>
+    <li>The sensor <strong>drive current</strong>, <code>reg_drive_current</code>. Too high and the
+        amplitude saturates, so the chip errors <em>even with the nozzle at the right distance</em>.
+        Mine was 18 and the chip wanted 16.</li>
+  </ol>
+  <p>The fourth is the most important and the least discussed. You can measure it without moving the
+     machine, letting the chip pick the value itself:</p>
+  <pre><code>LDC_CALIBRATE_DRIVE_CURRENT CHIP=btt_eddy</code></pre>
+  <p>And one rule that saves nozzles: change the drive current and
+     <strong>the calibration table is dead</strong>. Redo
+     <code>PROBE_EDDY_CURRENT_CALIBRATE</code> before sending any <code>G28</code>, or the trigger
+     fires at the wrong height.</p>
+  <p>The full guide is in Portuguese and covers mounting, the three measurements you need, the
+     arithmetic that avoids each trap, the homing ritual, and the 3600 point scanning mesh.</p>
+  <p><a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EDDY.md">Read the Eddy guide</a></p>
+</div>
+
 <!-- ══════════ Z-OFFSET ══════════ -->
-<h2 data-l="pt">🔧 O Z-offset que não obedece</h2>
-<h2 data-l="en">🔧 The Z-offset that refuses to obey</h2>
+<h2 data-l="pt">O Z-offset que não obedece</h2>
+<h2 data-l="en">The Z-offset that refuses to obey</h2>
 
 <div data-l="pt">
   <p>Se você ajustar o Z-offset e <strong>quase nada mudar</strong>, <strong>não é você</strong>.
