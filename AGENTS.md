@@ -30,7 +30,7 @@ um bico enfiado na mesa.
 | 1 | [PASSO-A-PASSO.md](PASSO-A-PASSO.md), ou [STEP-BY-STEP.md](STEP-BY-STEP.md) se o usuário falar inglês |
 | 2 | [EDDY.md](EDDY.md) |
 | 3 | [Z-OFFSET.md](Z-OFFSET.md) |
-| 4 | [EDDY.md, seção 10](EDDY.md#10-referência-rápida-de-erros), a tabela de sintomas |
+| 4 | [EDDY.md, tópico 15](EDDY.md#15-tabela-de-sintomas), a tabela de sintomas |
 
 Se o usuário responder alguma coisa que não é nenhuma das quatro, pergunte de novo em vez de
 adivinhar.
@@ -68,7 +68,7 @@ curl -s "http://IP/server/files/config/printer.cfg"
 curl -s "http://IP/server/gcode_store?count=20"
 ```
 
-O último é importante: a resposta de um comando enviado por `POST /printer/gcode/script` **não vem
+Repare no último. A resposta de um comando enviado por `POST /printer/gcode/script` **não vem
 no corpo da resposta HTTP**. Se você precisa ler o que o Klipper respondeu, leia o `gcode_store`.
 
 **Faça backup antes de escrever em qualquer arquivo de configuração**, com data no nome:
@@ -154,7 +154,7 @@ não subir, a mensagem em `state_message` diz exatamente qual linha reclamou.
 Documento: [EDDY.md](EDDY.md)
 
 Este é o caminho com mais chance de estragar alguma coisa física. Leia o documento inteiro antes de
-começar, principalmente as seções 4, 5 e 6.
+começar, principalmente os tópicos 7, 8 e 9, que são as contas, a ordem da calibração e a corrente de excitação.
 
 ### As três medidas que o usuário precisa fornecer
 
@@ -202,7 +202,7 @@ Cada canto de `mesh_min` e `mesh_max` precisa cair dentro de `position_min` e `p
 
 ### Se o erro `Eddy current sensor error` aparecer
 
-Não presuma que é distância. Percorra a tabela da [seção 10](EDDY.md#10-referência-rápida-de-erros)
+Não presuma que é distância. Percorra a tabela do [tópico 15](EDDY.md#15-tabela-de-sintomas)
 na ordem, e comece verificando, por leitura pura:
 
 ```bash
@@ -248,7 +248,7 @@ SAVE_CONFIG
 
 ## Caminho 4: diagnosticar um homing que falha
 
-Comece pela tabela de sintomas da [seção 10 do EDDY.md](EDDY.md#10-referência-rápida-de-erros). Ela
+Comece pela tabela de sintomas da [tópico 15 do EDDY.md](EDDY.md#15-tabela-de-sintomas). Ela
 mapeia sintoma para causa e evita que você comece pelo lugar errado.
 
 O erro de diagnóstico mais caro que aconteceu na máquina original foi tratar o problema como térmico
