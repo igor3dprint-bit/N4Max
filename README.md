@@ -61,17 +61,32 @@ e o efeito colateral que enfiou um bico na borracha de limpeza aqui.
 
 [Z-OFFSET.md](Z-OFFSET.md), bilíngue
 
-### 4. Instruções para inteligência artificial
+### 4. Uma máquina de referência inteira
 
-Se você jogar este repositório numa IA e pedir ajuda, ela vai encontrar um arquivo escrito
-especificamente para ela. Ele diz para a IA perguntar primeiro qual dos procedimentos você quer,
-carregar só o documento certo, e seguir as regras de segurança que existem porque cada uma delas
-custou um prejuízo real aqui.
+O hardware montado, todos os valores gravados na configuração, cada alteração feita e o motivo dela,
+as macros do dia a dia, e o que ficou pendente. É o exemplo completo: os outros documentos ensinam o
+procedimento, este mostra uma máquina onde o procedimento já foi até o fim.
+
+[MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md)
+
+### 5. Uma IA que conduz você pelo processo
+
+Jogue este repositório inteiro no Claude, no Codex ou no Cursor e peça ajuda. Antes de fazer
+qualquer coisa, a IA vai te perguntar **o que você quer**:
+
+> 1. Atualizar o Klipper &nbsp;·&nbsp; 2. Instalar o BTT Eddy &nbsp;·&nbsp; 3. Z-offset não obedece
+> &nbsp;·&nbsp; 4. Diagnosticar erro de homing &nbsp;·&nbsp; 5. Macros e qualidade de impressão
+
+Você escolhe, e ela carrega só o documento daquele caminho, segue a ordem certa, e obedece às regras
+de segurança que existem porque cada uma custou um prejuízo real aqui. Ela também tem a máquina de
+referência acima para explicar de onde vem cada número, em vez de chutar.
+
+![Como a IA conduz o trabalho](docs/img/ai-fluxo.svg)
 
 Funciona com Claude Code, Codex, Cursor, Copilot e qualquer agente que leia um arquivo de contexto
 do repositório.
 
-[AGENTS.md](AGENTS.md)
+[AGENTS.md](AGENTS.md) · [CLAUDE.md](CLAUDE.md)
 
 ---
 
@@ -101,7 +116,10 @@ ordem importa.
 | `STEP-BY-STEP.md` | O mesmo guia, em inglês |
 | `EDDY.md` | Instalação e calibração do BTT Eddy, com as armadilhas |
 | `Z-OFFSET.md` | O Z-offset que não obedece: causas, solução, medição. Bilíngue |
-| `AGENTS.md` | Instruções para uma IA conduzir qualquer um dos procedimentos |
+| `MAQUINA-REFERENCIA.md` | A máquina do autor por inteiro: hardware, valores, alterações, macros |
+| `AGENTS.md` | Instruções para uma IA conduzir qualquer um dos cinco caminhos |
+| `CLAUDE.md` | Ponteiro de uma linha para o `AGENTS.md` |
+| `stl/` | As peças impressas usadas na montagem |
 | `docs/` | A página web deste repositório |
 
 ---
@@ -134,8 +152,9 @@ This repository documents three things about the Elegoo Neptune 4 Max: installin
 over the factory 2022 build, installing and calibrating a BTT Eddy probe, and fixing the Z-offset
 that refuses to obey when you save it.
 
-The Klipper install guide and the Z-offset write-up are available in English. The Eddy guide and the
-AI instructions are currently Portuguese only.
+The Klipper install guide and the Z-offset write-up are available in English. The Eddy guide, the
+reference machine and the AI instructions are currently Portuguese only, but any AI agent reading
+this repository will answer you in English.
 
 [STEP-BY-STEP.md](STEP-BY-STEP.md) · [Z-OFFSET.md](Z-OFFSET.md)
 

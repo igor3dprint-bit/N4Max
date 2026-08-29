@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 500" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #ffffff;
+      --text: #222222;
+      --muted: #444444;
+      --accent: #e8590c;
+      --soft: #ffdcc0;
+      --grey: #8a8a8a;
+      --danger: #c0392b;
+      --green: #2f9e44;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161922;
+        --panel: #20242f;
+        --text: #e8eaee;
+        --muted: #7a828f;
+        --accent: #ff8b4a;
+        --soft: #3a2415;
+        --grey: #7a828f;
+        --danger: #ff6b5e;
+        --green: #63c98a;
+      }
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+  <rect x="0" y="0" width="860" height="500" rx="10" fill="var(--bg)"/>
+  <text x="24" y="34" font-size="15" fill="var(--text)" font-weight="bold">As três contas que evitam erro de sensor</text>
+
+  <line x1="102" y1="88" x2="102" y2="382" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="92" y1="382" x2="142" y2="382" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="92" y1="323" x2="132" y2="323" stroke="var(--grey)" stroke-width="1.3"/>
+  <line x1="92" y1="264" x2="132" y2="264" stroke="var(--grey)" stroke-width="1.3"/>
+  <line x1="92" y1="205" x2="132" y2="205" stroke="var(--grey)" stroke-width="1.3"/>
+  <line x1="92" y1="146" x2="132" y2="146" stroke="var(--grey)" stroke-width="1.3"/>
+  <line x1="92" y1="87" x2="142" y2="87" stroke="var(--muted)" stroke-width="2"/>
+  <text x="66" y="386" font-size="12" fill="var(--text)" text-anchor="end">0</text>
+  <text x="66" y="91" font-size="12" fill="var(--text)" text-anchor="end">5 mm</text>
+
+  <rect x="142" y="143" width="86" height="236" fill="var(--soft)" stroke="var(--accent)" stroke-width="1.4"/>
+  <text x="150" y="173" font-size="12" fill="var(--text)">faixa calibrada</text>
+  <text x="150" y="191" font-size="12" fill="var(--text)">da bobina,</text>
+  <text x="150" y="209" font-size="12" fill="var(--text)">0,05 a 4,05 mm</text>
+
+  <line x1="82" y1="143" x2="262" y2="143" stroke="var(--accent)" stroke-width="1.7" stroke-dasharray="6,5"/>
+  <text x="150" y="130" font-size="13" fill="var(--accent)" font-weight="bold">F = 4,05</text>
+
+  <circle cx="185" cy="324" r="6" fill="var(--accent)"/>
+  <line x1="185" y1="324" x2="185" y2="379" stroke="var(--accent)" stroke-width="1.8"/>
+  <text x="42" y="424" font-size="12" fill="var(--muted)">M = 0,94 mm, altura de montagem da bobina acima do bico</text>
+
+  <rect x="330" y="88" width="470" height="76" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <text x="356" y="135" font-size="26" fill="var(--green)" font-weight="bold">✓</text>
+  <text x="392" y="118" font-size="15" fill="var(--text)" class="mono">z_offset + sample_retract_dist  &lt;  F</text>
+  <text x="392" y="145" font-size="13" fill="var(--muted)" class="mono">ex: 1,861 + 1,0 = 2,861</text>
+
+  <rect x="330" y="190" width="470" height="76" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <text x="356" y="237" font-size="26" fill="var(--green)" font-weight="bold">✓</text>
+  <text x="392" y="220" font-size="15" fill="var(--text)" class="mono">horizontal_move_z + M  &lt;  F</text>
+  <text x="392" y="247" font-size="13" fill="var(--muted)" class="mono">ex: 2,5 + 0,94 = 3,44</text>
+
+  <rect x="330" y="292" width="470" height="76" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <text x="356" y="339" font-size="26" fill="var(--green)" font-weight="bold">✓</text>
+  <text x="392" y="322" font-size="15" fill="var(--text)" class="mono">altura de início do mergulho + M  &lt;  F</text>
+
+  <line x1="330" y1="438" x2="800" y2="438" stroke="var(--accent)" stroke-width="2"/>
+  <text x="565" y="462" font-size="12.5" fill="var(--accent)" font-weight="bold" text-anchor="middle">Se qualquer uma estourar, o sensor dá erro em algum ponto do ciclo</text>
+  <text x="565" y="480" font-size="12.5" fill="var(--accent)" font-weight="bold" text-anchor="middle">e o sintoma parece outra coisa</text>
+</svg>

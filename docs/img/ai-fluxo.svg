@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 520" font-family="Helvetica, Arial, sans-serif">
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #ffffff;
+      --text: #222222;
+      --muted: #444444;
+      --accent: #e8590c;
+      --soft: #ffdcc0;
+      --grey: #8a8a8a;
+      --danger: #c0392b;
+      --green: #2f9e44;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #161922;
+        --panel: #20242f;
+        --text: #e8eaee;
+        --muted: #7a828f;
+        --accent: #ff8b4a;
+        --soft: #3a2415;
+        --grey: #7a828f;
+        --danger: #ff6b5e;
+        --green: #63c98a;
+      }
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+  <rect x="0" y="0" width="860" height="520" rx="10" fill="var(--bg)"/>
+  <text x="24" y="34" font-size="15" fill="var(--text)" font-weight="bold">Como a IA conduz o trabalho</text>
+
+  <rect x="230" y="66" width="400" height="64" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.4"/>
+  <text x="430" y="94" font-size="14" fill="var(--text)" text-anchor="middle">Usuário entrega o repositório a uma IA</text>
+  <text x="430" y="114" font-size="13" fill="var(--muted)" text-anchor="middle">(Claude Code, Codex, Cursor, Gemini)</text>
+
+  <line x1="430" y1="130" x2="430" y2="174" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="430,184 421,166 439,166" fill="var(--muted)"/>
+
+  <rect x="230" y="184" width="400" height="60" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.4"/>
+  <text x="430" y="219" font-size="14" fill="var(--text)" text-anchor="middle">A IA lê AGENTS.md e pergunta antes de agir</text>
+
+  <line x1="430" y1="244" x2="430" y2="286" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="430,296 421,278 439,278" fill="var(--muted)"/>
+
+  <line x1="108" y1="296" x2="752" y2="296" stroke="var(--muted)" stroke-width="1.6"/>
+  <line x1="108" y1="296" x2="108" y2="316" stroke="var(--muted)" stroke-width="1.6"/>
+  <line x1="269" y1="296" x2="269" y2="316" stroke="var(--muted)" stroke-width="1.6"/>
+  <line x1="430" y1="296" x2="430" y2="316" stroke="var(--muted)" stroke-width="1.6"/>
+  <line x1="591" y1="296" x2="591" y2="316" stroke="var(--muted)" stroke-width="1.6"/>
+  <line x1="752" y1="296" x2="752" y2="316" stroke="var(--muted)" stroke-width="1.6"/>
+
+  <rect x="35" y="316" width="146" height="92" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="58" cy="340" r="14" fill="var(--accent)"/>
+  <text x="58" y="345" font-size="13" fill="var(--panel)" font-weight="bold" text-anchor="middle">1</text>
+  <text x="108" y="352" font-size="13" fill="var(--text)" text-anchor="middle">Atualizar o</text>
+  <text x="108" y="370" font-size="13" fill="var(--text)" text-anchor="middle">Klipper</text>
+  <text x="108" y="394" font-size="11" fill="var(--accent)" class="mono" text-anchor="middle">PASSO-A-PASSO.md</text>
+
+  <rect x="196" y="316" width="146" height="92" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="219" cy="340" r="14" fill="var(--accent)"/>
+  <text x="219" y="345" font-size="13" fill="var(--panel)" font-weight="bold" text-anchor="middle">2</text>
+  <text x="269" y="352" font-size="13" fill="var(--text)" text-anchor="middle">Instalar o</text>
+  <text x="269" y="370" font-size="13" fill="var(--text)" text-anchor="middle">BTT Eddy</text>
+  <text x="269" y="394" font-size="11" fill="var(--accent)" class="mono" text-anchor="middle">EDDY.md</text>
+
+  <rect x="357" y="316" width="146" height="92" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="380" cy="340" r="14" fill="var(--accent)"/>
+  <text x="380" y="345" font-size="13" fill="var(--panel)" font-weight="bold" text-anchor="middle">3</text>
+  <text x="430" y="352" font-size="13" fill="var(--text)" text-anchor="middle">Z-offset não</text>
+  <text x="430" y="370" font-size="13" fill="var(--text)" text-anchor="middle">obedece</text>
+  <text x="430" y="394" font-size="11" fill="var(--accent)" class="mono" text-anchor="middle">Z-OFFSET.md</text>
+
+  <rect x="518" y="316" width="146" height="92" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="541" cy="340" r="14" fill="var(--accent)"/>
+  <text x="541" y="345" font-size="13" fill="var(--panel)" font-weight="bold" text-anchor="middle">4</text>
+  <text x="591" y="352" font-size="13" fill="var(--text)" text-anchor="middle">Diagnosticar</text>
+  <text x="591" y="370" font-size="13" fill="var(--text)" text-anchor="middle">erro de homing</text>
+  <text x="591" y="394" font-size="11" fill="var(--accent)" class="mono" text-anchor="middle">EDDY.md, tópico 15</text>
+
+  <rect x="679" y="316" width="146" height="92" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="702" cy="340" r="14" fill="var(--accent)"/>
+  <text x="702" y="345" font-size="13" fill="var(--panel)" font-weight="bold" text-anchor="middle">5</text>
+  <text x="752" y="352" font-size="13" fill="var(--text)" text-anchor="middle">Macros e</text>
+  <text x="752" y="370" font-size="13" fill="var(--text)" text-anchor="middle">qualidade</text>
+  <text x="752" y="394" font-size="8.8" fill="var(--accent)" class="mono" text-anchor="middle">MAQUINA-REFERENCIA.md</text>
+
+  <rect x="35" y="432" width="790" height="62" rx="8" fill="var(--accent)"/>
+  <text x="430" y="459" font-size="12.5" fill="var(--panel)" font-weight="bold" text-anchor="middle">Regras de segurança valem para os cinco caminhos</text>
+  <text x="430" y="478" font-size="12.5" fill="var(--panel)" font-weight="bold" text-anchor="middle">medir antes de mover, nunca Z absoluto sem home, backup datado, conferir se recarregou</text>
+</svg>

@@ -166,6 +166,11 @@ continua sendo lido. Entrada com resistor de pull-up e nada plugado flutua em n�
 Klipper acreditar que existe um fim de curso acionado. Não confie no que o pino informa, confie no
 que está parafusado na máquina.
 
+> **Não tente usar o pino da sonda removida como fim de curso.** Eu tentei aqui, apontando o
+> `[stepper_z]` para o pino da sonda antiga com a ponta vazia. O eixo desceu e não parou, porque o
+> pino em nível alto por pull-up nunca muda de estado, e foi preciso cortar a energia da impressora.
+> Só volte a usar esse pino depois de ter um sensor de verdade parafusado na ponta dele.
+
 ---
 
 ## 5. As três medidas da montagem
@@ -507,6 +512,8 @@ remova a linha do arquivo incluído e acrescente o valor no bloco autosave.
 
 Se a sua sonda original foi removida, o primeiro `G28` depois de ligar não tem como funcionar
 sozinho, porque não existe referência de Z e a bobina só enxerga quatro milímetros.
+
+![O ciclo sem sonda de contato, e como quebrá-lo](docs/img/ciclo-homing.svg)
 
 O que funciona, e é seguro, é homear X e Y primeiro e depois **descer olhando**.
 

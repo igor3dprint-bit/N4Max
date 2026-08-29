@@ -84,6 +84,10 @@ header.top{position:sticky;top:0;z-index:20;background:var(--bg);
 .pillar h3{margin:0 0 8px;font-size:17px}
 .pillar p{color:var(--muted);font-size:14.5px;margin:0 0 14px}
 
+figure.dia{margin:22px 0;padding:0}
+figure.dia img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px}
+figure.dia figcaption{color:var(--muted);font-size:13px;margin-top:8px;text-align:center}
+
 .step{background:var(--card);border:1px solid var(--line);border-radius:12px;
   padding:18px 20px;margin:14px 0}
 .step .n{display:inline-flex;align-items:center;justify-content:center;
@@ -199,8 +203,8 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
   </div>
   <div class="pillar">
     <h3><span data-l="pt">A sonda Eddy</span><span data-l="en">The Eddy probe</span></h3>
-    <p data-l="pt">O BTT Eddy enxerga so os ultimos 4 mm, e nesta maquina a sonda e a unica
-       referencia de Z. Montagem, as tres medidas, a ordem da calibracao, e as quatro
+    <p data-l="pt">O BTT Eddy enxerga só os últimos 4 mm, e nesta máquina a sonda é a única
+       referência de Z. Montagem, as três medidas, a ordem da calibração, e as quatro
        armadilhas que custaram uma noite e um bico arrastado na chapa.</p>
     <p data-l="en">The BTT Eddy only sees the last 4 mm, and on this machine the probe is the
        only Z reference. Mounting, the three measurements, the calibration order, and the four
@@ -209,16 +213,52 @@ footer{margin-top:70px;padding-top:26px;border-top:1px solid var(--line);
     <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/EDDY.md" data-l="en">Read about the Eddy</a>
   </div>
   <div class="pillar">
-    <h3><span data-l="pt">Para inteligencia artificial</span><span data-l="en">For AI agents</span></h3>
-    <p data-l="pt">Jogue este repositorio numa IA e ela encontra instrucoes escritas para ela:
-       pergunta primeiro qual procedimento voce quer, carrega so o documento certo, e segue
-       regras de seguranca que existem porque cada uma custou um prejuizo real.</p>
-    <p data-l="en">Hand this repository to an AI and it finds instructions written for it: ask
-       first which procedure you want, load only the right document, and follow safety rules
-       that exist because each one cost real damage.</p>
-    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/AGENTS.md" data-l="pt">Ver as instrucoes</a>
-    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/AGENTS.md" data-l="en">See the instructions</a>
+    <h3><span data-l="pt">A máquina de referência</span><span data-l="en">The reference machine</span></h3>
+    <p data-l="pt">Uma Neptune 4 Max descrita por inteiro: o hardware montado, cada valor gravado
+       na configuração, cada alteração e o motivo dela, as macros do dia a dia, e o que ficou
+       pendente. Os outros documentos ensinam o procedimento, este mostra o resultado.</p>
+    <p data-l="en">One Neptune 4 Max described in full: the hardware mounted, every value saved in
+       the config, every change and the reason for it, the day-to-day macros, and what is still
+       open. The other documents teach the procedure, this one shows the result.</p>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/MAQUINA-REFERENCIA.md" data-l="pt">Ver a máquina inteira</a>
+    <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/MAQUINA-REFERENCIA.md" data-l="en">See the whole machine</a>
   </div>
+</div>
+
+<!-- ══════════ IA ══════════ -->
+<h2 data-l="pt">Uma IA conduz você pelo processo</h2>
+<h2 data-l="en">An AI walks you through it</h2>
+
+<div data-l="pt">
+  <p>Jogue este repositório inteiro no Claude, no Codex ou no Cursor e peça ajuda. Antes de fazer
+     qualquer coisa, a IA pergunta <strong>o que você quer</strong>, e só então carrega o documento
+     daquele caminho.</p>
+</div>
+<div data-l="en">
+  <p>Hand this whole repository to Claude, Codex or Cursor and ask for help. Before doing anything,
+     the AI asks <strong>what you want</strong>, and only then loads the document for that path.</p>
+</div>
+
+<figure class="dia">
+  <img src="img/ai-fluxo.svg" alt="Fluxo: a IA lê o AGENTS.md, pergunta qual dos cinco caminhos, e carrega só o documento certo" loading="lazy">
+  <figcaption data-l="pt">Os cinco caminhos, e as regras de segurança que valem para todos eles</figcaption>
+  <figcaption data-l="en">The five paths, and the safety rules that apply to all of them</figcaption>
+</figure>
+
+<div data-l="pt">
+  <p>Ela segue a ordem certa de cada procedimento, obedece às regras de segurança que existem porque
+     cada uma custou um prejuízo real aqui, e tem a máquina de referência acima para explicar de onde
+     vem cada número em vez de chutar.</p>
+</div>
+<div data-l="en">
+  <p>It follows the right order for each procedure, obeys the safety rules that exist because each
+     one cost real damage here, and has the reference machine above to explain where every number
+     came from instead of guessing.</p>
+</div>
+
+<div class="cta">
+  <a class="btn primary" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/AGENTS.md">AGENTS.md</a>
+  <a class="btn" href="https://github.com/igor3dprint-bit/Neptune4Max-Klipper-Facil/blob/main/CLAUDE.md">CLAUDE.md</a>
 </div>
 
 <!-- ══════════ ANTES ══════════ -->
@@ -428,6 +468,18 @@ Loaded MCU 'rpi' 127 commands</code></pre>
 <!-- ========== EDDY ========== -->
 <h2 data-l="pt">A sonda BTT Eddy</h2>
 <h2 data-l="en">The BTT Eddy probe</h2>
+
+<figure class="dia">
+  <img src="img/ordem-calibracao.svg" alt="A ordem da calibração do Eddy, em cinco passos" loading="lazy">
+  <figcaption data-l="pt">Mexeu na corrente de excitação, a tabela morreu. É o erro mais caro deste procedimento.</figcaption>
+  <figcaption data-l="en">Touch the drive current and the table is dead. This is the costliest mistake here.</figcaption>
+</figure>
+
+<figure class="dia">
+  <img src="img/tres-contas.svg" alt="As três contas que evitam erro de sensor" loading="lazy">
+  <figcaption data-l="pt">Tudo precisa caber dentro dos 4 mm que a bobina enxerga</figcaption>
+  <figcaption data-l="en">Everything has to fit inside the 4 mm the coil can see</figcaption>
+</figure>
 
 <div data-l="pt">
   <p>O Eddy mede distancia por corrente parasita numa bobina. E rapido, preciso, e enxerga

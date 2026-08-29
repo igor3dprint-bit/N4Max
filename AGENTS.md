@@ -5,7 +5,15 @@ ou a si mesma, através de um dos procedimentos aqui documentados. Se você é h
 entrada é o [README](README.md).
 
 Ferramentas que já leem este formato: Claude Code, Codex, Cursor, Copilot Workspace, Gemini CLI e
-qualquer agente que aceite um arquivo de contexto do repositório.
+qualquer agente que aceite um arquivo de contexto do repositório. O `CLAUDE.md` da raiz existe só
+para apontar para cá.
+
+Você tem uma máquina de referência inteira à disposição em
+[MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md): o hardware montado, todos os valores gravados, cada
+alteração e o motivo dela, e as pendências. Use como exemplo trabalhado sempre que precisar mostrar
+ao usuário como um número foi obtido. Nunca como valor para copiar.
+
+![Como a IA conduz o trabalho](docs/img/ai-fluxo.svg)
 
 ---
 
@@ -14,12 +22,13 @@ qualquer agente que aceite um arquivo de contexto do repositório.
 Não comece a executar nada. A primeira coisa que você faz é apresentar as opções e esperar a
 resposta:
 
-> Este repositório cobre quatro procedimentos na Elegoo Neptune 4 Max. Qual deles você quer?
+> Este repositório cobre cinco procedimentos na Elegoo Neptune 4 Max. Qual deles você quer?
 >
 > 1. Atualizar o Klipper da impressora, do build de 2022 de fábrica para o de 2025
 > 2. Instalar e calibrar uma sonda BTT Eddy
 > 3. Resolver o Z-offset que não obedece quando você salva
 > 4. Diagnosticar um erro de homing que já está acontecendo
+> 5. Deixar a impressora confortável de usar: macros de purga, limpeza de bico, `PRINT_START` e malha
 
 Cada opção manda você para um documento diferente. **Leia o documento inteiro antes de emitir o
 primeiro comando.** Estes procedimentos têm ordem, e a ordem é o que separa uma instalação limpa de
@@ -31,13 +40,18 @@ um bico enfiado na mesa.
 | 2 | [EDDY.md](EDDY.md) |
 | 3 | [Z-OFFSET.md](Z-OFFSET.md) |
 | 4 | [EDDY.md, tópico 15](EDDY.md#15-tabela-de-sintomas), a tabela de sintomas |
+| 5 | [MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md), a seção de macros |
 
-Se o usuário responder alguma coisa que não é nenhuma das quatro, pergunte de novo em vez de
+Se o usuário responder alguma coisa que não é nenhuma das cinco, pergunte de novo em vez de
 adivinhar.
+
+Se ele não souber responder, faça **uma** pergunta de triagem antes de repetir o menu: a impressora
+está imprimindo bem hoje, ou tem alguma coisa errada acontecendo? "Está bem" leva aos caminhos 1, 2
+ou 5. "Tem algo errado" leva aos caminhos 3 ou 4.
 
 ---
 
-## Regras de segurança que valem para os quatro caminhos
+## Regras de segurança que valem para os cinco caminhos
 
 Estas não são sugestões. Elas existem porque cada uma delas custou um prejuízo real na máquina em
 que este repositório foi escrito.
@@ -168,6 +182,8 @@ O item 3 é o mais negligenciado. Assumir zero em Y desloca a malha inteira.
 
 ### A ordem da calibração, que é a parte que todo mundo erra
 
+![A ordem da calibração do Eddy](docs/img/ordem-calibracao.svg)
+
 1. Escrever a config base com os offsets medidos
 2. `LDC_CALIBRATE_DRIVE_CURRENT CHIP=<nome>` e `SAVE_CONFIG`
 3. **Só então** `PROBE_EDDY_CURRENT_CALIBRATE CHIP=<nome>`, com o humano usando papel
@@ -182,6 +198,8 @@ e isso é bico na chapa, não é mensagem de erro.
 ### Três verificações aritméticas que você deve fazer antes de gravar a config
 
 Chame de `F` o topo da faixa calibrada, tipicamente `4.05`, e de `M` a altura de montagem da bobina.
+
+![As três contas que evitam erro de sensor](docs/img/tres-contas.svg)
 
 ```
 z_offset + sample_retract_dist  <  F
@@ -273,6 +291,46 @@ awk '/^Stats /{ if (match($0,/heater_bed: target=[0-9.]+ temp=[0-9.]+/)) b=subst
 
 Baixe o log por `http://IP/server/files/logs/klippy.log`. Ele é grande, então filtre no disco em vez
 de trazer inteiro para o contexto.
+
+---
+
+## Caminho 5: deixar a impressora confortável de usar
+
+Documento: [MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md), seção "Macros criadas", mais a seção
+"O que foi alterado nesta sessão".
+
+Este caminho é o único sem risco de bater a máquina, e é o que mais muda a experiência do dia a dia.
+Só entre nele depois que o homing do usuário estiver funcionando. Macro de purga em cima de um Z que
+não é confiável é bico na chapa com passo extra.
+
+Ofereça uma de cada vez, na ordem abaixo, e pergunte se ele quer antes de escrever. Cada uma é
+independente das outras.
+
+| Macro | O que resolve | Depende de |
+|---|---|---|
+| `LIMPAR_BICO` | bico sujo escorrendo na primeira camada | ter uma borracha montada na mesa, e saber onde |
+| `PURGA_BAMBU` e `LINHA_PURGA` | extrusora fria no começo da peça | `LIMPAR_BICO` |
+| `SOBE` e `DESCE` | ajustar a primeira camada com a peça andando | nada |
+| `ZOFFSET` e `ZOFFSET_SALVAR` | gravar o ajuste ao vivo sem errar o sinal | nada |
+| `EDDY_OFFSET_FULL` | refazer o `z_offset` a quente, sem decorar a sequência | Eddy calibrado |
+| `EDDY_MALHA` | malha densa por varredura, com soak antes | Eddy calibrado |
+| `MANTER_MESA_50` | mesa dilatada antes de começar | nada |
+| `PRINT_START` | juntar tudo acima numa partida só | as anteriores que o usuário aceitou |
+
+Três armadilhas que já custaram caro aqui e que você deve evitar ao escrever essas macros.
+
+**A borracha de limpeza tem altura.** Se ela fica perto da origem, a viagem até lá precisa de folga
+maior do que a altura de mergulho da sonda aceita. Não resolva com um `z_hop` único; separe as duas
+alturas, como está descrito no [tópico 11 do EDDY.md](EDDY.md#11-o-homing-e-o-ritual-do-primeiro-home).
+
+**`SAVE_VARIABLE was_interrupted` não pode ser a primeira linha do `PRINT_START`.** Se o `G28`
+falhar depois dela, a impressora fica marcada como tendo uma impressão interrompida sem impressão
+nenhuma, e toda tentativa seguinte devolve `SD busy`. Grave a variável depois do homing.
+
+**Se você mexer no `PRINT_START`, confira o gcode inicial do fatiador.** Comando que passou para a
+macro e continuou no fatiador roda duas vezes; comando que saiu dos dois não roda nunca. O perfil da
+máquina de referência ficou com cinco linhas e uma chamada de `PRINT_START`, e está em
+[MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md).
 
 ---
 
