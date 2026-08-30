@@ -96,16 +96,16 @@ altura da bobina = altura do bico + 0,94
 
 ---
 
-## Valores vigentes em 2026-08-29
+## Valores vigentes, atualizado na sessão da noite de 2026-08-29
 
 ```
 probe_eddy_current btt_eddy
   x_offset            -33.34
   y_offset            20.0
-  z_offset            1.861      (mora no bloco autosave, não no eddy.cfg)
+  z_offset            0.300      (mora no bloco autosave, não no eddy.cfg)
   sample_retract_dist 1.0
-  reg_drive_current   16
-  tabela              101 pontos, 0.05 -> 3294860.993 Hz, 4.05 -> 3194853.766 Hz
+  reg_drive_current   18
+  tabela              101 pontos, gravada pelo PROBE_EDDY_CURRENT_CALIBRATE mais recente
 
 bed_mesh
   mesh_min            20, 25
@@ -117,10 +117,14 @@ stepper_z
   homing_retract_dist 1.5
 ```
 
+`z_offset` e `reg_drive_current` mudaram de novo depois da tarde do dia 29, numa sessão de recalibração
+que fechou junto com a malha densa. O valor anterior desta tabela era `z_offset: 1.861` e
+`reg_drive_current: 16`. Meça o seu, não copie nem o de hoje nem o de ontem.
+
 Invariantes que precisam continuar valendo, com F igual a 4,05 e M igual a 0,94
 
 ```
-z_offset + sample_retract_dist   <  F      1,861 + 1,0 = 2,861   ok
+z_offset + sample_retract_dist   <  F      0,300 + 1,0 = 1,300   ok
 horizontal_move_z + M            <  F      2,5 + 0,94 = 3,44     ok
 altura de início do mergulho + M <  F
 ```
@@ -145,6 +149,10 @@ segunda passada do homing e o chip abortava.
 `reg_drive_current` de 18 para 16, medido por `LDC_CALIBRATE_DRIVE_CURRENT CHIP=btt_eddy`. Em
 seguida a tabela foi refeita com `PROBE_EDDY_CURRENT_CALIBRATE`, obrigatório depois de mexer na
 corrente.
+
+Numa sessão posterior, depois de remedir `x_offset` e `y_offset`, o comando voltou a apontar 18, e o
+`z_offset` mudou de 1,861 para 0,300 junto com a tabela nova. A lição não muda: sempre que a montagem
+física mexer, rode `LDC_CALIBRATE_DRIVE_CURRENT` de novo antes de confiar no número antigo.
 
 `sample_retract_dist` de 3,0 para 1,0 e `horizontal_move_z` de 10 para 2,5, ambos estouravam a faixa
 do sensor.
@@ -309,11 +317,7 @@ printer.cfg.bak-zoff2             printer.cfg.bak-guard
 
 ## Pendências
 
-A malha ainda é a antiga de seis por seis, sondada com `y_offset` igual a zero, ou seja, vinte
-milímetros deslocada. O `PRINT_START` carrega ela. Rodar `EDDY_MALHA` seguido de `SAVE_CONFIG` antes
-da próxima impressão que importe.
+A malha densa de 4900 pontos (setenta por setenta) já foi feita e salva como perfil padrão. O
+`PRINT_START` carrega ela.
 
-O `z_offset` de 1,861 foi medido com papel e ainda não foi validado imprimindo.
-
-A primeira malha de 4900 pontos ainda não foi feita nesta máquina. Se o processamento engasgar,
-rodar `EDDY_MALHA PONTOS=50` e subir aos poucos.
+O `z_offset` de 0,300 saiu da recalibração mais recente e ainda não foi validado imprimindo.

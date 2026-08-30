@@ -401,6 +401,11 @@ probe_eddy_current btt_eddy: reg_drive_current: 16
 Compare com o que está na sua configuração. No meu caso estava dezoito e o chip queria dezesseis.
 Dois pontos de diferença travavam tudo.
 
+O número não é fixo para sempre. Depois de remontar a sonda e remedir `x_offset` e `y_offset`, rodei
+o comando de novo e ele voltou a apontar dezoito. Trate qualquer valor deste guia como o retrato de
+um instante, não como constante. Toda vez que a montagem física mudar, meça de novo antes de confiar
+no número antigo, o seu ou o meu.
+
 ### Onde esse comando mora
 
 Se você procurar esse comando dentro do `probe_eddy_current.py`, não acha, e é fácil concluir que o
@@ -506,8 +511,8 @@ remova a linha do arquivo incluído e acrescente o valor no bloco autosave.
 
 ```
 #*# [probe_eddy_current btt_eddy]
-#*# z_offset = 1.861
-#*# reg_drive_current = 16
+#*# z_offset = 0.300
+#*# reg_drive_current = 18
 ```
 
 ---
