@@ -128,6 +128,8 @@ computador quando você só liga o cabo. A sequência que funciona é a seguinte
 2. Sem soltar o botão, ligue o cabo USB no computador
 3. Solte o botão
 
+![Sequência do botão de BOOT do Eddy Duo: USB desconectado, segurar o botão, ligar o USB, soltar o botão](docs/img/eddy-boot-sequence.svg)
+
 Agora ele aparece, e você consegue gravar o firmware do Klipper nele.
 
 Se você ligar o USB primeiro e só depois apertar o botão, ele não entra em modo de gravação. Foi o
