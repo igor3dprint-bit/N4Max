@@ -7,7 +7,7 @@ funcionou.
 Autor: [@Igor3DPrint](https://instagram.com/igor3dprint)
 
 [Passo a passo em português](PASSO-A-PASSO.md) · [Step by step in English](STEP-BY-STEP.md) ·
-[Página web](https://igor3dprint-bit.github.io/Neptune4Max-Klipper-Facil/)
+[Página web](https://igor3dprint-bit.github.io/N4Max/)
 
 ---
 
