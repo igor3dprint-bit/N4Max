@@ -81,6 +81,8 @@ montagem da bobina, e essa altura entra em todas as contas do
 [tópico 7](#7-as-contas-que-evitam-erro-de-sensor).
 Meça a sua altura depois de montar, não copie a minha.
 
+Leva **2 porcas de embutir M3** (heat-set insert), fundidas com ferro de solda.
+
 ### Suporte da borracha de limpeza
 
 [`stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl`](stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl)

@@ -21,6 +21,8 @@ A variante que você escolher muda a altura de montagem da bobina, e essa altura
 contas do [tópico 7 do EDDY.md](../EDDY.md#7-as-contas-que-evitam-erro-de-sensor). Meça a sua altura
 depois de montar, não copie a minha.
 
+Leva **2 porcas de embutir M3** (heat-set insert), fundidas a ferro de solda.
+
 Modelo original, com crédito ao autor.
 
 https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter
