@@ -11,6 +11,32 @@ Autor: [@Igor3DPrint](https://instagram.com/igor3dprint)
 
 ---
 
+## ⚠️ Leia antes de qualquer coisa: o risco é seu
+
+Este material é compartilhado de graça, como está, **sem nenhuma garantia**. Ele descreve o que deu
+certo em **uma** impressora: a minha.
+
+**Ao seguir qualquer coisa daqui, você assume integralmente a responsabilidade pelo que acontecer
+com o seu equipamento.** Isso inclui, sem se limitar a: perda da configuração, impressora que não
+liga mais, firmware corrompido, bico enfiado na mesa, chapa riscada, peça danificada, perda de
+garantia do fabricante, e prejuízo material ou de tempo.
+
+Nem o autor nem a S&M Makers nem os projetos citados respondem por qualquer dano, direto ou
+indireto, decorrente do uso destas instruções.
+
+Mexer em firmware, em sonda e em Z-offset **tem risco real**. Estas páginas existem justamente
+porque cada coisa aqui quebrou primeiro na minha máquina. O caminho de volta está documentado em
+todos os procedimentos, mas quem está com a mão na impressora é você.
+
+Se você não se sente confortável em ler um comando antes de colar, ou não tem como voltar atrás,
+**não faça**. Não tem problema nenhum em manter a impressora como ela veio de fábrica.
+
+*This material is provided free of charge, as is, with no warranty of any kind. By following it you
+accept full responsibility for anything that happens to your equipment. Neither the author nor any
+project referenced here is liable for any damage, direct or indirect.*
+
+---
+
 ## Crédito antes de tudo
 
 **Sem a S&M Makers, nada disto existiria.** Todo o trabalho de portar o Klipper moderno para a
@@ -194,6 +220,9 @@ walks through their process and adds what I found living with the machine.
 
 Código sob [MIT](LICENSE). O Klipper em si é GPLv3, e o port é da S&M Makers, sob a licença dele.
 
-**Sem garantia.** Mexer em firmware e em sonda tem risco. O caminho de volta existe e está
-documentado, mas quem está do lado da impressora é você. Vá devagar, leia antes de colar, e pare
-quando ficar estranho.
+**Sem garantia, e a responsabilidade é sua.** Como está escrito no topo desta página: ao seguir
+qualquer procedimento daqui, você assume integralmente o risco e as consequências para o seu
+equipamento. O autor não responde por dano de nenhum tipo.
+
+Mexer em firmware e em sonda tem risco. O caminho de volta existe e está documentado, mas quem está
+do lado da impressora é você. Vá devagar, leia antes de colar, e pare quando ficar estranho.

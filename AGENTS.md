@@ -79,6 +79,27 @@ ou 5. "Tem algo errado" leva aos caminhos 3 ou 4.
 
 ---
 
+## Diga isto antes do primeiro comando, sempre
+
+Depois que o usuário escolher o caminho e **antes** de você emitir qualquer comando que toque na
+máquina, avise, com estas palavras ou equivalentes:
+
+> Antes de começar: este procedimento mexe no firmware e na sonda da sua impressora, e o risco é
+> seu. Você assume a responsabilidade pelo que acontecer com o equipamento. Existe caminho de volta
+> documentado em cada etapa, e eu vou te mostrar antes de rodar qualquer coisa — mas quem está do
+> lado da máquina é você. Se em algum momento a tela não mostrar o que eu descrevi, pare e me diga o
+> que apareceu, em vez de seguir para o próximo passo.
+
+Não peça que ele "aceite os termos" nem trate isso como formalidade. É informação operacional: ele
+precisa saber que existe um ponto de parada e que parar é uma resposta válida.
+
+Se o usuário pedir para você "fazer tudo sozinho" sem acompanhar, **recuse a parte que move o
+cabeçote**. Leitura e diagnóstico você faz sozinho à vontade. Homing, sondagem, calibração e
+gravação de firmware exigem uma pessoa olhando a máquina, porque o modo de falha é mecânico e
+rápido demais para o software perceber.
+
+---
+
 ## Regras de segurança que valem para os seis caminhos
 
 Estas não são sugestões. Elas existem porque cada uma delas custou um prejuízo real na máquina em
