@@ -2,6 +2,16 @@
 
 > Português abaixo · [English version below](#english-the-z-offset-that-refuses-to-obey)
 
+> **Existe um atalho que faz este problema deixar de existir.** Se você tem um BTT Eddy, o
+> [eddy-ng](EDDY-NG.md) mede o zero encostando o bico na mesa a cada impressão — não há `z_offset`
+> para salvar, então não há `z_offset` para ser zerado. Foi o que a máquina de referência fez em
+> 09/2026. Este documento continua valendo, e é o que você precisa se usa o driver padrão, se ainda
+> não tem o Eddy, ou se quer entender por que o valor some.
+>
+> *There is a shortcut that makes this problem disappear: with a BTT Eddy, [eddy-ng](EDDY-NG.md)
+> measures zero by touching the nozzle to the bed on every print — no `z_offset` to save, none to be
+> zeroed. This document still applies to the stock driver.*
+
 Este documento é um **extra**. A instalação do Klipper novo (os passos 1, 2 e 3) funciona sem ele.
 Mas se, depois de instalar, o seu Z-offset parecer "ignorado", é aqui que está a explicação.
 

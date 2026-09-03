@@ -49,7 +49,27 @@ errada, o sensor dá erro mesmo estando na distância certa, e você procura hor
 
 [EDDY.md](EDDY.md)
 
-### 3. O Z-offset que não obedece, e por quê
+### 3. Fazer a máquina achar o Z sozinha, com o eddy-ng
+
+O **BTT Eddy é o hardware**. O **eddy-ng é um software alternativo para esse mesmo hardware** —
+mesma bobina, mesmo cabo, mesma peça no toolhead. O que muda é quem interpreta a leitura.
+
+Com o driver padrão, você faz o teste do papel uma vez e guarda o número. Com o eddy-ng, **o bico
+encosta na mesa e o zero é medido na hora, a cada impressão**. Isso se chama *tap*, e é o motivo
+inteiro de trocar: acaba o teste do papel, e o zero fica certo mesmo trocando de bico ou saindo de
+PLA a 60 °C para ABS a 100 °C, porque a medição é feita quente.
+
+Não precisa migrar para o Klipper mainline: instala em cima do fork da S&M Makers. Aqui o tap ficou
+com **desvio padrão de 0,006 mm** em três medições — seis micra — mesmo com a bobina montada a
+0,94 mm, um terço da altura que a documentação recomenda.
+
+O guia traz a receita completa, o ovo-e-galinha do primeiro homing (a sonda é a única referência de
+Z e ela ainda não está calibrada), e as dez coisas que quebraram no caminho, com o que resolveu cada
+uma.
+
+[EDDY-NG.md](EDDY-NG.md)
+
+### 4. O Z-offset que não obedece, e por quê
 
 Nesta máquina você ajusta o Z-offset, salva, e **quase nada muda**. Medido: mudar de `0.0` para
 `2.110` deslocou o bico em **0,05 mm** quando deveria deslocar 2,11.
@@ -61,7 +81,7 @@ e o efeito colateral que enfiou um bico na borracha de limpeza aqui.
 
 [Z-OFFSET.md](Z-OFFSET.md), bilíngue
 
-### 4. Uma máquina de referência inteira
+### 5. Uma máquina de referência inteira
 
 O hardware montado, todos os valores gravados na configuração, cada alteração feita e o motivo dela,
 as macros do dia a dia, e o que ficou pendente. É o exemplo completo: os outros documentos ensinam o
@@ -69,13 +89,18 @@ procedimento, este mostra uma máquina onde o procedimento já foi até o fim.
 
 [MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md)
 
-### 5. Uma IA que conduz você pelo processo
+E os arquivos de configuração de verdade, copiados da impressora, em [config/](config/) — para você
+comparar com os seus quando algo não bater. Vêm com o aviso de sempre: a estrutura serve, os números
+são meus.
+
+### 6. Uma IA que conduz você pelo processo
 
 Jogue este repositório inteiro no Claude, no Codex ou no Cursor e peça ajuda. Antes de fazer
 qualquer coisa, a IA vai te perguntar **o que você quer**:
 
 > 1. Atualizar o Klipper &nbsp;·&nbsp; 2. Instalar o BTT Eddy &nbsp;·&nbsp; 3. Z-offset não obedece
 > &nbsp;·&nbsp; 4. Diagnosticar erro de homing &nbsp;·&nbsp; 5. Macros e qualidade de impressão
+> &nbsp;·&nbsp; 6. Migrar para o eddy-ng
 
 Você escolhe, e ela carrega só o documento daquele caminho, segue a ordem certa, e obedece às regras
 de segurança que existem porque cada uma custou um prejuízo real aqui. Ela também tem a máquina de
@@ -115,6 +140,8 @@ ordem importa.
 | `PASSO-A-PASSO.md` | Guia completo de instalação do Klipper, comando por comando |
 | `STEP-BY-STEP.md` | O mesmo guia, em inglês |
 | `EDDY.md` | Instalação e calibração do BTT Eddy, com as armadilhas |
+| `EDDY-NG.md` | Trocar o driver do Eddy pelo eddy-ng: tap, Z-offset automático, e os 10 erros do caminho |
+| `config/` | Os arquivos de configuração reais da máquina, sanitizados |
 | `Z-OFFSET.md` | O Z-offset que não obedece: causas, solução, medição. Bilíngue |
 | `MAQUINA-REFERENCIA.md` | A máquina do autor por inteiro: hardware, valores, alterações, macros |
 | `AGENTS.md` | Instruções para uma IA conduzir qualquer um dos cinco caminhos |

@@ -17,6 +17,28 @@ medição.** Eles são o exemplo, não a resposta.
 > Os endereços de rede abaixo são da rede local do autor. Troque pelo IP da impressora do usuário.
 
 ---
+
+## ⚠️ Esta máquina mudou em 03/09/2026 — leia antes do resto
+
+Ela saiu do driver `probe_eddy_current` e passou a usar o **[eddy-ng](EDDY-NG.md)**
+(`probe_eddy_ng`). O que isso invalida, mais abaixo neste documento e no
+[Z-OFFSET.md](Z-OFFSET.md):
+
+- **Todo o problema do "Z-offset que não obedece" deixou de existir aqui.** O eddy-ng não usa
+  `z_offset` nenhum: o zero é medido por *tap* a cada impressão. As causas continuam reais e valem
+  para quem usa o driver padrão — só não se aplicam mais a esta máquina.
+- **A borracha de limpeza foi removida fisicamente.** `LIMPAR_BICO`, `PURGA_BAMBU`, `LINHA_PURGA` e
+  `EDDY_OFFSET_FULL` continuam escritas na configuração, mas **nada chama elas**. A purga agora é a
+  `LINHA_KAMP`, uma linha só na frente da mesa.
+- **O Klipper roda em Python 3.7.3** (`~/klippy-env-py3`). O ambiente Python 2 antigo continua no
+  disco como caminho de volta.
+- O firmware do Eddy foi recompilado localmente e tem o sensor `ldc1612_ng`.
+
+Valores da calibração nova: `reg_drive_current 17` (homing), `tap_drive_current 18` (tap), tap
+medido em **−0,050 mm com desvio padrão de 0,006 mm**, com a bobina montada a 0,94 mm do bico.
+
+Os arquivos de configuração completos desta máquina, já sanitizados, estão em [config/](config/).
+
 ---
 
 ## Acesso
@@ -26,8 +48,9 @@ medição.** Eles são o exemplo, não a resposta.
 | IP | 192.168.68.105 |
 | SSH | `ssh mks@192.168.68.105`, sem senha, chave já autorizada |
 | Interface | Fluidd |
-| Klipper | fork sandmmakers, `sandmmakers-ElegooNeptune4Max-v1.2.3.4-v0.13.0-51-1-0-g8dc12fe4` |
-| Config | `/home/mks/klipper_config/printer.cfg` mais `eddy.cfg` e `plr.cfg` |
+| Klipper | fork sandmmakers, `sandmmakers-ElegooNeptune4Max-v1.2.3.4-v0.13.0-51-1`, rodando em **Python 3.7.3** |
+| Sonda | **eddy-ng** (`probe_eddy_ng`), não mais `probe_eddy_current` |
+| Config | `/home/mks/klipper_config/printer.cfg` mais `eddy.cfg`, `eddyng_macros.cfg` e `plr.cfg` |
 | Fonte | `/home/mks/klipper.sandmmakers/` |
 | Log | `/home/mks/klipper_logs/klippy.log` |
 

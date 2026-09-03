@@ -22,13 +22,14 @@ ao usuário como um número foi obtido. Nunca como valor para copiar.
 Não comece a executar nada. A primeira coisa que você faz é apresentar as opções e esperar a
 resposta:
 
-> Este repositório cobre cinco procedimentos na Elegoo Neptune 4 Max. Qual deles você quer?
+> Este repositório cobre seis procedimentos na Elegoo Neptune 4 Max. Qual deles você quer?
 >
 > 1. Atualizar o Klipper da impressora, do build de 2022 de fábrica para o de 2025
 > 2. Instalar e calibrar uma sonda BTT Eddy
 > 3. Resolver o Z-offset que não obedece quando você salva
 > 4. Diagnosticar um erro de homing que já está acontecendo
 > 5. Deixar a impressora confortável de usar: macros de purga, limpeza de bico, `PRINT_START` e malha
+> 6. Trocar o driver do Eddy pelo eddy-ng, para o Z-offset se medir sozinho a cada impressão
 
 Cada opção manda você para um documento diferente. **Leia o documento inteiro antes de emitir o
 primeiro comando.** Estes procedimentos têm ordem, e a ordem é o que separa uma instalação limpa de
@@ -41,9 +42,36 @@ um bico enfiado na mesa.
 | 3 | [Z-OFFSET.md](Z-OFFSET.md) |
 | 4 | [EDDY.md, tópico 15](EDDY.md#15-tabela-de-sintomas), a tabela de sintomas |
 | 5 | [MAQUINA-REFERENCIA.md](MAQUINA-REFERENCIA.md), a seção de macros |
+| 6 | [EDDY-NG.md](EDDY-NG.md) |
 
-Se o usuário responder alguma coisa que não é nenhuma das cinco, pergunte de novo em vez de
+Se o usuário responder alguma coisa que não é nenhuma das seis, pergunte de novo em vez de
 adivinhar.
+
+O caminho 6 **pressupõe o caminho 2 concluído**. Se o usuário escolher 6 sem ter um Eddy funcionando
+com o driver padrão, mande ele para o [EDDY.md](EDDY.md) primeiro. Instalar o eddy-ng por cima de uma
+sonda que nunca funcionou só junta dois problemas.
+
+### Se ele perguntar "qual é a diferença entre Eddy e eddy-ng?"
+
+Responda curto e prático, sem entrar na receita:
+
+> O **Eddy é a peça física** — a bobina que mede a distância até a mesa sem encostar. O **eddy-ng é
+> outro software para essa mesma peça**: mesmo sensor, mesmo cabo, nada muda no hardware.
+>
+> A diferença prática é uma só: com o driver padrão você faz o teste do papel uma vez e guarda o
+> número; com o eddy-ng **o bico encosta na mesa e mede o zero na hora, toda impressão**. Isso se
+> chama *tap*. Resultado: acaba o teste do papel, e o zero continua certo quando você troca de bico
+> ou muda muito a temperatura, porque a medição é feita quente.
+>
+> O que **não** muda: a velocidade da varredura da mesa (o driver padrão já tem `rapid_scan`), o
+> adaptador e a fiação.
+>
+> Vale a pena se você quer parar de calibrar Z. Não vale se o *tap* não funcionar bem na sua
+> montagem — e isso a calibração te diz em dois minutos, olhando o desvio padrão de três toques.
+
+Não afirme que a montagem do usuário inviabiliza o tap por causa da altura da bobina. A wiki do
+eddy-ng recomenda ~2,95 mm, mas a máquina de referência deste repositório roda a **0,94 mm** com
+desvio padrão de 0,006 mm. **Medir custa dois minutos; prever custa a instalação inteira.**
 
 Se ele não souber responder, faça **uma** pergunta de triagem antes de repetir o menu: a impressora
 está imprimindo bem hoje, ou tem alguma coisa errada acontecendo? "Está bem" leva aos caminhos 1, 2
@@ -51,7 +79,7 @@ ou 5. "Tem algo errado" leva aos caminhos 3 ou 4.
 
 ---
 
-## Regras de segurança que valem para os cinco caminhos
+## Regras de segurança que valem para os seis caminhos
 
 Estas não são sugestões. Elas existem porque cada uma delas custou um prejuízo real na máquina em
 que este repositório foi escrito.
