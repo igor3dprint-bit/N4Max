@@ -119,7 +119,18 @@ altura da bobina = altura do bico + 0,94
 
 ---
 
-## Valores vigentes, atualizado na sessão da noite de 2026-08-29
+## Valores do driver antigo — SUPERADO em 03/09/2026, mantido como histórico
+
+> ⚠️ **Esta seção descreve o `probe_eddy_current`, que esta máquina não usa mais.** Ela virou
+> [eddy-ng](EDDY-NG.md) em 03/09/2026, e lá o `z_offset` não existe: o zero vem do *tap*. Não rode
+> `PROBE_EDDY_CURRENT_CALIBRATE` nem `LDC_CALIBRATE_DRIVE_CURRENT` aqui — são comandos do driver
+> antigo. Os valores vigentes hoje são `reg_drive_current 17` (homing) e `tap_drive_current 18`
+> (tap), e estão no bloco de autosave como `[probe_eddy_ng btt_eddy]`.
+>
+> Fica registrado porque **continua sendo verdade para quem usa o driver padrão**, que é a maioria
+> de quem chega aqui, e porque explica de onde vieram os números.
+
+### Valores como estavam, atualizado na sessão da noite de 2026-08-29
 
 ```
 probe_eddy_current btt_eddy

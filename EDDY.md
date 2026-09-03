@@ -2,6 +2,17 @@
 
 Autor [@Igor3DPrint](https://instagram.com/igor3dprint)
 
+> **Este guia usa o driver que vem no Klipper (`probe_eddy_current`), e continua valendo — é por aqui
+> que se começa.** Duas coisas mudaram na máquina de referência depois que ele foi escrito, em
+> 03/09/2026, e é bom você saber antes de ler:
+>
+> - Ela migrou para o **[eddy-ng](EDDY-NG.md)**, onde o Z-offset se mede sozinho a cada impressão.
+>   Se o seu objetivo final é parar de calibrar Z, instale primeiro seguindo este documento e depois
+>   vá para o [EDDY-NG.md](EDDY-NG.md).
+> - A **borracha de limpeza foi removida** da máquina. As macros de limpeza de bico citadas mais
+>   adiante (`LIMPAR_BICO`, `PURGA_BAMBU`, `EDDY_OFFSET_FULL`) ainda existem na configuração, mas não
+>   são mais chamadas por nada. Não são erro; são histórico.
+
 Este guia cobre a instalação da sonda BTT Eddy Duo na Neptune 4 Max rodando o Klipper moderno. Está
 escrito na ordem em que as coisas acontecem, com os números que eu medi na minha máquina e os erros
 que eu cometi antes de chegar neles.

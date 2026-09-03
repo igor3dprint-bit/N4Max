@@ -23,6 +23,8 @@ peça no toolhead. O que muda é o programa dentro do Klipper que interpreta o q
 
 ### Por que trocar
 
+![Eddy e eddy-ng usam o mesmo hardware](docs/img/eddy-vs-eddyng.svg)
+
 Todo sensor eddy sofre do mesmo problema: **a leitura muda conforme a coisa esquenta.** A mesa
 quente e a própria bobina quente deslocam a medida. Não é defeito, é física do princípio indutivo.
 
@@ -84,6 +86,8 @@ número real vale mais que a previsão. Rode e veja.
 ---
 
 ## 4. A receita, na ordem
+
+![A ordem da migracao](docs/img/eddyng-ordem.svg)
 
 ### Passo 0 — proteja o que você já tem
 
@@ -211,6 +215,20 @@ make KCONFIG_CONFIG=~/eddyng-rp2040.config
 ls -la out/klipper.uf2      # tem que existir
 ```
 
+**Guarde o firmware que você acabou de compilar e o `.config` que o gerou**, porque o rollback do
+tópico 10 depende dos dois existirem:
+
+```bash
+mkdir -p ~/eddy-firmware-backup
+cp out/klipper.uf2 ~/eddy-firmware-backup/klipper-eddyng-$(date +%Y%m%d).uf2
+cp ~/eddyng-rp2040.config ~/eddy-firmware-backup/
+```
+
+> Não existe como ler de volta o firmware que **já está** no Eddy — o rp2040 não entrega o
+> binário gravado. Então o caminho de volta é recompilar, e para recompilar você precisa do
+> `.config` anterior. Se você nunca compilou firmware nesta máquina, o Eddy está com o binário
+> pronto da BigTreeTech, que você baixa de novo no repositório oficial deles.
+
 Grave. **Pare o Klipper antes** e use uma sessão com terminal de verdade (`ssh -t`), porque o
 `make flash` chama `sudo` no meio:
 
@@ -266,6 +284,8 @@ trava no `PRINT_START` que lia o `z_offset` dele e teria quebrado toda impressã
 
 ## 5. O bootstrap do Z: o ovo e a galinha
 
+![O impasse do primeiro homing e a saida](docs/img/eddyng-bootstrap-z.svg)
+
 Aqui você vai bater numa parede que parece um erro grave e não é.
 
 Nesta máquina **a sonda é a única referência de Z que existe** (`endstop_pin: probe:z_virtual_endstop`,
@@ -313,6 +333,8 @@ altura — e o problema estava em X/Y.
 ---
 
 ## 6. A calibração, e como ler o resultado
+
+![Como ler as correntes de excitacao](docs/img/eddyng-correntes.svg)
 
 Depois do `ACCEPT`, o eddy-ng varre as correntes de excitação sozinho e escolhe duas. Saída real
 desta máquina:
@@ -370,6 +392,8 @@ precisa de atenção antes de você colocar o tap na impressão.
 ---
 
 ## 7. O fluxo de impressão que sai disso
+
+![A sequencia nova do PRINT_START](docs/img/eddyng-print-start.svg)
 
 O tap **não é um número que se guarda**. Ele é refeito a cada impressão. Então ele mora dentro do
 `PRINT_START`:

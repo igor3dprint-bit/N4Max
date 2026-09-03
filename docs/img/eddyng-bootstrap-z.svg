@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>Bootstrap do Z no eddy-ng</title>
+  <desc>Mostra o ciclo em que G28 precisa da sonda, a sonda precisa de calibracao e o setup exige X e Y homeados, e mostra a saida com G28 X Y antes do setup.</desc>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #f7f7f2;
+      --text: #242424;
+      --muted: #4a4a4a;
+      --accent: #d95a14;
+      --soft: #ffd9bd;
+      --grey: #7d7d7d;
+      --danger: #b83a2e;
+      --green: #2f8f4e;
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="560" rx="10" fill="var(--bg)"/>
+  <text x="28" y="38" font-size="16" fill="var(--text)" font-weight="700">O bootstrap do Z: o impasse e a saída</text>
+
+  <text x="252" y="86" font-size="15" fill="var(--danger)" font-weight="700" text-anchor="middle">impasse</text>
+
+  <rect x="88" y="122" width="328" height="62" rx="8" fill="var(--panel)" stroke="var(--danger)" stroke-width="1.5"/>
+  <text x="252" y="149" font-size="14" fill="var(--text)" text-anchor="middle">G28 precisa da sonda</text>
+  <text x="252" y="170" font-size="11.5" fill="var(--danger)" class="mono" text-anchor="middle">Drive current 15 not calibrated</text>
+
+  <rect x="88" y="252" width="328" height="62" rx="8" fill="var(--panel)" stroke="var(--danger)" stroke-width="1.5"/>
+  <text x="252" y="279" font-size="14" fill="var(--text)" text-anchor="middle">a sonda precisa de calibração</text>
+  <text x="252" y="300" font-size="12" fill="var(--muted)" text-anchor="middle">ainda não existe curva do eddy-ng</text>
+
+  <rect x="88" y="382" width="328" height="68" rx="8" fill="var(--panel)" stroke="var(--danger)" stroke-width="1.5"/>
+  <text x="252" y="410" font-size="14" fill="var(--text)" class="mono" text-anchor="middle">PROBE_EDDY_NG_SETUP</text>
+  <text x="252" y="431" font-size="11.5" fill="var(--danger)" class="mono" text-anchor="middle">X and Y must be homed before setup</text>
+
+  <path d="M416 153 C478 188 478 252 416 283" fill="none" stroke="var(--danger)" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="405,288 429,288 417,268" fill="var(--danger)"/>
+  <path d="M252 314 L252 372" fill="none" stroke="var(--danger)" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="252,382 243,364 261,364" fill="var(--danger)"/>
+  <path d="M88 416 C20 330 20 205 88 153" fill="none" stroke="var(--danger)" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="98,148 74,148 86,168" fill="var(--danger)"/>
+
+  <line x1="500" y1="78" x2="500" y2="486" stroke="var(--grey)" stroke-width="1.4" stroke-dasharray="5,6"/>
+
+  <text x="742" y="86" font-size="15" fill="var(--green)" font-weight="700" text-anchor="middle">saída</text>
+
+  <rect x="612" y="158" width="260" height="60" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.5"/>
+  <circle cx="638" cy="188" r="13" fill="var(--green)"/>
+  <text x="638" y="193" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">1</text>
+  <text x="742" y="183" font-size="14" fill="var(--text)" class="mono" text-anchor="middle">G28 X Y</text>
+  <text x="742" y="203" font-size="12" fill="var(--muted)" text-anchor="middle">não chama a sonda</text>
+
+  <line x1="742" y1="218" x2="742" y2="263" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="742,273 733,255 751,255" fill="var(--muted)"/>
+
+  <rect x="592" y="273" width="300" height="66" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.5"/>
+  <circle cx="618" cy="306" r="13" fill="var(--green)"/>
+  <text x="618" y="311" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">2</text>
+  <text x="742" y="303" font-size="13" fill="var(--text)" class="mono" text-anchor="middle">PROBE_EDDY_NG_SETUP</text>
+  <text x="742" y="323" font-size="12" fill="var(--muted)" text-anchor="middle">agora X e Y já estão homeados</text>
+
+  <line x1="742" y1="339" x2="742" y2="384" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="742,394 733,376 751,376" fill="var(--muted)"/>
+
+  <rect x="612" y="394" width="260" height="50" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.5"/>
+  <text x="742" y="424" font-size="13" fill="var(--text)" text-anchor="middle">teste do papel e calibração</text>
+
+  <rect x="120" y="494" width="760" height="36" rx="8" fill="var(--soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <text x="500" y="517" font-size="12.5" fill="var(--accent)" font-weight="700" text-anchor="middle">O truque é separar X/Y de Z. Só o Z depende da sonda.</text>
+</svg>

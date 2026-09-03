@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 430" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>PRINT_START com tap do eddy-ng</title>
+  <desc>Linha do tempo do PRINT_START: mesa aquece, bico vai a 120 graus, G28, tap, temperatura final, linha de purga e impressao. Destaca que nao ha homing depois do tap.</desc>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #f7f7f2;
+      --text: #242424;
+      --muted: #4a4a4a;
+      --accent: #d95a14;
+      --soft: #ffd9bd;
+      --grey: #7d7d7d;
+      --danger: #b83a2e;
+      --green: #2f8f4e;
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1040" height="430" rx="10" fill="var(--bg)"/>
+  <text x="28" y="38" font-size="16" fill="var(--text)" font-weight="700">O novo começo de impressão com eddy-ng</text>
+
+  <line x1="86" y1="190" x2="954" y2="190" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="964,190 946,181 946,199" fill="var(--muted)"/>
+
+  <rect x="50" y="126" width="118" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="109" cy="126" r="13" fill="var(--accent)"/>
+  <text x="109" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">1</text>
+  <text x="109" y="164" font-size="12.5" fill="var(--text)" text-anchor="middle">mesa</text>
+  <text x="109" y="182" font-size="12.5" fill="var(--text)" text-anchor="middle">aquece</text>
+  <text x="109" y="204" font-size="11.5" fill="var(--muted)" class="mono" text-anchor="middle">M140/M190</text>
+
+  <rect x="194" y="126" width="118" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="253" cy="126" r="13" fill="var(--accent)"/>
+  <text x="253" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">2</text>
+  <text x="253" y="164" font-size="12.5" fill="var(--text)" text-anchor="middle">bico a</text>
+  <text x="253" y="184" font-size="14" fill="var(--accent)" font-weight="700" text-anchor="middle">120 °C</text>
+  <text x="253" y="204" font-size="11.5" fill="var(--muted)" class="mono" text-anchor="middle">M104/M109</text>
+
+  <rect x="338" y="126" width="118" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="397" cy="126" r="13" fill="var(--accent)"/>
+  <text x="397" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">3</text>
+  <text x="397" y="178" font-size="14" fill="var(--text)" class="mono" text-anchor="middle">G28</text>
+
+  <rect x="482" y="112" width="142" height="122" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.6"/>
+  <circle cx="553" cy="112" r="13" fill="var(--green)"/>
+  <text x="553" y="117" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">4</text>
+  <text x="553" y="153" font-size="12" fill="var(--text)" class="mono" text-anchor="middle">PROBE_EDDY</text>
+  <text x="553" y="171" font-size="12" fill="var(--text)" class="mono" text-anchor="middle">_NG_TAP</text>
+  <text x="553" y="194" font-size="12.5" fill="var(--green)" font-weight="700" text-anchor="middle">zero medido</text>
+  <text x="553" y="214" font-size="12" fill="var(--muted)" text-anchor="middle">agora</text>
+
+  <rect x="650" y="126" width="118" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="709" cy="126" r="13" fill="var(--accent)"/>
+  <text x="709" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">5</text>
+  <text x="709" y="164" font-size="12.5" fill="var(--text)" text-anchor="middle">temperatura</text>
+  <text x="709" y="182" font-size="12.5" fill="var(--text)" text-anchor="middle">final</text>
+  <text x="709" y="204" font-size="11.5" fill="var(--muted)" class="mono" text-anchor="middle">M109 S{extr}</text>
+
+  <rect x="794" y="126" width="118" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="853" cy="126" r="13" fill="var(--accent)"/>
+  <text x="853" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">6</text>
+  <text x="853" y="164" font-size="12.5" fill="var(--text)" text-anchor="middle">linha de</text>
+  <text x="853" y="182" font-size="12.5" fill="var(--text)" text-anchor="middle">purga</text>
+  <text x="853" y="204" font-size="11.5" fill="var(--muted)" class="mono" text-anchor="middle">LINHA_KAMP</text>
+
+  <rect x="936" y="126" width="78" height="94" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="975" cy="126" r="13" fill="var(--accent)"/>
+  <text x="975" y="131" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">7</text>
+  <text x="975" y="178" font-size="12.5" fill="var(--text)" text-anchor="middle">imprime</text>
+
+  <path d="M553 234 L553 274" fill="none" stroke="var(--green)" stroke-width="2"/>
+  <polygon points="553,284 544,266 562,266" fill="var(--green)"/>
+  <rect x="290" y="284" width="526" height="54" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.5"/>
+  <text x="553" y="306" font-size="13" fill="var(--green)" font-weight="700" text-anchor="middle">tap a 120 °C de propósito</text>
+  <text x="553" y="326" font-size="12.5" fill="var(--text)" text-anchor="middle">quente para repetir bem, frio para o bico não babar e medir plástico</text>
+
+  <path d="M624 248 C704 262 800 262 912 232" fill="none" stroke="var(--danger)" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="922,229 899,224 912,244" fill="var(--danger)"/>
+  <text x="768" y="262" font-size="12.5" fill="var(--danger)" font-weight="700" text-anchor="middle">não existe G28 depois do tap</text>
+
+  <rect x="262" y="366" width="516" height="36" rx="8" fill="var(--soft)" stroke="var(--accent)" stroke-width="1.5"/>
+  <text x="520" y="389" font-size="12.5" fill="var(--accent)" font-weight="700" text-anchor="middle">O tap não é salvo. Ele é refeito dentro do PRINT_START, a cada impressão.</text>
+</svg>

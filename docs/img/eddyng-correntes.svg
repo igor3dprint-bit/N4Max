@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>Correntes de calibração do eddy-ng</title>
+  <desc>Escala em milimetros comparando as correntes 15, 16, 17 e 18. A 17 serve para homing por enxergar longe, e a 18 serve para tap por enxergar perto da mesa.</desc>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #f7f7f2;
+      --text: #242424;
+      --muted: #4a4a4a;
+      --accent: #d95a14;
+      --soft: #ffd9bd;
+      --grey: #7d7d7d;
+      --danger: #b83a2e;
+      --green: #2f8f4e;
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="650" rx="10" fill="var(--bg)"/>
+  <text x="28" y="38" font-size="16" fill="var(--text)" font-weight="700">Como ler as correntes que o eddy-ng escolhe</text>
+
+  <rect x="44" y="70" width="912" height="404" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+
+  <line x1="108" y1="108" x2="108" y2="424" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="98" y1="424" x2="922" y2="424" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="98" y1="319" x2="922" y2="319" stroke="var(--grey)" stroke-width="1.1" stroke-dasharray="4,6"/>
+  <line x1="98" y1="213" x2="922" y2="213" stroke="var(--grey)" stroke-width="1.1" stroke-dasharray="4,6"/>
+  <line x1="98" y1="108" x2="922" y2="108" stroke="var(--grey)" stroke-width="1.1" stroke-dasharray="4,6"/>
+  <text x="82" y="428" font-size="12" fill="var(--text)" text-anchor="end">0</text>
+  <text x="82" y="323" font-size="12" fill="var(--text)" text-anchor="end">5</text>
+  <text x="82" y="217" font-size="12" fill="var(--text)" text-anchor="end">10</text>
+  <text x="82" y="112" font-size="12" fill="var(--text)" text-anchor="end">15 mm</text>
+
+  <line x1="98" y1="410.3" x2="922" y2="410.3" stroke="var(--danger)" stroke-width="1.7" stroke-dasharray="6,5"/>
+  <text x="122" y="402" font-size="12" fill="var(--danger)" font-weight="700">limite do setup: 0,65 mm</text>
+
+  <line x1="98" y1="423.5" x2="922" y2="423.5" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="3,5"/>
+  <text x="790" y="414" font-size="12" fill="var(--accent)" font-weight="700">tap quer 0,025 mm ou menos</text>
+
+  <text x="215" y="458" font-size="13" fill="var(--text)" font-weight="700" text-anchor="middle">corrente 15</text>
+  <line x1="215" y1="345.3" x2="215" y2="424" stroke="var(--danger)" stroke-width="4" stroke-linecap="round" stroke-dasharray="5,6"/>
+  <circle cx="215" cy="345.3" r="5" fill="var(--danger)"/>
+  <text x="215" y="331" font-size="12" fill="var(--danger)" class="mono" text-anchor="middle">3,728 mm</text>
+  <text x="215" y="374" font-size="11" fill="var(--danger)" text-anchor="middle">perto demais</text>
+  <text x="215" y="392" font-size="11" fill="var(--danger)" text-anchor="middle">não lê</text>
+  <text x="215" y="486" font-size="12" fill="var(--danger)" text-anchor="middle">rejeitada</text>
+
+  <text x="385" y="458" font-size="13" fill="var(--text)" font-weight="700" text-anchor="middle">corrente 16</text>
+  <line x1="385" y1="401" x2="385" y2="424" stroke="var(--danger)" stroke-width="4" stroke-linecap="round" stroke-dasharray="5,6"/>
+  <circle cx="385" cy="401" r="5" fill="var(--danger)"/>
+  <text x="385" y="388" font-size="12" fill="var(--danger)" class="mono" text-anchor="middle">1,092 mm</text>
+  <text x="385" y="432" font-size="11" fill="var(--danger)" text-anchor="middle">ainda acima</text>
+  <text x="385" y="486" font-size="12" fill="var(--danger)" text-anchor="middle">rejeitada</text>
+
+  <text x="575" y="458" font-size="13" fill="var(--text)" font-weight="700" text-anchor="middle">corrente 17</text>
+  <line x1="575" y1="108" x2="575" y2="419.4" stroke="var(--green)" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="575" cy="419.4" r="5" fill="var(--green)"/>
+  <text x="575" y="96" font-size="12" fill="var(--green)" class="mono" text-anchor="middle">15,000 mm</text>
+  <text x="575" y="444" font-size="12" fill="var(--green)" class="mono" text-anchor="middle">0,218 mm</text>
+  <text x="575" y="486" font-size="12" fill="var(--green)" font-weight="700" text-anchor="middle">homing</text>
+
+  <text x="760" y="458" font-size="13" fill="var(--text)" font-weight="700" text-anchor="middle">corrente 18</text>
+  <line x1="760" y1="310.9" x2="760" y2="424" stroke="var(--accent)" stroke-width="15" stroke-linecap="round"/>
+  <circle cx="760" cy="424" r="5" fill="var(--accent)"/>
+  <text x="760" y="298" font-size="12" fill="var(--accent)" class="mono" text-anchor="middle">5,360 mm</text>
+  <text x="760" y="444" font-size="12" fill="var(--accent)" class="mono" text-anchor="middle">0,001 mm</text>
+  <text x="760" y="486" font-size="12" fill="var(--accent)" font-weight="700" text-anchor="middle">tap</text>
+
+  <rect x="110" y="522" width="360" height="72" rx="8" fill="var(--panel)" stroke="var(--green)" stroke-width="1.5"/>
+  <text x="290" y="550" font-size="13" fill="var(--green)" font-weight="700" text-anchor="middle">homing quer enxergar longe</text>
+  <text x="290" y="572" font-size="12.5" fill="var(--text)" text-anchor="middle">a corrente 17 vê de 0,218 a 15,000 mm</text>
+
+  <rect x="530" y="522" width="360" height="72" rx="8" fill="var(--panel)" stroke="var(--accent)" stroke-width="1.5"/>
+  <text x="710" y="550" font-size="13" fill="var(--accent)" font-weight="700" text-anchor="middle">tap quer enxergar colado na mesa</text>
+  <text x="710" y="572" font-size="12.5" fill="var(--text)" text-anchor="middle">0,218 mm falha no tap; 0,001 mm funciona</text>
+
+  <text x="500" y="624" font-size="12.5" fill="var(--muted)" font-weight="700" text-anchor="middle">As correntes 15 e 16 falham porque começam acima do limite de 0,65 mm.</text>
+</svg>

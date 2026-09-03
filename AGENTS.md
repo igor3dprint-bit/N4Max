@@ -100,6 +100,45 @@ rápido demais para o software perceber.
 
 ---
 
+## Descubra o estado da máquina antes de seguir qualquer caminho
+
+Não presuma que a impressora do usuário é a máquina de referência. Estes documentos foram escritos
+numa máquina específica, e ela mesma **mudou** ao longo do tempo. Rode isto primeiro, é tudo leitura
+e não move nada:
+
+```bash
+# qual sonda esta ativa agora: probe_eddy_current, probe_eddy_ng, ou nenhuma
+curl -s "http://IP/printer/objects/list" | grep -o "probe_eddy[a-z_]*"
+
+# existe endstop mecanico de Z, ou a sonda e a unica referencia
+curl -s "http://IP/server/files/config/printer.cfg" | grep -n "endstop_pin"
+
+# a versao do Python do Klippy (o caminho 6 depende disso)
+curl -s "http://IP/printer/info" | grep -o '"python_path":[^,]*'
+
+# ha zero falso declarado no boot, ou KAMP concorrendo
+curl -s "http://IP/server/files/config/printer.cfg" | grep -nE "KINEMATIC_POSITION|^\[include.*KAMP"
+
+# a impressora esta ocupada
+curl -s "http://IP/printer/objects/query?print_stats" | grep -o '"state": *"[a-z]*"'
+```
+
+O que fazer com cada resposta:
+
+| Achado | Consequência |
+|---|---|
+| `probe_eddy_ng` ativo | Os caminhos 2 e 3 mudam de sentido. O Z-offset não é mais um valor guardado. Vá para o [EDDY-NG.md](EDDY-NG.md) |
+| `endstop_pin` mecânico presente em `[stepper_z]` | **Não aplique o `homing_override` deste repositório.** Ele assume que a sonda é a única referência de Z e mentiria sobre uma posição que o endstop físico contradiz |
+| `KINEMATIC_POSITION` num `delayed_gcode` | A máquina se declara homeada sem homear. Qualquer teste de Z precisa de `G28` explícito antes. É a Armadilha 1 do [EDDY.md](EDDY.md) |
+| KAMP incluído | A purga e a malha podem estar sendo renomeadas por baixo. Confira quem responde por `BED_MESH_CALIBRATE` antes de chamar |
+| Python já é 3.x | Os passos 2 e 3 do caminho 6 são desnecessários. Não recrie o ambiente nem mexa no `klipper.service` |
+| `print_stats` diferente de `standby`/`complete` | Pare. Não faça nada até a impressora estar livre |
+
+**Se um documento descrever a máquina de um jeito e a leitura acima disser outro, a leitura ganha.**
+Diga isso ao usuário em vez de seguir o texto.
+
+---
+
 ## Regras de segurança que valem para os seis caminhos
 
 Estas não são sugestões. Elas existem porque cada uma delas custou um prejuízo real na máquina em
@@ -311,13 +350,32 @@ contrário da intuição de quase todo mundo, inclusive da minha na primeira vez
 
 No `SET_GCODE_OFFSET`, o sinal é o intuitivo: `Z=+0.05` sobe o bico.
 
-Se o usuário quer só ajustar a primeira camada, prefira sempre o caminho ao vivo, que não exige
-reiniciar nada e não depende de você acertar o sinal:
+Se o usuário quer só ajustar a primeira camada, use o ajuste ao vivo, que não exige reiniciar nada
+e não depende de você acertar o sinal:
 
 ```
 SET_GCODE_OFFSET Z=+0.05 MOVE=1
-Z_OFFSET_APPLY_PROBE
-SAVE_CONFIG
+```
+
+### ⚠️ Não grave com `SAVE_CONFIG` nem `Z_OFFSET_APPLY_PROBE` nesta família de máquina
+
+Esta é a parte que uma IA erra e não percebe que errou. Nas Neptune com o módulo de tela da Elegoo
+(`znp_tjc_klipper`), **o `SAVE_CONFIG` grava `z_offset = 0.000`** em vez do valor medido, e o
+`Z_OFFSET_APPLY_PROBE` cai na mesma armadilha. Reproduzido três vezes na máquina de referência. Não
+dá erro, não avisa: o valor simplesmente vira zero depois do reinício, e a impressão seguinte sai
+errada sem explicação aparente.
+
+O [Z-OFFSET.md](Z-OFFSET.md) é a autoridade nisso e traz o mecanismo no código-fonte. **Leia-o antes
+de gravar qualquer Z**, e prefira o que ele manda: escrever o valor à mão no bloco de autosave e dar
+`FIRMWARE_RESTART`.
+
+**Antes de tocar em Z-offset, descubra qual sonda a máquina usa.** Se a resposta for `probe_eddy_ng`,
+este caminho inteiro não se aplica: o eddy-ng não guarda `z_offset` nenhum, o zero vem do *tap* a
+cada impressão, e a correção fixa (quando é necessária) é `PROBE_EDDY_NG_SET_TAP_OFFSET`. Mande o
+usuário para o [EDDY-NG.md](EDDY-NG.md).
+
+```bash
+curl -s "http://IP/printer/objects/list" | grep -o "probe_eddy[a-z_]*"
 ```
 
 ---

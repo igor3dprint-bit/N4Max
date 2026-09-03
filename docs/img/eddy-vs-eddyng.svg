@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" font-family="system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+  <title>Eddy e eddy-ng usam o mesmo hardware</title>
+  <desc>Compara o driver padrao e o eddy-ng: o mesmo BTT Eddy fisico fica no topo, mas o driver padrao guarda um numero e o eddy-ng mede o zero por tap a cada impressao.</desc>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --panel: #f7f7f2;
+      --text: #242424;
+      --muted: #4a4a4a;
+      --accent: #d95a14;
+      --soft: #ffd9bd;
+      --grey: #7d7d7d;
+      --danger: #b83a2e;
+      --green: #2f8f4e;
+    }
+    .mono { font-family: "Courier New", Courier, monospace; }
+  </style>
+
+  <rect x="0" y="0" width="1000" height="620" rx="10" fill="var(--bg)"/>
+  <text x="28" y="38" font-size="16" fill="var(--text)" font-weight="700">Eddy é a peça física. eddy-ng é outro software para essa mesma peça.</text>
+
+  <rect x="310" y="70" width="380" height="112" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.4"/>
+  <text x="500" y="96" font-size="14" fill="var(--text)" font-weight="700" text-anchor="middle">mesmo hardware no toolhead</text>
+  <rect x="380" y="126" width="120" height="18" rx="3" fill="var(--accent)"/>
+  <rect x="398" y="110" width="84" height="16" rx="3" fill="var(--soft)" stroke="var(--accent)" stroke-width="1.2"/>
+  <polygon points="568,148 604,148 586,102" fill="var(--grey)"/>
+  <line x1="500" y1="151" x2="500" y2="166" stroke="var(--muted)" stroke-width="2"/>
+  <text x="500" y="169" font-size="12" fill="var(--muted)" text-anchor="middle">BTT Eddy, mesmo cabo, mesma bobina, mesmo adaptador</text>
+
+  <line x1="500" y1="182" x2="500" y2="212" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="250" y1="212" x2="750" y2="212" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="250" y1="212" x2="250" y2="236" stroke="var(--muted)" stroke-width="2"/>
+  <line x1="750" y1="212" x2="750" y2="236" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="250,246 241,228 259,228" fill="var(--muted)"/>
+  <polygon points="750,246 741,228 759,228" fill="var(--muted)"/>
+
+  <rect x="55" y="246" width="390" height="320" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.4"/>
+  <text x="250" y="278" font-size="16" fill="var(--text)" font-weight="700" text-anchor="middle">driver padrão</text>
+  <text x="250" y="300" font-size="12" fill="var(--muted)" class="mono" text-anchor="middle">probe_eddy_current</text>
+
+  <rect x="100" y="332" width="300" height="48" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="125" cy="356" r="13" fill="var(--accent)"/>
+  <text x="125" y="361" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">1</text>
+  <text x="250" y="361" font-size="13" fill="var(--text)" text-anchor="middle">teste do papel uma vez</text>
+
+  <line x1="250" y1="380" x2="250" y2="411" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="250,421 241,403 259,403" fill="var(--muted)"/>
+
+  <rect x="100" y="421" width="300" height="52" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="125" cy="447" r="13" fill="var(--accent)"/>
+  <text x="125" y="452" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">2</text>
+  <text x="250" y="442" font-size="13" fill="var(--text)" text-anchor="middle">um número fica gravado</text>
+  <text x="250" y="460" font-size="12" fill="var(--muted)" class="mono" text-anchor="middle">z_offset = ...</text>
+
+  <line x1="250" y1="473" x2="250" y2="504" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="250,514 241,496 259,496" fill="var(--muted)"/>
+
+  <rect x="88" y="514" width="324" height="34" rx="8" fill="var(--soft)" stroke="var(--danger)" stroke-width="1.5"/>
+  <text x="250" y="536" font-size="13" fill="var(--danger)" font-weight="700" text-anchor="middle">troca de bico ou temperatura muda esse zero</text>
+
+  <rect x="555" y="246" width="390" height="320" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.4"/>
+  <text x="750" y="278" font-size="16" fill="var(--text)" font-weight="700" text-anchor="middle">eddy-ng</text>
+  <text x="750" y="300" font-size="12" fill="var(--muted)" class="mono" text-anchor="middle">probe_eddy_ng</text>
+
+  <rect x="600" y="332" width="300" height="48" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="625" cy="356" r="13" fill="var(--green)"/>
+  <text x="625" y="361" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">1</text>
+  <text x="750" y="361" font-size="13" fill="var(--text)" text-anchor="middle">o bico encosta na mesa</text>
+
+  <line x1="750" y1="380" x2="750" y2="411" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="750,421 741,403 759,403" fill="var(--muted)"/>
+
+  <rect x="600" y="421" width="300" height="52" rx="8" fill="var(--panel)" stroke="var(--grey)" stroke-width="1.3"/>
+  <circle cx="625" cy="447" r="13" fill="var(--green)"/>
+  <text x="625" y="452" font-size="12" fill="var(--panel)" font-weight="700" text-anchor="middle">2</text>
+  <text x="750" y="442" font-size="13" fill="var(--text)" text-anchor="middle">mede o zero na hora</text>
+  <text x="750" y="460" font-size="12" fill="var(--muted)" class="mono" text-anchor="middle">PROBE_EDDY_NG_TAP</text>
+
+  <line x1="750" y1="473" x2="750" y2="504" stroke="var(--muted)" stroke-width="2"/>
+  <polygon points="750,514 741,496 759,496" fill="var(--muted)"/>
+
+  <rect x="605" y="514" width="290" height="34" rx="8" fill="#dcefdc" stroke="var(--green)" stroke-width="1.5"/>
+  <text x="750" y="536" font-size="13" fill="var(--green)" font-weight="700" text-anchor="middle">nada fica velho, porque nada foi guardado</text>
+
+  <line x1="484" y1="294" x2="516" y2="294" stroke="var(--grey)" stroke-width="1.4" stroke-dasharray="5,6"/>
+  <text x="500" y="592" font-size="12.5" fill="var(--muted)" font-weight="700" text-anchor="middle">O sensor é o mesmo. O comportamento muda porque o software escolhe outro jeito de achar o zero.</text>
+</svg>
