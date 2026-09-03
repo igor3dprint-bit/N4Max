@@ -45,8 +45,8 @@ Os arquivos de configuração completos desta máquina, já sanitizados, estão 
 
 | Item | Valor |
 |---|---|
-| IP | 192.168.68.105 |
-| SSH | `ssh mks@192.168.68.105`, sem senha, chave já autorizada |
+| IP | SEU_IP |
+| SSH | `ssh mks@SEU_IP`, sem senha, chave já autorizada |
 | Interface | Fluidd |
 | Klipper | fork sandmmakers, `sandmmakers-ElegooNeptune4Max-v1.2.3.4-v0.13.0-51-1`, rodando em **Python 3.7.3** |
 | Sonda | **eddy-ng** (`probe_eddy_ng`), não mais `probe_eddy_current` |
@@ -57,11 +57,11 @@ Os arquivos de configuração completos desta máquina, já sanitizados, estão 
 Leitura de estado sem tocar na máquina
 
 ```bash
-curl -s "http://192.168.68.105/printer/info"
-curl -s "http://192.168.68.105/printer/objects/query?configfile=settings"
-curl -s "http://192.168.68.105/printer/objects/query?toolhead&gcode_move&heater_bed&extruder"
-curl -s "http://192.168.68.105/server/files/config/printer.cfg"
-curl -s "http://192.168.68.105/server/gcode_store?count=30"
+curl -s "http://SEU_IP/printer/info"
+curl -s "http://SEU_IP/printer/objects/query?configfile=settings"
+curl -s "http://SEU_IP/printer/objects/query?toolhead&gcode_move&heater_bed&extruder"
+curl -s "http://SEU_IP/server/files/config/printer.cfg"
+curl -s "http://SEU_IP/server/gcode_store?count=30"
 ```
 
 A resposta de um `POST /printer/gcode/script` não traz a saída do comando. Para ler o que o Klipper
@@ -329,7 +329,7 @@ O `FIRMWARE_RESTART` nem sempre recarrega a configuração. Quando desconfiar, f
 confirme lendo de volta o que ficou carregado.
 
 ```bash
-curl -s -X POST "http://192.168.68.105/machine/services/restart?service=klipper"
+curl -s -X POST "http://SEU_IP/machine/services/restart?service=klipper"
 ```
 
 A mesa fica ligada em 50 graus quando ociosa. Desligue o aquecedor alguns segundos antes de
