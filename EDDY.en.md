@@ -30,7 +30,7 @@ distance, and the error message points to the wrong place. It is in [topic 9](#9
 ## Topics
 
 1. [Hardware I used](#1-hardware-i-used)
-2. [Printed parts](#2-printed-parts)
+2. [Printed part](#2-printed-part)
 3. [How the Eddy appears on the computer](#3-how-the-eddy-appears-on-the-computer)
 4. [What the Eddy does and does not do](#4-what-the-eddy-does-and-does-not-do)
 5. [The three mounting measurements](#5-the-three-mounting-measurements)
@@ -68,63 +68,24 @@ ls /dev/serial/by-id/
 
 ---
 
-## 2. Printed parts
+## 2. Printed part
 
-Everything I printed for this mount. The files are in [`stl/`](stl/), with the details for each part
-in [`stl/README.md`](stl/README.md).
-
-Print these parts in **ABS or ASA**. They sit on or near the heated bed, and some come close to the
-hot nozzle. PLA softens and deforms in that temperature range, and the geometry that holds the probe
-or guides the plate stops being precise. PETG is a middle ground and still creeps under sustained
-heat.
-
-### Probe adapter
-
-The mount that holds the Eddy on the Neptune 4 extruder carriage.
+The mount that holds the Eddy on the Neptune 4 extruder carriage, the only STL needed for this
+build.
 
 https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter
 
+Print it in **ABS or ASA**. The part sits close to the hot nozzle and near the heated bed, and PLA
+softens and deforms in that temperature range, which takes the precision out of the geometry that
+holds the probe. PETG is a middle ground and still creeps under sustained heat.
+
 There are two variants in the model, one straight and one at ninety degrees. I printed and used the
-straight one, [`stl/BTT-Eddy_Adapter_v05.stl`](stl/BTT-Eddy_Adapter_v05.stl). The ninety-degree
-variant is in [`stl/BTT-Eddy_Adapter90deg_v05.stl`](stl/BTT-Eddy_Adapter90deg_v05.stl). Choose based
-on the clearance left on your carriage, because the variant changes the adapter position and with it
-the coil mounting height, and that height goes into every calculation in
-[topic 7](#7-the-calculations-that-prevent-sensor-errors). Measure your height after mounting. Do
+straight one. Choose based on the clearance left on your carriage, because the variant changes the
+adapter position and with it the coil mounting height, and that height goes into every calculation
+in [topic 7](#7-the-calculations-that-prevent-sensor-errors). Measure your height after mounting. Do
 not copy mine.
 
 It takes **2 M3 heat-set inserts**, melted in with a soldering iron.
-
-### Nozzle-cleaning pad holder
-
-[`stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl`](stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl)
-
-The pad itself is the **Bambu Lab A1 cleaning pad**, the silicone one that comes with the machine. It
-is cheap, withstands nozzle temperature without melting, and has the right stiffness to scrape
-without bending the carriage.
-
-I mounted the pad near the origin, occupying roughly X0 to X5 and Y0 to Y35, with seven millimeters
-of height. Write down your position and height, because they go into the homing configuration and
-the cleaning macros.
-
-### Build-plate corner guides
-
-[`stl/en4max-buildplatecornerguide-left.stl`](stl/en4max-buildplatecornerguide-left.stl) and
-[`stl/en4max-buildplatecornerguide-right.stl`](stl/en4max-buildplatecornerguide-right.stl). They are
-a pair, left and right: **print both**.
-
-They make the magnetic plate return to the same position every time after you remove a part. Without
-them, the sheet shifts a few millimeters on every removal, and the mesh you spent half an hour making
-starts describing a place that moved.
-
-With a dense mesh, these guides stop being comfort and become part of the calibration.
-
-### Purge collector
-
-[`stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl`](stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl)
-
-Optional. If you adopt the block purge described in [topic 13](#13-macros-i-use-day-to-day), the
-material comes out in the corner of the bed and stays there. The magnetic collector solves that by
-carrying the material off the plate.
 
 ---
 

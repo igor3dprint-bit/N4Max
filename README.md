@@ -185,7 +185,6 @@ ordem importa.
 | `MAQUINA-REFERENCIA.md` | A máquina do autor por inteiro: hardware, valores, alterações, macros |
 | `AGENTS.md` | Instruções para uma IA conduzir qualquer um dos seis caminhos |
 | `CLAUDE.md` | Ponteiro de uma linha para o `AGENTS.md` |
-| `stl/` | As peças impressas usadas na montagem |
 | `docs/` | A página web deste repositório |
 
 ---

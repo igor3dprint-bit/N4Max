@@ -84,21 +84,8 @@ X0 a X5 e Y0 a Y35, com sete milímetros de altura.
 
 Guias de canto impressos para o prato magnético voltar sempre na mesma posição.
 
-STLs usados, todos versionados na pasta [stl/](stl/) deste repositório
-
-```
-BTT-Eddy_Adapter_v05.stl
-BTT-Eddy_Adapter90deg_v05.stl
-nozzle-cleaner-holder-improved-lifted-pad-n4.stl
-en4max-buildplatecornerguide-left.stl
-en4max-buildplatecornerguide-right.stl
-ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl
-```
-
-Adaptador do Eddy vem de https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter
-
-Todas essas peças devem ser impressas em ABS ou ASA. Ficam sobre a mesa aquecida e ao lado do
-hotend, e PLA deforma em serviço.
+Adaptador do Eddy impresso, modelo de https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter,
+em ABS ou ASA — fica sobre a mesa aquecida e ao lado do hotend, e PLA deforma em serviço.
 
 ---
 

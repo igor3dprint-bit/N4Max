@@ -30,7 +30,7 @@ mensagem de erro aponta para o lugar errado. Está no [tópico 9](#9-a-corrente-
 ## Tópicos
 
 1. [Hardware que eu usei](#1-hardware-que-eu-usei)
-2. [Peças impressas](#2-peças-impressas)
+2. [Peça impressa](#2-peça-impressa)
 3. [Como o Eddy aparece no computador](#3-como-o-eddy-aparece-no-computador)
 4. [O que o Eddy faz e o que ele não faz](#4-o-que-o-eddy-faz-e-o-que-ele-não-faz)
 5. [As três medidas da montagem](#5-as-três-medidas-da-montagem)
@@ -68,63 +68,24 @@ ls /dev/serial/by-id/
 
 ---
 
-## 2. Peças impressas
+## 2. Peça impressa
 
-Tudo o que eu imprimi para esta montagem. Os arquivos estão em [`stl/`](stl/), com o detalhe de cada
-peça em [`stl/README.md`](stl/README.md).
-
-Imprima estas peças em **ABS ou ASA**. Elas ficam sobre a mesa aquecida ou perto dela, e algumas
-encostam perto do bico quente. PLA amolece e deforma nessa faixa de temperatura, e a geometria que
-segura a sonda ou guia o prato deixa de ser precisa. PETG é um meio termo e ainda flui sob calor
-sustentado.
-
-### Adaptador da sonda
-
-O suporte que prende o Eddy no carro do extrusor da Neptune 4.
+O suporte que prende o Eddy no carro do extrusor da Neptune 4, o único STL necessário para esta
+montagem.
 
 https://www.printables.com/model/928061-neptune-4-btt-eddy-adapter
 
-Tem duas variantes no modelo, uma reta e uma a noventa graus. Eu imprimi e usei a reta,
-[`stl/BTT-Eddy_Adapter_v05.stl`](stl/BTT-Eddy_Adapter_v05.stl). A variante a noventa graus está em
-[`stl/BTT-Eddy_Adapter90deg_v05.stl`](stl/BTT-Eddy_Adapter90deg_v05.stl). Escolha conforme a folga que
-sobrar no seu carro, porque a variante muda a posição do adaptador e junto com ela a altura de
-montagem da bobina, e essa altura entra em todas as contas do
-[tópico 7](#7-as-contas-que-evitam-erro-de-sensor).
-Meça a sua altura depois de montar, não copie a minha.
+Imprima em **ABS ou ASA**. A peça fica perto do bico quente e sobre a mesa aquecida, e o PLA amolece
+e deforma nessa faixa de temperatura, o que tira a precisão da geometria que segura a sonda. PETG é
+um meio termo e ainda flui sob calor sustentado.
+
+Tem duas variantes no modelo, uma reta e uma a noventa graus. Eu imprimi e usei a reta. Escolha
+conforme a folga que sobrar no seu carro, porque a variante muda a posição do adaptador e junto com
+ela a altura de montagem da bobina, e essa altura entra em todas as contas do
+[tópico 7](#7-as-contas-que-evitam-erro-de-sensor). Meça a sua altura depois de montar, não copie a
+minha.
 
 Leva **2 porcas de embutir M3** (heat-set insert), fundidas com ferro de solda.
-
-### Suporte da borracha de limpeza
-
-[`stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl`](stl/nozzle-cleaner-holder-improved-lifted-pad-n4.stl)
-
-A borracha em si é a **almofada de limpeza da Bambu Lab A1**, aquela de silicone que acompanha a
-máquina. Ela é barata, aguenta temperatura de bico sem derreter e tem a rigidez certa para raspar
-sem entortar o carro.
-
-Eu montei a borracha perto da origem, ocupando aproximadamente de X0 a X5 e de Y0 a Y35, com sete
-milímetros de altura. Anote a sua posição e altura, porque elas entram na configuração do homing e
-das macros de limpeza.
-
-### Guias de canto do prato
-
-[`stl/en4max-buildplatecornerguide-left.stl`](stl/en4max-buildplatecornerguide-left.stl) e
-[`stl/en4max-buildplatecornerguide-right.stl`](stl/en4max-buildplatecornerguide-right.stl). São um
-par, esquerda e direita, **imprima os dois**.
-
-Servem para o prato magnético voltar sempre na mesma posição depois de você tirar a peça. Sem eles a
-chapa desloca alguns milímetros a cada retirada, e a malha que você levou meia hora fazendo passa a
-descrever um lugar que mudou.
-
-Com uma malha densa, esses guias deixam de ser conforto e passam a fazer parte da calibração.
-
-### Coletor de purga
-
-[`stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl`](stl/ecc2-poop-chute-magnetic-snap-in-place-15x10-20x10mm_magnets_logo.stl)
-
-Opcional. Se você adotar a purga em bloco descrita no [tópico 13](#13-macros-que-eu-uso-no-dia-a-dia),
-o material sai no canto da mesa e fica lá. O coletor magnético resolve isso levando o material para
-fora do prato.
 
 ---
 
