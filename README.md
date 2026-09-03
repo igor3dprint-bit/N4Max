@@ -66,7 +66,9 @@ A Neptune 4 Max sai de fábrica com um Klipper de **2022**. O passo a passo leva
 **2025**, comando por comando, explicando o que cada um faz e mostrando o que você deve ver na tela.
 Sem pendrive, sem chave de fenda, sem abrir a impressora.
 
-[PASSO-A-PASSO.md](PASSO-A-PASSO.md) · [STEP-BY-STEP.md](STEP-BY-STEP.md)
+| 🇧🇷 PT-BR | 🇺🇸 EN |
+|---|---|
+| [PASSO-A-PASSO.md](PASSO-A-PASSO.md) | [STEP-BY-STEP.md](STEP-BY-STEP.md) |
 
 ### 2. Instalar e calibrar uma sonda BTT Eddy
 
@@ -80,7 +82,9 @@ importante e o menos falado. É a causa mais comum de `Eddy current sensor error
 mensagem parece dizer que o sensor está longe da mesa. Não é isso que ela informa. Com a corrente
 errada, o sensor dá erro mesmo estando na distância certa, e você procura horas no lugar errado.
 
-[EDDY.md](EDDY.md) · [EDDY.en.md](EDDY.en.md)
+| 🇧🇷 PT-BR | 🇺🇸 EN |
+|---|---|
+| [EDDY.md](EDDY.md) | [EDDY.en.md](EDDY.en.md) |
 
 ### 3. Fazer a máquina achar o Z sozinha, com o eddy-ng
 
@@ -100,7 +104,9 @@ O guia traz a receita completa, o ovo-e-galinha do primeiro homing (a sonda é a
 Z e ela ainda não está calibrada), e as dez coisas que quebraram no caminho, com o que resolveu cada
 uma.
 
-[EDDY-NG.md](EDDY-NG.md) · [EDDY-NG.en.md](EDDY-NG.en.md)
+| 🇧🇷 PT-BR | 🇺🇸 EN |
+|---|---|
+| [EDDY-NG.md](EDDY-NG.md) | [EDDY-NG.en.md](EDDY-NG.en.md) |
 
 ### 4. O Z-offset que não obedece, e por quê
 
