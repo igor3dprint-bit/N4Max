@@ -49,6 +49,13 @@ descobri usando a máquina no dia a dia. Se isto te ajudou, o agradecimento vai 
 | Tutorial original | https://sandmmakers.com/Projects/Neptune4MaxLatestKlipper/Directions.html |
 | Código | https://github.com/sandmmakers/klipper |
 
+**Menção honrosa: BigTreeTech.** O hardware que faz o Z-offset se medir sozinho é deles: a sonda
+BTT Eddy. Sem ela, nem a §3 nem a §4 deste guia existiriam. A minha unidade foi comprada na loja
+oficial BIGTREETECH no AliExpress.
+
+*Honorable mention: BigTreeTech, maker of the BTT Eddy probe that makes the self-measuring Z-offset
+possible. My unit was bought from BigTreeTech's official store on AliExpress.*
+
 ---
 
 ## O que tem aqui
