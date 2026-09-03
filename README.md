@@ -80,7 +80,7 @@ importante e o menos falado. É a causa mais comum de `Eddy current sensor error
 mensagem parece dizer que o sensor está longe da mesa. Não é isso que ela informa. Com a corrente
 errada, o sensor dá erro mesmo estando na distância certa, e você procura horas no lugar errado.
 
-[EDDY.md](EDDY.md)
+[EDDY.md](EDDY.md) · [EDDY.en.md](EDDY.en.md)
 
 ### 3. Fazer a máquina achar o Z sozinha, com o eddy-ng
 
@@ -100,7 +100,7 @@ O guia traz a receita completa, o ovo-e-galinha do primeiro homing (a sonda é a
 Z e ela ainda não está calibrada), e as dez coisas que quebraram no caminho, com o que resolveu cada
 uma.
 
-[EDDY-NG.md](EDDY-NG.md)
+[EDDY-NG.md](EDDY-NG.md) · [EDDY-NG.en.md](EDDY-NG.en.md)
 
 ### 4. O Z-offset que não obedece, e por quê
 
@@ -172,8 +172,8 @@ ordem importa.
 |---|---|
 | `PASSO-A-PASSO.md` | Guia completo de instalação do Klipper, comando por comando |
 | `STEP-BY-STEP.md` | O mesmo guia, em inglês |
-| `EDDY.md` | Instalação e calibração do BTT Eddy, com as armadilhas |
-| `EDDY-NG.md` | Trocar o driver do Eddy pelo eddy-ng: tap, Z-offset automático, e os 10 erros do caminho |
+| [EDDY.md](EDDY.md) · [EDDY.en.md](EDDY.en.md) | Instalação e calibração do BTT Eddy, com as armadilhas |
+| [EDDY-NG.md](EDDY-NG.md) · [EDDY-NG.en.md](EDDY-NG.en.md) | Trocar o driver do Eddy pelo eddy-ng: tap, Z-offset automático, e os 10 erros do caminho |
 | `config/` | Os arquivos de configuração reais da máquina, sanitizados |
 | `Z-OFFSET.md` | O Z-offset que não obedece: causas, solução, medição. Bilíngue |
 | `MAQUINA-REFERENCIA.md` | A máquina do autor por inteiro: hardware, valores, alterações, macros |
@@ -212,11 +212,12 @@ This repository documents three things about the Elegoo Neptune 4 Max: installin
 over the factory 2022 build, installing and calibrating a BTT Eddy probe, and fixing the Z-offset
 that refuses to obey when you save it.
 
-The Klipper install guide and the Z-offset write-up are available in English. The Eddy guide, the
-reference machine and the AI instructions are currently Portuguese only, but any AI agent reading
-this repository will answer you in English.
+The Klipper install guide, the Eddy guides, and the Z-offset write-up are available in English. The
+reference machine and the AI instructions are currently Portuguese only, but any AI agent reading this
+repository will answer you in English.
 
-[STEP-BY-STEP.md](STEP-BY-STEP.md) · [Z-OFFSET.md](Z-OFFSET.md)
+[STEP-BY-STEP.md](STEP-BY-STEP.md) · [EDDY.en.md](EDDY.en.md) · [EDDY-NG.en.md](EDDY-NG.en.md) ·
+[Z-OFFSET.md](Z-OFFSET.md)
 
 All the porting work belongs to [S&M Makers](https://github.com/sandmmakers/klipper). This repository
 walks through their process and adds what I found living with the machine.
