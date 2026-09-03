@@ -1,16 +1,3 @@
-# Elegoo Neptune 4 Max: Klipper moderno, BTT Eddy e o Z-offset que não obedece
-
-Tudo o que eu aprendi mexendo na minha Neptune 4 Max, escrito comando por comando, com os números
-reais que eu medi na máquina. Não é teoria de fórum: cada coisa aqui quebrou primeiro, e só depois
-funcionou.
-
-Autor: [@Igor3DPrint](https://instagram.com/igor3dprint)
-
-[Passo a passo em português](PASSO-A-PASSO.md) · [Step by step in English](STEP-BY-STEP.md) ·
-[Página web](https://igor3dprint-bit.github.io/N4Max/)
-
----
-
 ## ⚠️ Leia antes de qualquer coisa: o risco é seu
 
 Este material é compartilhado de graça, como está, **sem nenhuma garantia**. Ele descreve o que deu
@@ -34,6 +21,19 @@ Se você não se sente confortável em ler um comando antes de colar, ou não te
 *This material is provided free of charge, as is, with no warranty of any kind. By following it you
 accept full responsibility for anything that happens to your equipment. Neither the author nor any
 project referenced here is liable for any damage, direct or indirect.*
+
+---
+
+# Elegoo Neptune 4 Max: Klipper moderno, BTT Eddy e o Z-offset que não obedece
+
+Tudo o que eu aprendi mexendo na minha Neptune 4 Max, escrito comando por comando, com os números
+reais que eu medi na máquina. Não é teoria de fórum: cada coisa aqui quebrou primeiro, e só depois
+funcionou.
+
+Autor: [@Igor3DPrint](https://instagram.com/igor3dprint)
+
+[Passo a passo em português](PASSO-A-PASSO.md) · [Step by step in English](STEP-BY-STEP.md) ·
+[Página web](https://igor3dprint-bit.github.io/N4Max/)
 
 ---
 
