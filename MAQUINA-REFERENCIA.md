@@ -119,27 +119,19 @@ altura da bobina = altura do bico + 0,94
 
 ---
 
-## Valores do driver antigo — SUPERADO em 03/09/2026, mantido como histórico
+## Valores atuais (eddy-ng, desde 03/09/2026)
 
-> ⚠️ **Esta seção descreve o `probe_eddy_current`, que esta máquina não usa mais.** Ela virou
-> [eddy-ng](EDDY-NG.md) em 03/09/2026, e lá o `z_offset` não existe: o zero vem do *tap*. Não rode
-> `PROBE_EDDY_CURRENT_CALIBRATE` nem `LDC_CALIBRATE_DRIVE_CURRENT` aqui — são comandos do driver
-> antigo. Os valores vigentes hoje são `reg_drive_current 17` (homing) e `tap_drive_current 18`
-> (tap), e estão no bloco de autosave como `[probe_eddy_ng btt_eddy]`.
->
-> Fica registrado porque **continua sendo verdade para quem usa o driver padrão**, que é a maioria
-> de quem chega aqui, e porque explica de onde vieram os números.
-
-### Valores como estavam, atualizado na sessão da noite de 2026-08-29
+Esta máquina usa **[eddy-ng](EDDY-NG.md)** (`probe_eddy_ng`), não mais `probe_eddy_current`. Não
+existe `z_offset`: o zero é medido por *tap* a cada impressão. Não rode
+`PROBE_EDDY_CURRENT_CALIBRATE` nem `LDC_CALIBRATE_DRIVE_CURRENT` — são comandos do driver antigo.
 
 ```
-probe_eddy_current btt_eddy
+probe_eddy_ng btt_eddy
   x_offset            -33.34
   y_offset            20.0
-  z_offset            0.300      (mora no bloco autosave, não no eddy.cfg)
-  sample_retract_dist 1.0
-  reg_drive_current   18
-  tabela              101 pontos, gravada pelo PROBE_EDDY_CURRENT_CALIBRATE mais recente
+  reg_drive_current   17   (homing)
+  tap_drive_current   18   (tap)
+  tap                 -0,050 mm, desvio padrão 0,006 mm
 
 bed_mesh
   mesh_min            20, 25
@@ -151,17 +143,9 @@ stepper_z
   homing_retract_dist 1.5
 ```
 
-`z_offset` e `reg_drive_current` mudaram de novo depois da tarde do dia 29, numa sessão de recalibração
-que fechou junto com a malha densa. O valor anterior desta tabela era `z_offset: 1.861` e
-`reg_drive_current: 16`. Meça o seu, não copie nem o de hoje nem o de ontem.
-
-Invariantes que precisam continuar valendo, com F igual a 4,05 e M igual a 0,94
-
-```
-z_offset + sample_retract_dist   <  F      0,300 + 1,0 = 1,300   ok
-horizontal_move_z + M            <  F      2,5 + 0,94 = 3,44     ok
-altura de início do mergulho + M <  F
-```
+Meça o seu — estes valores são desta máquina, não uma constante. Se você está usando o driver
+padrão `probe_eddy_current` (ainda válido, veja [EDDY.md](EDDY.md)), ele usa `z_offset` e
+`reg_drive_current`, que aqui não existem mais.
 
 ---
 
