@@ -338,4 +338,5 @@ printer.cfg.bak-zoff2             printer.cfg.bak-guard
 A malha densa de 4900 pontos (setenta por setenta) já foi feita e salva como perfil padrão. O
 `PRINT_START` carrega ela.
 
-O `z_offset` de 0,300 saiu da recalibração mais recente e ainda não foi validado imprimindo.
+A [Decisão em aberto](#decisão-em-aberto) sobre reinstalar ou não um sensor de contato continua sem
+resposta — a máquina convive com o ritual do primeiro home.
